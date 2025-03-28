@@ -52,12 +52,7 @@
                 </thead>
                 <tbody id="deptTable">
                     <!-- 부서 데이터 들어옴 -->
-                	<tr>
-                		<td></td>
-                		<td></td>
-                		<td></td>
-                		<td></td>
-                	</tr>
+
                 </tbody>
             </table>
         </div>
@@ -80,16 +75,99 @@
     
     $(document).ready(function() { 
     $.ajax({
-    	url:"/Depart/selectAllDept"
-    }).done(function(resp){
-    	console.log(resp);
-    
- 
-    		
+    	url:"/Depart/selectAllDept",
+    	type:"GET"
+    }).done(function(resp){    	
+    	 $('#deptTable').empty(); 
+    	 resp.forEach(function(dept) {
+    	        	 let row = '<tr>' +
+                     '<td>' + dept.dept_id + '</td>' + // 부서 ID
+                     '<td class="dept-name" contenteditable="false">' + dept.dept_name + '</td>' + // 부서 이름
+                     '<td>' + dept.manager + '</td>' + // 부서장 정보
+                     '<td>' +
+                     '<button class="edit-btn">수정</button>' + // 수정 버튼
+                     '<button class="confirm-edit-btn" style="display:none;">수정 완료</button>' + // 수정 완료 버튼, 처음에는 숨김
+                     '<button class="cancel-edit-btn" style="display:none;">취소</button>' + // 취소 버튼, 처음에는 숨김
+                     '<button class="delete-btn">삭제</button>' + // 삭제 버튼
+                     '</td>' +
+                 '</tr>';
+    	        $('#deptTable').append(row); // 테이블에 추가
+    	    });
+    	
  
     })
     
+    // 수정 버튼 클릭 이벤트
+    $(document).on('click', '.edit-btn', function() {
+        // 클릭한 버튼의 부모 tr을 찾음
+        const row = $(this).closest('tr');
+        // 부서명 셀을 찾고 contenteditable을 true로 설정
+        row.find('.dept-name').attr('contenteditable', 'true').focus();
+        // 수정 완료 버튼과 취소 버튼을 보여주고 수정 버튼은 숨김
+        row.find('.delete-btn').hide();
+        row.find('.confirm-edit-btn').show();
+        row.find('.cancel-edit-btn').show();
+        $(this).hide();
     });
+    
+    //수정 완료 버튼 클릭 이벤트
+    $(document).on('click', '.confirm-edit-btn', function() {
+        const row = $(this).closest('tr'); // 현재 행을 선택
+        const deptId = row.find('td:first').text(); // 부서 ID 가져오기
+        const updatedName = row.find('.dept-name').text(); // 수정된 부서 이름 가져오기
+
+        // AJAX 요청으로 수정된 부서 이름 전송
+        $.ajax({
+            url: '/Depart/updateDept', // 수정 요청을 처리할 URL
+            type:'POST',
+           	data:{
+           		dept_id:deptId,
+           		dept_name:updatedName
+           	}
+        }).done(function(resp){
+       		console.log(resp);
+       	});
+
+        // 부서명 셀의 contenteditable을 false로 설정
+        row.find('.dept-name').attr('contenteditable', 'false');
+
+        // 버튼 상태 조정
+        row.find('.edit-btn').show();
+        row.find('.delete-btn').show();
+        row.find('.confirm-edit-btn').hide(); // 수정 완료 버튼 숨김
+        $(this).siblings('.cancel-edit-btn').hide(); // 취소 버튼 숨김
+    });   
+    
+    // 취소 버튼 클릭 이벤트
+    $(document).on('click', '.cancel-edit-btn', function() {
+        const row = $(this).closest('tr'); // 현재 행을 선택
+        // 부서명 셀의 contenteditable을 false로 설정
+        row.find('.dept-name').attr('contenteditable', 'false');
+
+        // 수정 버튼과 수정 완료 버튼 상태 조정
+        row.find('.edit-btn').show();
+        row.find('.delete-btn').show();
+        row.find('.confirm-edit-btn').hide(); // 수정 완료 버튼 숨김
+        $(this).hide(); // 취소 버튼 숨김
+    });
+    
+    $(document).on('click','.delete-btn',function(){
+    	const row = $(this).closest('tr');
+    	let deptid = row.find('td:first').text();
+    	
+    	$.ajax({
+    		url:'/Depart/deleteDept',
+    		type:'POST',
+    		data :{
+    			dept_id:deptid
+    		}
+    	});//ajax
+    	row.remove();
+    	
+    	
+    })
+    
+});
     
 </script>
 </body>

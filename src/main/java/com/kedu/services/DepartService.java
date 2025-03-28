@@ -30,7 +30,7 @@ public class DepartService {
 		dDao.updateDept(dept);
 	}
 	
-	public void deleteDept(int deptId) {
-		dDao.deleteDept(deptId);
+	public void deleteDept(Integer deptid) {
+		dDao.deleteDept(deptid);
 	}
 }
