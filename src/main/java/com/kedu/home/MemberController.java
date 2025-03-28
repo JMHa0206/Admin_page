@@ -27,9 +27,9 @@ public class MemberController {
 	public List<MemberDTO> selectAll() {
 		return mServ.selectAll();
 	}
-	@RequestMapping("/update")
-	public String update(MemberDTO dto) {
-		mServ.update(dto);
+	@RequestMapping("/updateMember")
+	public String updateMember(MemberDTO dto) {
+		mServ.updateMember(dto);
 		return "/admin/home";
 	}
 	@RequestMapping("/delete")

@@ -109,7 +109,7 @@
 
         <div id="update" class="section">
             <h2>사원 정보 수정</h2>
-            <form action="updateMember.do" method="post">
+            <form action="/Member/updateMember" method="post">
                 <input type="text" name="memberId" placeholder="사원 ID (기존)" required />
                 <input type="text" name="name" placeholder="새 이름" />
                 <input type="email" name="email" placeholder="새 이메일" />

@@ -23,7 +23,7 @@ public class MemberService {
 		
 	}
 
-	public void update(MemberDTO dto) {
+	public void updateMember(MemberDTO dto) {
 		daom.updateMember(dto);
 		
 	}
