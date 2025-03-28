@@ -77,11 +77,36 @@
 
         <div id="create" class="section active">
             <h2>사원 등록</h2>
-            <form action="/Member/addMember" method="post">
+            <div>
+            <p>사원정보</p>
+            <form action="/Employee/insertEmp" method="post">
                 <input type="text" name="emp_id" placeholder="사원 ID" required />
                 <input type="text" name="emp_name" placeholder="이름" required />
                 <input type="email" name="emp_email" placeholder="이메일" />
-                <input type="text" name="emp_deptId" placeholder="부서 ID" />
+            </div>
+                <div>
+                	<p>부서</p>
+	                <select name="dept">
+					  <option value="dev">개발자</option>
+					  <option value="hr">인사</option>
+					  <option value="pm">PM</option>
+					</select>
+				</div>
+				<div>
+                	<p>직급</p>
+	                <select name="job">
+					  <option value="emp">사원</option>
+					  <option value="assoM">대리</option>
+					  <option value="manager">과장</option>
+					  <option value="DGM">차장</option>
+					  <option value="GM">부장</option>
+					  <option value="director">이사</option>
+					  <option value="eDirec">상무</option>
+					  <option value="SEDirec">전무</option>
+					  <option value="CEO">대표이사</option>
+					</select>
+				</div>
+                
                 <button type="submit">등록</button>
             </form>
         </div>

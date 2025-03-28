@@ -11,13 +11,13 @@ import com.kedu.dto.MemberDTO;
 import com.kedu.services.MemberService;
 
 @Controller
-@RequestMapping("/Member")
+@RequestMapping("/Employee")
 public class MemberController {
 	
 	@Autowired
 	private MemberService mServ;
 	
-	@RequestMapping("/addMember")
+	@RequestMapping("/insertEmp")
 	public String add(MemberDTO dto) {
 		mServ.insertMember(dto);
 		return "/admin/home";
