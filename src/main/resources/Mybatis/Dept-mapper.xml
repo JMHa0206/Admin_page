@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Depart">
+<select id="selectAllDepts" resultType="com.kedu.dto.DepartDTO"> SELECT * FROM department </select>
+<select id="selectDeptById" resultType="com.kedu.dto.DepartDTO" parameterType="int"> SELECT * FROM department WHERE dept_id = #{deptId} </select>
+<insert id="insertDept" parameterType="com.kedu.dto.DepartDTO"> INSERT INTO department(dept_id, dept_name) VALUES(dept_seq.nextval, #{dept_name}) </insert>
+<update id="updateDept" parameterType="com.kedu.dto.DepartDTO"> UPDATE department SET dept_name = #{deptName}, location = #{location} WHERE dept_id = #{deptId} </update>
+<delete id="deleteDept" parameterType="int"> DELETE FROM department WHERE dept_id = #{deptId} </delete>
+</mapper>

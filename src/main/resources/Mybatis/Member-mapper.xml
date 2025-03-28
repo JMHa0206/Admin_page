@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Member">
+
+    <select id="selectAllMembers" resultType="com.kedu.dto.MemberDTO">
+        SELECT * FROM member
+    </select>
+
+    <select id="selectMemberById" resultType="com.kedu.dto.MemberDTO" parameterType="String">
+        SELECT * FROM member WHERE member_id = #{memberId}
+    </select>
+
+    <insert id="insertMember" parameterType="com.kedu.dto.MemberDTO">
+        INSERT INTO member(member_id, name, dept_id, email)
+        VALUES(#{memberId}, #{name}, #{deptId}, #{email})
+    </insert>
+
+    <update id="updateMember" parameterType="com.kedu.dto.MemberDTO">
+        UPDATE member
+        SET name = #{name}, dept_id = #{deptId}, email = #{email}
+        WHERE member_id = #{memberId}
+    </update>
+
+    <delete id="deleteMember" parameterType="String">
+        DELETE FROM member WHERE member_id = #{memberId}
+    </delete>
+
+</mapper>
