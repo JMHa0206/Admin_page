@@ -3,29 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Member">
+<mapper namespace="Employee">
 
     <select id="selectAllMembers" resultType="com.kedu.dto.MemberDTO">
-        SELECT * FROM member
+        SELECT * FROM employee
     </select>
 
     <select id="selectMemberById" resultType="com.kedu.dto.MemberDTO" parameterType="String">
-        SELECT * FROM member WHERE member_id = #{memberId}
+        SELECT * FROM employee WHERE member_id = #{memberId}
     </select>
 
     <insert id="insertMember" parameterType="com.kedu.dto.MemberDTO">
-        INSERT INTO member(member_id, name, dept_id, email)
+        INSERT INTO employee(member_id, name, dept_id, email)
         VALUES(#{memberId}, #{name}, #{deptId}, #{email})
     </insert>
 
     <update id="updateMember" parameterType="com.kedu.dto.MemberDTO">
-        UPDATE member
-        SET name = #{name}, dept_id = #{deptId}, email = #{email}
-        WHERE member_id = #{memberId}
+        UPDATE employee
+        SET emp_dept_id = #{emp_dept_id}, emp_job_id = #{emp_job_Id}, address1 = #{address1}
+        WHERE emp_code_id = #{emp_code_id}
     </update>
 
     <delete id="deleteMember" parameterType="String">
-        DELETE FROM member WHERE member_id = #{memberId}
+        DELETE FROM employee WHERE emp_code_id = #{emp_code_id}
     </delete>
 
 </mapper>

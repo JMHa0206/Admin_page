@@ -11,7 +11,7 @@ import com.kedu.dto.MemberDTO;
 import com.kedu.services.MemberService;
 
 @Controller
-@RequestMapping("/Member")
+@RequestMapping("/Employee")
 public class MemberController {
 	
 	@Autowired
@@ -30,12 +30,12 @@ public class MemberController {
 	@RequestMapping("/update")
 	public String update(MemberDTO dto) {
 		mServ.update(dto);
-		return "/admin/home";
+		return "/redirect:/admin/home?menu=permission";
 	}
 	@RequestMapping("/delete")
 	public String delete(String id) {
 		mServ.delete(id);
-		return "/admin/home";
+		return "/redirect:/admin/home?menu=permission";
 	}
 	
 }
