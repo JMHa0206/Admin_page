@@ -77,11 +77,11 @@
 
         <div id="create" class="section active">
             <h2>사원 등록</h2>
-            <form action="addMember.do" method="post">
-                <input type="text" name="memberId" placeholder="사원 ID" required />
-                <input type="text" name="name" placeholder="이름" required />
-                <input type="email" name="email" placeholder="이메일" />
-                <input type="text" name="deptId" placeholder="부서 ID" />
+            <form action="/Member/addMember" method="post">
+                <input type="text" name="emp_id" placeholder="사원 ID" required />
+                <input type="text" name="emp_name" placeholder="이름" required />
+                <input type="email" name="emp_email" placeholder="이메일" />
+                <input type="text" name="emp_deptId" placeholder="부서 ID" />
                 <button type="submit">등록</button>
             </form>
         </div>
@@ -109,7 +109,7 @@
 
         <div id="update" class="section">
             <h2>사원 정보 수정</h2>
-            <form action="/Member/updateMember" method="post">
+            <form action="updateMember.do" method="post">
                 <input type="text" name="memberId" placeholder="사원 ID (기존)" required />
                 <input type="text" name="name" placeholder="새 이름" />
                 <input type="email" name="email" placeholder="새 이메일" />

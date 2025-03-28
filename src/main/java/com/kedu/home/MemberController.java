@@ -17,7 +17,7 @@ public class MemberController {
 	@Autowired
 	private MemberService mServ;
 	
-	@RequestMapping("/add")
+	@RequestMapping("/addMember")
 	public String add(MemberDTO dto) {
 		mServ.insertMember(dto);
 		return "/admin/home";
@@ -27,9 +27,9 @@ public class MemberController {
 	public List<MemberDTO> selectAll() {
 		return mServ.selectAll();
 	}
-	@RequestMapping("/updateMember")
-	public String updateMember(MemberDTO dto) {
-		mServ.updateMember(dto);
+	@RequestMapping("/update")
+	public String update(MemberDTO dto) {
+		mServ.update(dto);
 		return "/admin/home";
 	}
 	@RequestMapping("/delete")
