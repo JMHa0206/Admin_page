@@ -21,8 +21,8 @@
 		class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="url"
 			value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="username" value="groupware" />
-		<property name="password" value="gw" />
+		<property name="username" value="exam" />
+		<property name="password" value="exam" />
 		<property name="driverClassName"
 			value="oracle.jdbc.driver.OracleDriver" />
 		<property name="initialSize" value="10" />

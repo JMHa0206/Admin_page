@@ -95,7 +95,12 @@
 		    	});
 		    	$("#boardTable").html(html);
 		    })
-		    
+		    $('.sidebar a').click(function(e) {
+		        e.preventDefault();
+		        var target = $(this).data('target');
+		        $('.section').removeClass('active');
+		        $('#' + target).addClass('active');
+		    });
 		    
 		});
 		
