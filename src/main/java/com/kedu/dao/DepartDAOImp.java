@@ -1,6 +1,7 @@
 package com.kedu.dao;
 
 import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,26 +18,26 @@ public class DepartDAOImp implements DepartDAO {
 
     @Override
     public void insertDept(DepartDTO dept) {
-        sqlSession.insert(NAMESPACE + ".insertDept", dept); //È®ÀÎ
+        sqlSession.insert(NAMESPACE + ".insertDept", dept); //È®ï¿½ï¿½
     }
 
     @Override
     public List<DepartDTO> selectAllDepts() {
-        return sqlSession.selectList(NAMESPACE + ".selectAllDepts"); //È®ÀÎ
+        return sqlSession.selectList(NAMESPACE + ".selectAllDepts"); //È®ï¿½ï¿½
     }
 
     @Override
     public DepartDTO selectDeptById(int deptId) {
-        return sqlSession.selectOne(NAMESPACE + ".selectDeptById", deptId); //È®ÀÎ
+        return sqlSession.selectOne(NAMESPACE + ".selectDeptById", deptId); //È®ï¿½ï¿½
     }
 
     @Override
     public void updateDept(DepartDTO dept) {
-        sqlSession.update(NAMESPACE + ".updateDept", dept); //È®ÀÎ
+        sqlSession.update(NAMESPACE + ".updateDept", dept); //È®ï¿½ï¿½
     }
 
     @Override
-    public void deleteDept(int deptId) {
-        sqlSession.delete(NAMESPACE + ".deleteDept", deptId); //È®ÀÎ
+    public void deleteDept(Integer deptid) {
+        sqlSession.delete(NAMESPACE + ".deleteDept", deptid); //È®ï¿½ï¿½
     }
 }

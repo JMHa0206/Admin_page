@@ -7,6 +7,6 @@
 <select id="selectAllDepts" resultType="com.kedu.dto.DepartDTO"> SELECT * FROM department </select>
 <select id="selectDeptById" resultType="com.kedu.dto.DepartDTO" parameterType="int"> SELECT * FROM department WHERE dept_id = #{deptId} </select>
 <insert id="insertDept" parameterType="com.kedu.dto.DepartDTO"> INSERT INTO department(dept_id, dept_name) VALUES(dept_seq.nextval, #{dept_name}) </insert>
-<update id="updateDept" parameterType="com.kedu.dto.DepartDTO"> UPDATE department SET dept_name = #{deptName}, location = #{location} WHERE dept_id = #{deptId} </update>
-<delete id="deleteDept" parameterType="int"> DELETE FROM department WHERE dept_id = #{deptId} </delete>
+<update id="updateDept" parameterType="com.kedu.dto.DepartDTO"> UPDATE department SET dept_name = #{dept_name} WHERE dept_id = #{dept_id} </update>
+<delete id="deleteDept" parameterType="java.lang.Integer"> DELETE FROM department WHERE dept_id = ${deptid} </delete>
 </mapper>

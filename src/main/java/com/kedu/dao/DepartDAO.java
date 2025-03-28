@@ -5,9 +5,10 @@ import com.kedu.dto.DepartDTO;
 
 public interface DepartDAO {
 
-    void insertDept(DepartDTO dept);            // ºÎ¼­ µî·Ï
-    List<DepartDTO> selectAllDepts();           // ÀüÃ¼ ºÎ¼­ Á¶È¸
-    DepartDTO selectDeptById(int deptId);       // Æ¯Á¤ ºÎ¼­ Á¶È¸
-    void updateDept(DepartDTO dept);            // ºÎ¼­ Á¤º¸ ¼öÁ¤
-    void deleteDept(int deptId);              // ºÎ¼­ »èÁ¦
+    void insertDept(DepartDTO dept);            // ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½
+    List<DepartDTO> selectAllDepts();           // ï¿½ï¿½Ã¼ ï¿½Î¼ï¿½ ï¿½ï¿½È¸
+    DepartDTO selectDeptById(int deptId);       // Æ¯ï¿½ï¿½ ï¿½Î¼ï¿½ ï¿½ï¿½È¸
+    void updateDept(DepartDTO dept);            // ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    void deleteDept(Integer deptId);              // ï¿½Î¼ï¿½ ï¿½ï¿½ï¿½ï¿½
+
 }
