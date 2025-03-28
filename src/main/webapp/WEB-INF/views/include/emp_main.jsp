@@ -110,10 +110,11 @@
         <div id="update" class="section">
             <h2>사원 정보 수정</h2>
             <form action="updateMember.do" method="post">
-                <input type="text" name="memberId" placeholder="사원 ID (기존)" required />
-                <input type="text" name="name" placeholder="새 이름" />
-                <input type="email" name="email" placeholder="새 이메일" />
-                <input type="text" name="deptId" placeholder="새 부서 ID" />
+                <input type="text" name="dept_id" placeholder="부서 ID" required />
+                <input type="text" name="job_id" placeholder="직급 ID" />
+                <input type="email" name="address" placeholder="주소" />
+            
+                   
                 <button type="submit">수정</button>
             </form>
         </div>
