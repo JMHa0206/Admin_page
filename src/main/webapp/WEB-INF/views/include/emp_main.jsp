@@ -77,24 +77,30 @@
 
         <div id="create" class="section active">
             <h2>사원 등록</h2>
+            <form action="/Employee/insertEmp" method="post">
             <div>
             <p>사원정보</p>
-            <form action="/Employee/insertEmp" method="post">
-                <input type="text" name="emp_id" placeholder="사원 ID" required />
+                <input type="text" name="emp_id" placeholder="사원 코드번호" required />
+                <input type="text" name="emp_id" placeholder="사원 로그인ID" required />
+                <input type="text" name="emp_id" placeholder="사원 비밀번호" required />
                 <input type="text" name="emp_name" placeholder="이름" required />
+                <input type="date" name="hire_date" placeholder="연도-월-일" />
                 <input type="email" name="emp_email" placeholder="이메일" />
+                <input type="text" name="postcode" placeholder="우편번호" />
+                <input type="text" name="address1" placeholder="주소를 입력해주세요" />
+                <input type="text" name="address2" placeholder="상세주소를 입력해주세요." />
             </div>
                 <div>
                 	<p>부서</p>
-	                <select name="dept">
-					  <option value="dev">개발자</option>
-					  <option value="hr">인사</option>
-					  <option value="pm">PM</option>
+	                <select name="emp_dept_name">
+					  <option value="dev">개발팀</option>
+					  <option value="hr">인사팀</option>
+					  <option value="mg">경영팀</option>
 					</select>
 				</div>
 				<div>
                 	<p>직급</p>
-	                <select name="job">
+	                <select name="emp_job_name">
 					  <option value="emp">사원</option>
 					  <option value="assoM">대리</option>
 					  <option value="manager">과장</option>
@@ -106,8 +112,7 @@
 					  <option value="CEO">대표이사</option>
 					</select>
 				</div>
-                
-                <button type="submit">등록</button>
+                <button>등록</button>
             </form>
         </div>
 

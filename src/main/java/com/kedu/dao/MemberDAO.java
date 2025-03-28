@@ -5,7 +5,7 @@ import com.kedu.dto.MemberDTO;
 
 public interface MemberDAO {
 
-    void insertMember(MemberDTO member);            // 사원 등록
+    void insertEmp(MemberDTO member);            // 사원 등록
     List<MemberDTO> selectAllMembers();             // 전체 사원 조회
     MemberDTO selectMemberById(String memberId);    // 사원 상세 조회
     void updateMember(MemberDTO member);            // 사원 정보 수정

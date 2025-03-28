@@ -14,8 +14,8 @@ public class MemberService {
 	@Autowired
 	private MemberDAOImp daom;
 	
-	public void insertMember(MemberDTO dto) {
-		daom.insertMember(dto);
+	public void insertEmp(MemberDTO dto) {
+		daom.insertEmp(dto);
 	}
 
 	public List<MemberDTO> selectAll() {

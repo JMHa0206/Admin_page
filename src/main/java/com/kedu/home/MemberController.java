@@ -19,19 +19,27 @@ public class MemberController {
 	
 	@RequestMapping("/insertEmp")
 	public String add(MemberDTO dto) {
-		mServ.insertMember(dto);
+		
+		System.out.println(dto.getEmp_name());
+		mServ.insertEmp(dto);
 		return "/admin/home";
 	}
+	
+	
 	@ResponseBody
 	@RequestMapping("/selectAll")
 	public List<MemberDTO> selectAll() {
 		return mServ.selectAll();
 	}
+	
+	
 	@RequestMapping("/update")
 	public String update(MemberDTO dto) {
 		mServ.update(dto);
 		return "/admin/home";
 	}
+	
+	
 	@RequestMapping("/delete")
 	public String delete(String id) {
 		mServ.delete(id);

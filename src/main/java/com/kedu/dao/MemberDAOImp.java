@@ -13,11 +13,11 @@ public class MemberDAOImp implements MemberDAO {
     @Autowired
     private SqlSessionTemplate sqlSession;
 
-    private static final String NAMESPACE = "Member";
+    private static final String NAMESPACE = "Employee";
 
     @Override
-    public void insertMember(MemberDTO member) {
-        sqlSession.insert(NAMESPACE + ".insertMember", member);
+    public void insertEmp(MemberDTO member) {
+        sqlSession.insert(NAMESPACE + ".insertEmp", member);
     }
 
     @Override

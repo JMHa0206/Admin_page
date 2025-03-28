@@ -13,8 +13,8 @@
         SELECT * FROM member WHERE member_id = #{memberId}
     </select>
 
-    <insert id="insertMember" parameterType="com.kedu.dto.MemberDTO">
-        INSERT INTO member(member_id, name, dept_id, email)
+    <insert id="insertEmp" parameterType="com.kedu.dto.MemberDTO">
+        INSERT INTO member(emp_code_id, emp_per_id, emp_dept_id, emp_job_id, emp_loginId, emp_pw, emp_name, emp_rrn, emp_phone,emp_email,postcode, address1, address2, hire_date, salary, isDeft)
         VALUES(#{memberId}, #{name}, #{deptId}, #{email})
     </insert>
 
