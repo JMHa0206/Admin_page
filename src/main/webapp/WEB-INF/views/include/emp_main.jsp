@@ -131,6 +131,8 @@
 
 <script>
 $(document).ready(function() {
+
+	
     $('.sidebar a').click(function(e) {
         e.preventDefault();
         var target = $(this).data('target');

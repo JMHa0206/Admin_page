@@ -11,7 +11,7 @@ import com.kedu.dto.MemberDTO;
 import com.kedu.services.MemberService;
 
 @Controller
-@RequestMapping("/Member")
+@RequestMapping("/Employee")
 public class MemberController {
 	
 	@Autowired
