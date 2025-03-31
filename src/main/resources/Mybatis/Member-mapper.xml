@@ -5,24 +5,52 @@
 
 <mapper namespace="Employee">
 
-    <select id="selectAllMembers" resultType="com.kedu.dto.MemberDTO">
-        SELECT * FROM employee
+	
+	<resultMap id="memberDeptMap" type="com.kedu.dto.MemberDTO">
+	    <!-- employee 컬럼 -->
+	    <id property="emp_code_id" column="emp_code_id" />
+	    <result property="emp_name" column="emp_name" />
+	    <result property="emp_email" column="emp_email" />
+	
+	    <!-- department DTO 매핑 -->
+	    <association property="departDTO" javaType="com.kedu.dto.DepartDTO">
+	        <id property="dept_id" column="dept_id" />
+	        <result property="dept_name" column="dept_name" />
+	    </association>
+	    
+	    <!-- job DTO 매핑 -->
+	    <association property="jobDTO" javaType="com.kedu.dto.JobDTO">
+	        <id property="job_id" column="job_id" />
+	        <result property="job_name" column="job_name" />
+	    </association>
+	</resultMap>
+	
+	
+    <select id="selectAllMembers" resultMap="memberDeptMap">
+        SELECT 
+        	e.emp_code_id, 
+        	e.emp_name, 
+        	e.emp_email, 
+        	d.dept_id, 
+        	d.dept_name AS dept_name, 
+        	j.job_id,  
+        	j.job_name AS job_name   
+        FROM employee e 
+        	left join department d on e.emp_dept_id = d.dept_id
+        	LEFT JOIN empJob j ON e.emp_job_id = j.job_id
     </select>
 
-    <select id="selectMemberById" resultType="com.kedu.dto.MemberDTO" parameterType="String">
-        SELECT * FROM employee WHERE member_id = #{memberId}
-    </select>
+    
 
 
     <insert id="insertEmp" parameterType="com.kedu.dto.MemberDTO">
         INSERT INTO employee(emp_code_id, emp_per_id, emp_dept_id, emp_job_id, emp_loginId, emp_pw, emp_name, emp_rrn, emp_phone,emp_email,postcode, address1, address2, hire_date, salary, isDeft)
-
-        VALUES(emp_seq.nextval, 0 , #{emp_dept_id}, #{emp_job_id}, #{emp_loginId}, #{emp_pw}, #{emp_name}, #{emp_rrn}, #{emp_phone}, #{emp_email}, #{postcode}, #{address1}, #{address2}, #{hire_date}, #{salary}, 'N')
+        VALUES(emp_seq.nextval, 501 , #{emp_dept_id}, #{emp_job_id}, #{emp_loginId}, #{emp_pw}, #{emp_name}, #{emp_rrn}, #{emp_phone}, #{emp_email}, #{postcode}, #{address1}, #{address2}, #{hire_date}, #{salary}, 'N')
     </insert>
 
     <update id="updateMember" parameterType="com.kedu.dto.MemberDTO">
         UPDATE employee
-        SET emp_dept_id = #{emp_dept_id}, emp_job_id = #{emp_job_Id}, address1 = #{address1}
+        SET emp_dept_id = #{emp_dept_id}, emp_job_id = #{emp_job_id}, address1 = #{address1, jdbcType=VARCHAR}
         WHERE emp_code_id = #{emp_code_id}
     </update>
 

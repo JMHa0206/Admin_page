@@ -20,13 +20,16 @@ public class MemberDTO {
 	private Date hire_date;
 	private int salary;
 	private String isDeft;
+	private DepartDTO departDTO;
+	private JobDTO jobDTO;
+
 	
 	public MemberDTO() {};
 	
 	
 	public MemberDTO(int emp_code_id, int emp_per_id, int emp_dept_id, int emp_job_id, String emp_loginId,
 			String emp_pw, String emp_name, String emp_rrn, String emp_phone, String emp_email, String postcode,
-			String address1, String address2, Date hire_date, int salary, String isDeft) {
+			String address1, String address2, Date hire_date, int salary, String isDeft, DepartDTO departDTO, JobDTO jobDTO) {
 		super();
 		this.emp_code_id = emp_code_id;
 		this.emp_per_id = emp_per_id;
@@ -44,7 +47,34 @@ public class MemberDTO {
 		this.hire_date = hire_date;
 		this.salary = salary;
 		this.isDeft = isDeft;
+		this.departDTO = departDTO;
+		this.jobDTO = jobDTO;
 	}
+	
+
+	
+
+
+	public DepartDTO getDepartDTO() {
+		return departDTO;
+	}
+
+
+	public void setDepartDTO(DepartDTO departDTO) {
+		this.departDTO = departDTO;
+	}
+
+
+	public JobDTO getJobDTO() {
+		return jobDTO;
+	}
+
+
+	public void setJobDTO(JobDTO jobDTO) {
+		this.jobDTO = jobDTO;
+	}
+
+
 	public int getEmp_code_id() {
 		return emp_code_id;
 	}
