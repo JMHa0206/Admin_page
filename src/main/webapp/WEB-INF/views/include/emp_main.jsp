@@ -75,7 +75,7 @@
 		</div>
 		<div class="main-content">
 
-<<<<<<< HEAD
+
         <div id="create" class="section active">
             <h2>사원 등록</h2>
             <form action="/Employee/insertEmp" method="post">
@@ -185,8 +185,6 @@ $(document).ready(function() {
 	    	let defaultId="";
 	    	
 	    	resp.forEach(function(emp){
-	    		console.log(emp.departDTO.dept_name);
-	    		console.log(emp.jobDTO.job_name);
 	    		html += "<tr><td>" 
 	    				+ emp.emp_code_id 
 	    				+ "</td><td>" + emp.emp_name 
