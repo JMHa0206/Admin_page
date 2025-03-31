@@ -5,9 +5,12 @@ import com.kedu.dto.MemberDTO;
 
 public interface MemberDAO {
 
-    void insertEmp(MemberDTO member);            // »ç¿ø µî·Ï
-    List<MemberDTO> selectAllMembers();             // ÀüÃ¼ »ç¿ø Á¶È¸
-    MemberDTO selectMemberById(String memberId);    // »ç¿ø »ó¼¼ Á¶È¸
-    void updateMember(MemberDTO member);            // »ç¿ø Á¤º¸ ¼öÁ¤
-    void deleteMember(String memberId);             // »ç¿ø »èÁ¦
+
+    void insertMember(MemberDTO member);            // å ì™ì˜™å  å ì™ì˜™å 
+    List<MemberDTO> selectAllMembers();             // å ì™ì˜™ì²´ å ì™ì˜™å  å ì™ì˜™íšŒ
+    MemberDTO selectMemberById(String memberId);    // å ì™ì˜™å  å ì™ì˜™ å ì™ì˜™íšŒ
+    void updateMember(MemberDTO member);            // å ì™ì˜™å  å ì™ì˜™å ì™ì˜™ å ì™ì˜™å ì™ì˜™
+    void deleteMember(String memberId);             // å ì™ì˜™å  å ì™ì˜™å ì™ì˜™
+    List<MemberDTO> selectDeptManager(Integer id); //updated
+
 }

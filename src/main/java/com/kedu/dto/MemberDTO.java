@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class MemberDTO {
 
+
 	private int emp_code_id;
 	private int emp_per_id;
 	private int emp_dept_id;
@@ -174,5 +175,6 @@ public class MemberDTO {
 	
 	
 	
+
 
 }

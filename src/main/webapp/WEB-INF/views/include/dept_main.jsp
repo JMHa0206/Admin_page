@@ -67,12 +67,21 @@
       url: "/Depart/selectAllDept",
       type: "GET"
     }).done(function (resp) {
+  	
       $('#deptTable').empty();
       resp.forEach(function (dept) {
-        let row = '<tr>' +
-          '<td>' + dept.dept_id + '</td>' +
+    	 
+    	  let row = '<tr>' +
+          '<td class="dept-id">' + dept.dept_id + '</td>' +
           '<td class="dept-name" contenteditable="false">' + dept.dept_name + '</td>' +
-          '<td class="dept-manager">' + dept.manager + '</td>' +
+          '<td class="dept-manager">' +
+          '<span class="current-manager">' +
+           (dept.emp_name ? dept.emp_name : '<span class="no-manager">부서장 없음</span>') + 
+          '</span>' + 
+          '<select class="manager-select" style="display:none;">' +
+          '<option value="">부서장 선택</option>' +
+          '</select>' +
+          '</td>' +
           '<td>' +
           '<button class="edit-btn">수정</button>' +
           '<button class="confirm-edit-btn" style="display:none;">수정 완료</button>' +
@@ -84,66 +93,88 @@
       });
     });
 
-    function getEmployeeList(callback) {
-      $.ajax({
-        url: '/Employee/list',
-        method: 'GET',
-        dataType: 'json',
-        success: callback,
-        error: function () {
-          alert('사원 목록 불러오기 실패');
-        }
-      });
-    }
+  
 
     $(document).on('click', '.edit-btn', function () {
       const row = $(this).closest('tr');
-      const currentManager = row.find('.dept-manager').text().trim();
       row.find('.dept-name').attr('contenteditable', 'true').focus();
-
-      getEmployeeList(function (empList) {
-        let selectHTML = `<select class="manager-select">`;
-        empList.forEach(emp => {
-          const selected = emp.emp_name === currentManager ? 'selected' : '';
-          selectHTML += `<option value="${emp.emp_id}" ${selected}>${emp.emp_name}</option>`;
-        });
-        selectHTML += `</select>`;
-        row.find('.dept-manager').html(selectHTML);
-      });
-
+	  const originalName = row.find('.dept-name').text().trim();
+	  row.data('originalName' , originalName);
+       $.ajax({
+    	url:"/Member/selectDeptManager",
+    	type:'GET',
+    	data:{
+    		id:row.find('.dept-id').text()
+    	}
+      }).done(function(resp){
+    	
+     	    const managerSelect = row.find('.manager-select');
+     	 	managerSelect.empty();
+     		managerSelect.append('<option class="option" value="">부서장 선택</option>'); 
+    	  
+    	  resp.forEach(function(dept){
+    		 managerSelect.append('<option class="option" value="'+dept.emp_code_id+'">'+dept.emp_name+'</option>');
+    	 
+    	  });   
+      row.find('.manager-select').show();
+    
+     });
+       
+     
       row.find('.edit-btn').hide();
       row.find('.delete-btn').hide();
       row.find('.confirm-edit-btn').show();
       row.find('.cancel-edit-btn').show();
-    });
-
+  });
+      
     $(document).on('click', '.confirm-edit-btn', function () {
       const row = $(this).closest('tr');
       const deptId = row.find('td:first').text();
       const updatedName = row.find('.dept-name').text();
       const managerId = row.find('.manager-select').val();
-
+      
+	
+  	if(managerId !== "" && updatedName !== ""){
       $.ajax({
         url: '/Depart/updateDept',
         type: 'POST',
         data: {
           dept_id: deptId,
           dept_name: updatedName,
-          manager_id: managerId
+          dept_manager: managerId
         }
       }).done(function () {
         row.find('.dept-name').attr('contenteditable', 'false');
+        row.find('.dept-manager .current-manager').text(row.find('.manager-select option:selected').text()); // 부서장 이름 업데이트
         row.find('.edit-btn').show();
         row.find('.delete-btn').show();
         row.find('.confirm-edit-btn').hide();
         row.find('.cancel-edit-btn').hide();
+        row.find('.manager-select').hide();
 
-        row.find('.dept-manager').text(row.find('.manager-select option:selected').text());
+        
       });
-    });
+  	
+    }else{
+    	alert("빈값 입니다.");
+    	return false;
+    }
+       
+});
+    
 
     $(document).on('click', '.cancel-edit-btn', function () {
-      location.reload();
+    	 const row = $(this).closest('tr');
+    	 const originalName = row.data('originalName');
+    	
+    	 row.find('.dept-name').text(originalName);
+    	 row.find('.dept-name').attr('contenteditable', 'false');
+    	 row.find('.no-manager').show();
+    	 row.find('.manager-select').hide();
+    	 row.find('.confirm-edit-btn').hide();
+    	 row.find('.cancel-edit-btn').hide();
+    	 row.find('.edit-btn').show();
+    	 row.find('.delete-btn').show();
     });
 
     $(document).on('click', '.delete-btn', function () {
@@ -158,7 +189,10 @@
         row.remove();
       });
     });
+    
+    
   });
-</script>
+    
+    </script>
 </body>
 </html>
