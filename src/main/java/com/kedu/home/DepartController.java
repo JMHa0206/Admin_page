@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -36,20 +37,31 @@ public class DepartController {
 		return dServ.selectDeptById(deptId);
 	}
 	
-	@PostMapping("/updateDept")
+	@ResponseBody
+	@RequestMapping(value = "/updateDept", method = RequestMethod.POST)
 	public String updateDept(@RequestParam("dept_id") Integer dept_id,
-			@RequestParam("dept_name") String dept_name) { //U
-		
+			@RequestParam("dept_name") String dept_name,
+			@RequestParam("dept_manager") Integer dept_manager) { //U
+		if(dept_manager == null) {
 		dServ.updateDept(new DepartDTO(dept_id, dept_name));
+		}
+		else {
+			dServ.updateDeptManager(new DepartDTO(dept_id,dept_name,dept_manager));
+		}
+		
 		return "부서 정보가 수정되었습니다"; 
 	}
 	
+	
+	@ResponseBody
 	@PostMapping("/deleteDept")
 	public String deleteDept(@RequestParam("dept_id") Integer deptid) { //D
 		dServ.deleteDept(deptid);
 		
 		return "부서 정보가 삭제되었습니다";
 	}
+	
+	
 	
 	
 }

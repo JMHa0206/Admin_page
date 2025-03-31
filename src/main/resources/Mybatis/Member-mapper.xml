@@ -27,5 +27,9 @@
     <delete id="deleteMember" parameterType="String">
         DELETE FROM member WHERE member_id = #{memberId}
     </delete>
+    
+    <select id="selectDeptManager" parameterType="Integer" resultType="com.kedu.dto.MemberDTO">
+    	select emp_code_id,emp_name from employee where emp_dept_id = #{id} 
+    </select>
 
 </mapper>

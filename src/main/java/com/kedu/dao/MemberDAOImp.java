@@ -34,9 +34,14 @@ public class MemberDAOImp implements MemberDAO {
     public void updateMember(MemberDTO member) {
         sqlSession.update(NAMESPACE + ".updateMember", member);
     }
-
+    
     @Override
     public void deleteMember(String memberId) {
         sqlSession.delete(NAMESPACE + ".deleteMember", memberId);
+    }
+    
+    @Override //updated
+    public List<MemberDTO> selectDeptManager(Integer id){
+    	return sqlSession.selectList(NAMESPACE + ".selectDeptManager",id);
     }
 }

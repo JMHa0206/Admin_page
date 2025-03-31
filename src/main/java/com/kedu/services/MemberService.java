@@ -32,6 +32,9 @@ public class MemberService {
 		daom.deleteMember(id);
 	}
 	
+	public List<MemberDTO> selectDeptManager(Integer id) { //updated
+		return daom.selectDeptManager(id);
+	}
 	
 
 
