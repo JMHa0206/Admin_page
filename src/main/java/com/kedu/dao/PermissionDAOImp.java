@@ -1,6 +1,8 @@
 package com.kedu.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,4 +43,12 @@ public class PermissionDAOImp implements PermissionDAO{
 	public void deletePermission(int perId) {
 		sqlSession.delete(namespace + ".deletePermission", perId);
 	}
+	
+	public void assignPermissionBatch(int perId, List<Integer> empIds) {
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("perId", perId);
+	    paramMap.put("empIds", empIds);
+	    sqlSession.update(namespace + ".assignPermissionBatch", paramMap);
+	}
+	
 }

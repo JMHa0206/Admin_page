@@ -34,4 +34,7 @@ public class PermissionService {
 	public PermissionDTO selectById(int id) {
 	    return daop.selectPermissionById(id);
 	}
+	public void assignPermissionToEmployees(int perId, List<Integer> empIds) {
+	    daop.assignPermissionBatch(perId, empIds);
+	}
 }
