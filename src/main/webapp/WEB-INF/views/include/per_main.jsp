@@ -76,9 +76,10 @@ th, td {
 	<div class="container">
 		<div class="sidebar">
 			<h3>사원 관리</h3>
-			<a href="#" data-target="create">권한 등록</a> <a href="#"
-				data-target="read">권한 목록 조회</a> <a href="#" data-target="update">권한
-				수정</a>
+			<a href="#" data-target="create">권한 등록</a> 
+			<a href="#" data-target="read">권한 목록 조회</a> 
+			<a href="#" data-target="update">권한 수정</a>
+			<a href="#" data-target="assign">권한일괄부여</a>			
 		</div>
 		<div class="main-content">
 
@@ -86,8 +87,8 @@ th, td {
 			<div id="create" class="section active">
 				<h2>권한 등록</h2>
 				<form action="/Permission/add" method="post">
-					<input type="text" name="per_name" placeholder="권한명" required /> 
-					<label for="per_secure">보안등급</label> <select name="per_secure" required>
+					<input type="text" name="per_name" placeholder="권한명" required /> <label
+						for="per_secure">보안등급</label> <select name="per_secure" required>
 						<option value="1">1등급</option>
 						<option value="2">2등급</option>
 						<option value="3">3등급</option>
@@ -146,107 +147,225 @@ th, td {
 				</form>
 			</div>
 
+			<!-- 권한 일괄 부여 -->
+			<div id="assign" class="section">
+				<h2>권한 일괄 부여</h2>
+				<label>부여할 권한 선택</label> <select id="assign_permission">
+					<option value="">선택하세요</option>
+					<c:forEach var="permission" items="${perlist}">
+						<option value="${permission.per_id}">${permission.per_name}</option>
+					</c:forEach>
+				</select>
+
+				<h3>사원 목록</h3>
+				<table>
+					<thead>
+						<tr>
+							<th>선택</th>
+							<th>사번</th>
+							<th>이름</th>
+							<th>부서</th>
+							<th>현재 권한</th>
+						</tr>
+					</thead>
+					<tbody id="employee-list">
+						<!-- JS로 채워짐 -->
+					</tbody>
+				</table>
+				<button type="button" id="assignBtn">선택된 사원에 권한 부여</button>
+			</div>
 		</div>
-	</div>
 
-	<!-- ✅ JavaScript -->
-	<script>
-    $(document).ready(function () {
-    	
-    	// 삭제 버튼 클릭 시
-    	$('#deleteBtn').on('click', function () {
-    	  const perId = $('#update_per_id').val().trim();
-    	  if (!perId) {
-    	    alert("삭제할 권한 ID를 입력해주세요.");
-    	    return;
-    	  }
+		<!-- ✅ JavaScript -->
+		<script>
+			$(document).ready(
+					function() {
 
-    	  if (!confirm("정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.")) {
-    	    return;
-    	  }
+						// 삭제 버튼 클릭 시
+						$('#deleteBtn').on('click', function() {
+							const perId = $('#update_per_id').val().trim();
+							if (!perId) {
+								alert("삭제할 권한 ID를 입력해주세요.");
+								return;
+							}
 
-    	  $.ajax({
-    	    url: "/Permission/delete",
-    	    method: "POST",
-    	    data: { perid: perId },
-    	    success: function (result) {
-    	      alert("삭제가 완료되었습니다.");
-    	      $('#updateForm')[0].reset(); // 폼 초기화
-    	      $('#updateBtn').text('수정');
-    	      $('#permission-list').empty(); // 조회 목록도 비움
-    	    },
-    	    error: function () {
-    	      alert("삭제 중 오류가 발생했습니다.");
-    	    }
-    	  });
-    	});
+							if (!confirm("정말 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.")) {
+								return;
+							}
 
+							$.ajax({
+								url : "/Permission/delete",
+								method : "POST",
+								data : {
+									perid : perId
+								},
+								success : function(result) {
+									alert("삭제가 완료되었습니다.");
+									$('#updateForm')[0].reset(); // 폼 초기화
+									$('#updateBtn').text('수정');
+									$('#permission-list').empty(); // 조회 목록도 비움
+								},
+								error : function() {
+									alert("삭제 중 오류가 발생했습니다.");
+								}
+							});
+						});
 
-      // 메뉴 이동
-      $('.sidebar a').click(function (e) {
-        e.preventDefault();
-        var target = $(this).data('target');
-        $('.section').removeClass('active');
-        $('#' + target).addClass('active');
-      });
+						// 메뉴 이동
+						$('.sidebar a').click(function(e) {
+							e.preventDefault();
+							var target = $(this).data('target');
+							$('.section').removeClass('active');
+							$('#' + target).addClass('active');
+						});
 
-      // 권한 목록 불러오기
-      function loadlist() {
-        $.ajax({
-          url: "/Permission/selectAll",
-          method: "GET",
-          dataType: "json",
-          success: function (data) {
-        	  console.log(data)
-            var tbody = $("#permission-list");
-            tbody.empty();
-            data.forEach(function (permission) {
-            	 console.log("→ keys:", Object.keys(permission));
-            	 var row = "<tr>" +
-            	  "<td>" + permission.per_id + "</td>" +
-            	  "<td>" + permission.per_name + "</td>" +
-            	  "<td>" + permission.per_secure + "</td>" +
-            	  "<td>" + permission.per_function + "</td>" +
-            	"</tr>";
-            	tbody.append(row);
-            });
-          }
-        });
-      }
+						// 권한 목록 불러오기
+						function loadlist() {
+							$.ajax({
+								url : "/Permission/selectAll",
+								method : "GET",
+								dataType : "json",
+								success : function(data) {
+									console.log(data)
+									var tbody = $("#permission-list");
+									tbody.empty();
+									data.forEach(function(permission) {
+										console.log("→ keys:", Object
+												.keys(permission));
+										var row = "<tr>" + "<td>"
+												+ permission.per_id + "</td>"
+												+ "<td>" + permission.per_name
+												+ "</td>" + "<td>"
+												+ permission.per_secure
+												+ "</td>" + "<td>"
+												+ permission.per_function
+												+ "</td>" + "</tr>";
+										tbody.append(row);
+									});
+								}
+							});
+						}
 
-      // 목록 탭 클릭 시 목록 불러오기
-      $('.sidebar a[data-target="read"]').click(function () {
-        loadlist();
-      });
+						// 목록 탭 클릭 시 목록 불러오기
+						$('.sidebar a[data-target="read"]').click(function() {
+							loadlist();
+						});
 
-      // 수정: ID 입력 시 자동조회
-      $('#update_per_id').on('blur', function () {
-        let perId = $(this).val().trim();
-        if (!perId) return;
+						// 수정: ID 입력 시 자동조회
+						$('#update_per_id').on(
+								'blur',
+								function() {
+									let perId = $(this).val().trim();
+									if (!perId)
+										return;
 
-        $.ajax({
-          url: "/Permission/get",
-          method: "GET",
-          data: { id: perId },
-          success: function (data) {
-            if (data) {
-              $('#update_per_name').val(data.per_name);
-              $('#update_per_secure').val(data.per_secure);
-              $('#update_per_function').val(data.per_function);
-              $('#updateBtn').text('확인');
-            } else {
-              alert("해당 ID의 권한 정보가 없습니다.");
-              $('#update_per_name').val('');
-              $('#update_per_secure').val('1');
-              $('#update_per_function').val('N');
-            }
-          },
-          error: function () {
-            alert("서버 요청 실패");
-          }
-        });
-      });
-    });
-  </script>
+									$.ajax({
+										url : "/Permission/get",
+										method : "GET",
+										data : {
+											id : perId
+										},
+										success : function(data) {
+											if (data) {
+												$('#update_per_name').val(
+														data.per_name);
+												$('#update_per_secure').val(
+														data.per_secure);
+												$('#update_per_function').val(
+														data.per_function);
+												$('#updateBtn').text('확인');
+											} else {
+												alert("해당 ID의 권한 정보가 없습니다.");
+												$('#update_per_name').val('');
+												$('#update_per_secure')
+														.val('1');
+												$('#update_per_function').val(
+														'N');
+											}
+										},
+										error : function() {
+											alert("서버 요청 실패");
+										}
+									});
+								});
+						
+						$('.sidebar a[data-target="assign"]').click(function () {
+							  $.ajax({
+							    url: "/Employee/selectAll", // 사원 전체 조회 URL
+							    method: "GET",
+							    dataType: "json",
+							    success: function (data) {
+							      const tbody = $('#employee-list');
+							      tbody.empty();
+							      data.forEach(function (emp) {
+							        const row = `
+							          <tr>
+							            <td><input type="checkbox" class="emp-check" value="${emp.emp_id}"></td>
+							            <td>${emp.emp_id}</td>
+							            <td>${emp.emp_name}</td>
+							            <td>${emp.dept_name || '-'}</td>
+							            <td>${emp.per_name || '-'}</td>
+							          </tr>`;
+							        tbody.append(row);
+							      });
+							    }
+							  });
+							  $.ajax({
+								  url: "/Permission/selectAll",
+								  method: "GET",
+								  dataType: "json",
+								  success: function (data) {
+								    const select = $('#assign_permission');
+								    select.empty().append('<option value="">선택하세요</option>');
+								    data.forEach(function (permission) {
+								      const option = $('<option>').val(permission.per_id).text(permission.per_name);
+								      select.append(option);
+								    });
+								  }
+								});
+							});
+
+							// 권한 부여 버튼 클릭 시
+							$('#assignBtn').click(function () {
+							  const selectedPerId = $('#assign_permission').val();
+							  const selectedEmpIds = $('.emp-check:checked').map(function () {
+							    return $(this).val();
+							  }).get();
+
+							  if (!selectedPerId || selectedEmpIds.length === 0) {
+							    alert("권한과 사원을 모두 선택해주세요.");
+							    return;
+							  }
+
+							  $.ajax({
+							    url: "/Permission/assignToEmployees",
+							    method: "POST",
+							    traditional: true, // 배열 전송 시 필수
+							    data: {
+							      per_id: selectedPerId,
+							      emp_ids: selectedEmpIds
+							    },
+							    success: function () {
+							      alert("권한이 성공적으로 부여되었습니다.");
+							      $('#employee-list').empty();
+							    },
+							    error: function () {
+							      alert("권한 부여 실패");
+							    }
+							  });
+							});
+							
+					});
+			  $(document).on('keydown', function (e) {
+				    if (e.key === "Enter") {
+				      const tag = e.target.tagName.toLowerCase();
+				      const type = $(e.target).attr('type');
+				      if ((tag === 'input' && type === 'text') || tag === 'select') {
+				        e.preventDefault();
+				        return false;
+				      }
+				    }
+				  });
+		</script>
 </body>
 </html>
