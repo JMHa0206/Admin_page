@@ -1,4 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,6 +79,7 @@
       <h3>인사 관리</h3>
       <a href="#" data-target="checktime">정시 출퇴근 등록</a>
       <a href="#" data-target="annual">연차 생성</a>
+      <a href="#" data-target="select">연차 발생</a>
     </div>
 
     <div class="main-content">
@@ -101,11 +106,23 @@
       <!-- 연차 생성 -->
       <div id="annual" class="section">
         <h2>연차 생성</h2>
-        <label for="empId">사원 ID</label>
-        <input type="number" id="empId" placeholder="예: 1001" />
+        <input type="text" id = "years_of_service" name ="years_of_service" placeholder="연차를 적어주세요.">년차
+        <input type = "text" id = "leave_days" name = "leave_days" placeholder="연차 일수를 적어주세요."/>
         <button type="button" onclick="generateAnnual()">연차 생성</button>
       </div>
-
+      <div id="select" class="section">
+      	<h2>연차 발생</h2>
+      		<table>
+      			<thead>
+      				<tr>
+      					<th>년차</th><th>일수</th>
+      				</tr>
+      			</thead>
+      			<tbody id = "empleave_days">
+					
+      			</tbody>
+      		</table>
+      </div>
     </div>
   </div>
 
@@ -119,21 +136,46 @@
         $('.section').removeClass('active');
         $('#' + target).addClass('active');
       });
+      
+      //연차 발생
+      $.ajax({
+    	  url: "/work/selectAll"
+      }).done(function(resp){
+    	  let html="";
+    	  
+    	  resp.forEach(function(i){
+    		  html += "<tr><td>"+ i.years_of_service+"년차</td><td>"+i.leave_days+"일</td></tr>";
+    	  });
+    	  $("#empleave_days").html(html);
+      })
     });
 
     // 연차 생성
     function generateAnnual() {
-      let empId = $('#empId').val().trim();
-      if (!empId) {
-        alert("사원 ID를 입력하세요");
+      
+      let leave_days = $('#leave_days').val().trim();
+      let years_of_service = $('#years_of_service').val().trim();
+      if (!leave_days && !years_of_service) {
+        alert("연차를 입력해 주세요.");
         return;
       }
+      $.ajax({
+    	    type: "POST",
+    	    url: "/work/generateAnnual",
+    	    contentType: "application/json; charset=UTF-8",
+    	    data: JSON.stringify({
+    	    	years_of_service: $("#years_of_service").val().trim(),
+    	    	leave_days: $("#leave_days").val().trim()
+    	    }),
+    	    dataType: "text",
+    	    success: function(result) {
+    	        alert(result);  // "연차가 성공적으로 생성되었습니다."가 정상적으로 출력됨
+    	    },
+    	    error: function(xhr, status, error) {
+    	        alert("연차 생성에 실패했습니다. 오류: " + xhr.responseText);
+    	    }
+    	});
 
-      $.post("/work/generateAnnual", { empId: empId }, function(result) {
-        alert(result);
-      }).fail(function() {
-        alert("연차 생성에 실패했습니다.");
-      });
     }
   </script>
 </body>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Work">
+  
+  <insert id="createAnnualLeave" parameterType = "com.kedu.dto.AnnualLeaveDTO">
+  	insert into ANNUAL_RULE(rule_id, years_of_service,leave_days)
+  	values (rule_id_seq.nextval, #{years_of_service}, #{leave_days})
+  </insert>
+  
+  <select id="selectAll" resultType = "com.kedu.dto.AnnualLeaveDTO">
+  	select * from ANNUAL_RULE
+  </select>
+  
+  
+  </mapper>
