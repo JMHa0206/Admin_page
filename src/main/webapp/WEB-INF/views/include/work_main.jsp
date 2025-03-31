@@ -71,6 +71,60 @@
     hr {
       margin: 20px 0;
     }
+    
+    
+    .annual-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .annual-header {
+    background-color: #222;
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 500;
+  }
+  
+  .annual-row {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+  }
+  
+  .annual-row:last-child {
+    border-bottom: none;
+  }
+  
+  .annual-row:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .annual-data {
+    padding: 10px 15px;
+    color: #333;
+  }
+  
+  .annual-years {
+    font-weight: 500;
+  }
+  
+  .annual-days {
+    
+    font-weight: bold;
+  }
+  
+  .annual-days span {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    background-color: #e8f4f8;
+    color: #0277bd;
+    min-width: 25px;
+  }
   </style>
 </head>
 <body>
@@ -112,10 +166,10 @@
       </div>
       <div id="select" class="section">
       	<h2>연차 발생</h2>
-      		<table>
+      		<table class="annual-table">
       			<thead>
       				<tr>
-      					<th>년차</th><th>일수</th>
+      					<th class="annual-header">년차</th><th class="annual-header">일수</th>
       				</tr>
       			</thead>
       			<tbody id = "empleave_days">
@@ -144,7 +198,9 @@
     	  let html="";
     	  
     	  resp.forEach(function(i){
-    		  html += "<tr><td>"+ i.years_of_service+"년차</td><td>"+i.leave_days+"일</td></tr>";
+    		  html += "<tr class='annual-row'><td class='annual-data annual-years'>"+ i.years_of_service+
+    		  "년차</td><td class='annual-data annual-days'><span>"+i.leave_days+
+    		  "일</span></td></tr>";
     	  });
     	  $("#empleave_days").html(html);
       })
