@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +11,7 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <style>
+<<<<<<< HEAD
     body {
         font-family: 'Segoe UI', sans-serif;
         background: #f4f4f4;
@@ -61,19 +62,20 @@
         padding: 10px;
         border-bottom: 1px solid #ccc;
     }
+
 </style>
 </head>
 <body>
-<div class="container">
-    <div class="sidebar">
-        <h3>사원 관리</h3>
-        <a href="#" data-target="create">사원 등록</a>
-        <a href="#" data-target="read">사원 조회</a>
-        <a href="#" data-target="update">사원 수정</a>
-        <a href="#" data-target="delete">사원 삭제</a>
-    </div>
-    <div class="main-content">
+	<div class="container">
+		<div class="sidebar">
+			<h3>사원 관리</h3>
+			<a href="#" data-target="create">사원 등록</a> <a href="#"
+				data-target="read">사원 조회</a> <a href="#" data-target="update">사원
+				수정</a> <a href="#" data-target="delete">사원 삭제</a>
+		</div>
+		<div class="main-content">
 
+<<<<<<< HEAD
         <div id="create" class="section active">
             <h2>사원 등록</h2>
             <form action="/Employee/insertEmp" method="post">
@@ -131,32 +133,49 @@
             </table>
         </div>
 
-        <div id="update" class="section">
-            <h2>사원 정보 수정</h2>
-            <form action="/Employee/update" method="post">
-            <input type="text" name="emp_code_id" placeholder="수정하고 싶은 사원 ID"/>
-                <input type="text" name="emp_dept_id" placeholder="수정하고 싶은 부서 ID" required />
-                <input type="text" name="emp_job_id" placeholder="수정하고 싶은 직급 ID" />
-                <input type="text" name="address1" placeholder="수정하고 싶은 주소" />
-            
-                   
-                <button type="submit">수정</button>
-            </form>
-        </div>
 
-        <div id="delete" class="section">
-            <h2>사원 삭제</h2>
-            <form action="/Employee/delete" method="post">
-                <input type="text" name="emp_code_id" placeholder="삭제할 사원 ID" required />
-                <input type="text" name="emp_name" placeholder="삭제할 사원 이름" required />
-                <button type="submit">삭제</button>
-            </form>
-        </div>
+			<div id="update" class="section">
+				<h2>사원 정보 수정</h2>
+				<form action="/Employee/update" method="post">
+					<input type="text" name="emp_code_id" placeholder="수정하고 싶은 사원 ID" />
 
-    </div>
-</div>
+						<select id="emp_dept_id" name="emp_dept_id">
+							<option value="5001">개발팀</option>
+							<option value="5002">인사팀</option>
+							<option value="5003">경영팀</option>
+						</select> 
+						
+						<select id="emp_job_id" name="emp_job_id">
+							<option value="1001">사원</option>
+							<option value="1002">대리</option>
+							<option value="1003">과장</option>
+							<option value="1004">차장</option>
+							<option value="1005">부장</option>
+							<option value="1006">이사</option>
+							<option value="1007">상무</option>
+							<option value="1008">전무</option>
+							<option value="1009">대표이사</option>
+						</select>
+						
+						<input type="text" name="address1" placeholder="수정하고 싶은 주소" />
 
-<script>
+					<button type="submit">수정</button>
+				</form>
+			</div>
+
+			<div id="delete" class="section">
+				<h2>사원 삭제</h2>
+				<form action="/Employee/delete" method="post">
+					<input type="text" name="emp_code_id" placeholder="삭제할 사원 ID"
+						required />
+					<button type="submit">삭제</button>
+				</form>
+			</div>
+
+		</div>
+	</div>
+
+	<script>
 $(document).ready(function() {
 
 	 $.ajax({
@@ -188,6 +207,10 @@ $(document).ready(function() {
         $('.section').removeClass('active');
         $('#' + target).addClass('active');
     });
+	 
+
+	 
+
 });
 
 document.getElementById("btn").onclick = function () {
