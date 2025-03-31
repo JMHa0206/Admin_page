@@ -26,17 +26,19 @@ public class MemberDAOImp implements MemberDAO {
     }
 
     @Override
-    public MemberDTO selectMemberById(String memberId) {
-        return sqlSession.selectOne(NAMESPACE + ".selectMemberById", memberId);
+    public MemberDTO selectMemberById(String emp_code_id) {
+        return sqlSession.selectOne(NAMESPACE + ".selectMemberById", emp_code_id);
     }
 
     @Override
     public void updateMember(MemberDTO member) {
-        sqlSession.update(NAMESPACE + ".updateMember", member);
+        int result = sqlSession.update(NAMESPACE + ".updateMember", member);
+        System.out.println("Update result: " + result);
     }
 
     @Override
-    public void deleteMember(String memberId) {
-        sqlSession.delete(NAMESPACE + ".deleteMember", memberId);
+    public void deleteMember(String emp_code_id) {
+       int result =  sqlSession.delete(NAMESPACE + ".deleteMember", emp_code_id);
+        System.out.println("Delete result: " + result); 
     }
 }

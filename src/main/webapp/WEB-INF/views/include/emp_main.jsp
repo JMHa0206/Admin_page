@@ -142,10 +142,11 @@
 
         <div id="update" class="section">
             <h2>사원 정보 수정</h2>
-            <form action="updateMember.do" method="post">
-                <input type="text" name="dept_id" placeholder="부서 ID" required />
-                <input type="text" name="job_id" placeholder="직급 ID" />
-                <input type="email" name="address" placeholder="주소" />
+            <form action="/Employee/update" method="post">
+            <input type="text" name="emp_code_id" placeholder="수정하고 싶은 사원 ID"/>
+                <input type="text" name="emp_dept_id" placeholder="수정하고 싶은 부서 ID" required />
+                <input type="text" name="emp_job_id" placeholder="수정하고 싶은 직급 ID" />
+                <input type="text" name="address1" placeholder="수정하고 싶은 주소" />
             
                    
                 <button type="submit">수정</button>
@@ -154,8 +155,9 @@
 
         <div id="delete" class="section">
             <h2>사원 삭제</h2>
-            <form action="deleteMember.do" method="post">
-                <input type="text" name="memberId" placeholder="삭제할 사원 ID" required />
+            <form action="/Employee/delete" method="post">
+                <input type="text" name="emp_code_id" placeholder="삭제할 사원 ID" required />
+                <input type="text" name="emp_name" placeholder="삭제할 사원 이름" required />
                 <button type="submit">삭제</button>
             </form>
         </div>
