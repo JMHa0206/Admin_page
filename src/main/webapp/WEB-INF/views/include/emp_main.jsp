@@ -193,7 +193,7 @@ $(document).ready(function() {
 	    				+ "</td><td>" + emp.emp_email 
 	    				+ "</td><td><button>정보수정</button><button>사원삭제</button>"
 	    				+ "</td></tr>";
-	    		defaultId = "empID_" + (emp.emp_code_id + 1);
+	    		defaultId = "loginID_" + (emp.emp_code_id + 1);
 	    	});
 	    	$("#empboardTable").html(html);
 	    	$("#code_id").val(defaultId);
