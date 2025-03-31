@@ -41,14 +41,14 @@ public class DepartController {
 			@RequestParam("dept_name") String dept_name) { //U
 		
 		dServ.updateDept(new DepartDTO(dept_id, dept_name));
-		return "ë¶€ì„œ ì •ë³´ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤"; 
+		return "ºÎ¼­ Á¤º¸°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù."; 
 	}
 	
 	@PostMapping("/deleteDept")
 	public String deleteDept(@RequestParam("dept_id") Integer deptid) { //D
 		dServ.deleteDept(deptid);
 		
-		return "ë¶€ì„œ ì •ë³´ê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤";
+		return "ºÎ¼­ Á¤º¸°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.";
 	}
 	
 	

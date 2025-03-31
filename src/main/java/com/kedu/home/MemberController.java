@@ -35,7 +35,6 @@ public class MemberController {
 	
 	@RequestMapping("/update")
 	public String update(MemberDTO dto) {
-		System.out.println(dto.getEmp_dept_id());
 		mServ.update(dto);
 		return "redirect:/admin/home?menu=emp";
 	}

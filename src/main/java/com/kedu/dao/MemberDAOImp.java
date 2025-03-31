@@ -22,6 +22,7 @@ public class MemberDAOImp implements MemberDAO {
 
     @Override
     public List<MemberDTO> selectAllMembers() {
+    	
         return sqlSession.selectList(NAMESPACE + ".selectAllMembers");
     }
 

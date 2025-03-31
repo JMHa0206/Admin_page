@@ -166,7 +166,15 @@ $(document).ready(function() {
 	    	let defaultId="";
 	    	
 	    	resp.forEach(function(emp){
-	    		html += "<tr><td>" + emp.emp_code_id + "</td><td>" + emp.emp_name + "</td><td>" + emp.emp_dept_id + "</td><td>" + emp.emp_job_id + "</td><td>" + emp.emp_email + "</td></tr>";
+	    		console.log(emp.departDTO.dept_name);
+	    		console.log(emp.jobDTO.job_name);
+	    		html += "<tr><td>" 
+	    				+ emp.emp_code_id 
+	    				+ "</td><td>" + emp.emp_name 
+	    				+ "</td><td>" + emp.departDTO.dept_name 
+	    				+ "</td><td>" + (emp.jobDTO ? emp.jobDTO.job_name : "직급 없음")
+	    				+ "</td><td>" + emp.emp_email 
+	    				+ "</td></tr>";
 	    		defaultId = "emp_" + (emp.emp_code_id + 1);
 	    	});
 	    	$("#empboardTable").html(html);
