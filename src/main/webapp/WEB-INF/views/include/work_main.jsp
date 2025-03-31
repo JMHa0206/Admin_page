@@ -180,7 +180,7 @@
     </div>
   </div>
 
-  <!-- ✅ JavaScript -->
+  <!-- ✅ JavaScript e-->
   <script>
 
   function generateAnnual() {
