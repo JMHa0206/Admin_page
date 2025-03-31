@@ -5,32 +5,12 @@
 
 <mapper namespace="Employee">
 
-	<resultMap id="memberDeptMap" type="com.kedu.dto.MemberDTO">
-	    <!-- employee 테이블 컬럼 -->
-	    <id property="empCode" column="emp_code_id" />
-	    <result property="empName" column="emp_name" />
-	    <result property="empEmail" column="emp_email" />
 	
-	    <!-- department 테이블에서 부서명만 매핑 -->
-	    <association property="department" javaType="com.kedu.dto.DepartDTO">
-	        <id property="deptId" column="dept_id"/>
-	        <result property="deptName" column="dept_name"/>
-	    </association>
-	</resultMap>
-
-	
-    <select id="selectAllMembers" resultMap="memberDeptMap">
-        SELECT e.emp_code_id,
-    			e.emp_name,
-    			e.emp_email,
-    			d.dept_id,
-    			d.dept_name
-    	FROM employee e left join department d on e.emp_dept_id = d.dept_id
+    <select id="selectAllMembers" resultType="com.kedu.dto.MemberDTO">
+        SELECT * FROM employee e left join department d on e.emp_dept_id = d.dept_id
     </select>
 
-    <select id="selectMemberById" resultType="com.kedu.dto.MemberDTO" parameterType="String">
-        SELECT * FROM employee WHERE member_id = #{memberId}
-    </select>
+    
 
 
     <insert id="insertEmp" parameterType="com.kedu.dto.MemberDTO">

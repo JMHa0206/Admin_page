@@ -48,9 +48,7 @@
         display: block;
     }
     input, select, button {
-        margin: 5px 0;
         padding: 8px;
-        width: 100%;
         border: 1px solid #ccc;
         background: #f9f9f9;
     }
@@ -81,31 +79,28 @@
             <form action="/Employee/insertEmp" method="post">
             <div>
             <p>기본 설정</p>
-            	로그인 아이디<input type="text" id="code_id" name="emp_loginId"/>
-                로그인 비밀번호<input type="text" id="pw" name="emp_pw"/>
-                <input type="date" name="hire_date" placeholder="입사일(연도-월-일)" />
+            	아이디<input type="text" id="code_id" name="emp_loginId"/><br></br>
+                비밀번호<input type="text" id="pw" name="emp_pw"/><br></br>
+                <input type="date" name="hire_date" placeholder="입사일(연도-월-일)" /><br></br>
                 <input type="text" name="salary" placeholder="연봉" required />
             <p>사원정보</p>
-                <input type="text" name="emp_name" placeholder="이름" required />
-                <input type="text" name="emp_rrn" placeholder="주민등록번호" required />
-                <input type="text" name="emp_phone" placeholder="연락처" required />
-                <input type="email" name="emp_email" placeholder="이메일" />
-                <input type="text" id="postcode" name="postcode" placeholder="우편번호" />
+                <input type="text" name="emp_name" placeholder="이름" required /><br></br>
+                <input type="text" name="emp_rrn" placeholder="주민등록번호" required /><br></br>
+                <input type="text" name="emp_phone" placeholder="연락처" required /><br></br>
+                <input type="email" name="emp_email" placeholder="이메일" /><br></br>
+                <input type="text" id="postcode" name="postcode" placeholder="우편번호" /><br></br>
                 <button type="button" id="btn">우편번호 찾기</button>
-                <input type="text" id="address" name="address1" placeholder="주소를 입력해주세요" />
+                <input type="text" id="address" name="address1" placeholder="주소를 입력해주세요" /><br></br>
                 <input type="text" name="address2" placeholder="상세주소를 입력해주세요." />
             </div>
                 <div>
-                	<p>부서</p>
+                	<p>부서 및 직급</p>
 	                <select name="emp_dept_id">
 	                  <option value="">부서 선택</option>
 					  <option value="5001">개발팀</option>
 					  <option value="5002">인사팀</option>
 					  <option value="5003">경영팀</option>
 					</select>
-				</div>
-				<div>
-                	<p>직급</p>
 	                <select name="emp_job_id">
 	                  <option value="">직급 선택</option>
 					  <option value="1001">사원</option>

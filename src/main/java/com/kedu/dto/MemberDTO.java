@@ -45,6 +45,8 @@ public class MemberDTO {
 		this.salary = salary;
 		this.isDeft = isDeft;
 	}
+	
+
 	public int getEmp_code_id() {
 		return emp_code_id;
 	}
