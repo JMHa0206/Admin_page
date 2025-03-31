@@ -21,7 +21,7 @@
 
     <update id="updateMember" parameterType="com.kedu.dto.MemberDTO">
         UPDATE employee
-        SET emp_dept_id = #{emp_dept_id}, emp_job_id = #{emp_job_Id}, address1 = #{address1}
+        SET emp_dept_id = #{emp_dept_id}, emp_job_id = #{emp_job_id}, address1 = #{address1, jdbcType=VARCHAR}
         WHERE emp_code_id = #{emp_code_id}
     </update>
 

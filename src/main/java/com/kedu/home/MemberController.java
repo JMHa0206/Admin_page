@@ -35,15 +35,17 @@ public class MemberController {
 	
 	@RequestMapping("/update")
 	public String update(MemberDTO dto) {
+		System.out.println(dto.getEmp_dept_id());
 		mServ.update(dto);
-		return "/redirect:/admin/home?menu=permission";
+		return "redirect:/admin/home?menu=emp";
 	}
 	
 	
 	@RequestMapping("/delete")
-	public String delete(String id) {
-		mServ.delete(id);
-		return "/redirect:/admin/home?menu=permission";
+	public String delete(String emp_code_id) {
+		
+		mServ.delete(emp_code_id);
+		return "redirect:/admin/home?menu=emp";
 	}
 	
 }
