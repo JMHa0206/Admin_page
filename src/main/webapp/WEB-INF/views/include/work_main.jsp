@@ -182,57 +182,61 @@
 
   <!-- ✅ JavaScript -->
   <script>
-    $(document).ready(function () {
-      // 탭 전환
-      $('.sidebar a').click(function (e) {
-        e.preventDefault();
-        const target = $(this).data('target');
-        $('.section').removeClass('active');
-        $('#' + target).addClass('active');
-      });
-      
-      //연차 발생
-      $.ajax({
-    	  url: "/work/selectAll"
-      }).done(function(resp){
-    	  let html="";
-    	  
-    	  resp.forEach(function(i){
-    		  html += "<tr class='annual-row'><td class='annual-data annual-years'>"+ i.years_of_service+
-    		  "년차</td><td class='annual-data annual-days'><span>"+i.leave_days+
-    		  "일</span></td></tr>";
-    	  });
-    	  $("#empleave_days").html(html);
-      })
-    });
 
-    // 연차 생성
-    function generateAnnual() {
-      
+  function generateAnnual() {
       let leave_days = $('#leave_days').val().trim();
       let years_of_service = $('#years_of_service').val().trim();
-      if (!leave_days && !years_of_service) {
-        alert("연차를 입력해 주세요.");
-        return;
+      
+      if (!leave_days || !years_of_service) {
+          alert("연차를 입력해 주세요.");
+          return;
       }
-      $.ajax({
-    	    type: "POST",
-    	    url: "/work/generateAnnual",
-    	    contentType: "application/json; charset=UTF-8",
-    	    data: JSON.stringify({
-    	    	years_of_service: $("#years_of_service").val().trim(),
-    	    	leave_days: $("#leave_days").val().trim()
-    	    }),
-    	    dataType: "text",
-    	    success: function(result) {
-    	        alert(result);  // "연차가 성공적으로 생성되었습니다."가 정상적으로 출력됨
-    	    },
-    	    error: function(xhr, status, error) {
-    	        alert("연차 생성에 실패했습니다. 오류: " + xhr.responseText);
-    	    }
-    	});
 
-    }
+      $.ajax({
+          type: "POST",
+          url: "/work/generateAnnual",
+          contentType: "application/json; charset=UTF-8",
+          data: JSON.stringify({
+              years_of_service: years_of_service,
+              leave_days: leave_days
+          }),
+          dataType: "text",
+          success: function(result) {
+              alert(result);  
+              selectAnnualLeave(); 
+          },
+          error: function(xhr, status, error) {
+              alert("연차 생성에 실패했습니다.");
+          }
+      });
+  }
+
+  function selectAnnualLeave() {
+      $.ajax({
+          url: "/work/selectAll"
+      }).done(function(resp) {
+          let html = "";
+          resp.forEach(function(i) {
+              html += "<tr class='annual-row'><td class='annual-data annual-years'>"+ i.years_of_service +
+                      "년차</td><td class='annual-data annual-days'><span>"+ i.leave_days +
+                      "일</span></td></tr>";
+          });
+          $("#empleave_days").html(html);
+      });
+  }
+
+
+  $(document).ready(function () {
+      // 탭 전환
+      $('.sidebar a').click(function (e) {
+          e.preventDefault();
+          const target = $(this).data('target');
+          $('.section').removeClass('active');
+          $('#' + target).addClass('active');
+      });
+
+      selectAnnualLeave();
+  });
   </script>
 </body>
 </html>
