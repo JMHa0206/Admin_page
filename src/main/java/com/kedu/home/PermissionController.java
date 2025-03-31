@@ -46,4 +46,13 @@ public class PermissionController {
 	public PermissionDTO getPermissionById(@RequestParam("id") int id) {
 	    return pServ.selectById(id);
 	}
+	@RequestMapping("/assignToEmployees")
+	@ResponseBody
+	public String assignPermissionToEmployees(
+	    @RequestParam("per_id") int perId,
+	    @RequestParam("emp_ids") List<Integer> empIds) {
+
+	    pServ.assignPermissionToEmployees(perId, empIds);
+	    return "success";
+	}
 }
