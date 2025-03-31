@@ -128,14 +128,6 @@
                     </tr>
                 </thead>
                 <tbody id="empboardTable">
-                    <c:forEach var="member" items="${memberList}">
-                        <tr>
-                            <td>${member.memberId}</td>
-                            <td>${member.name}</td>
-                            <td>${member.email}</td>
-                            <td>${member.deptId}</td>
-                        </tr>
-                    </c:forEach>
                 </tbody>
             </table>
         </div>
