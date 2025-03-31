@@ -22,7 +22,7 @@ public class MemberController {
 		
 		System.out.println(dto.getEmp_name());
 		mServ.insertEmp(dto);
-		return "/admin/home";
+		return "redirect:/admin/home?menu=emp";
 	}
 	
 	

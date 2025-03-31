@@ -16,8 +16,8 @@ public class MemberDAOImp implements MemberDAO {
     private static final String NAMESPACE = "Employee";
 
     @Override
-    public void insertEmp(MemberDTO member) {
-        sqlSession.insert(NAMESPACE + ".insertEmp", member);
+    public void insertEmp(MemberDTO dto) {
+        sqlSession.insert(NAMESPACE + ".insertEmp", dto);
     }
 
     @Override

@@ -80,11 +80,14 @@
             <form action="/Employee/insertEmp" method="post">
             <div>
             <p>사원정보</p>
-                <input type="text" name="emp_id" placeholder="사원 코드번호" required />
-                <input type="text" name="emp_id" placeholder="사원 로그인ID" required />
-                <input type="text" name="emp_id" placeholder="사원 비밀번호" required />
+                <input type="text" name="emp_code_id" placeholder="사원 코드번호" required />
+                <input type="text" name="emp_loginId" placeholder="사원 로그인ID" required />
+                <input type="text" name="emp_pw" placeholder="사원 비밀번호" required />
                 <input type="text" name="emp_name" placeholder="이름" required />
-                <input type="date" name="hire_date" placeholder="연도-월-일" />
+                <input type="text" name="emp_rrn" placeholder="주민등록번호" required />
+                <input type="text" name="emp_phone" placeholder="연락처" required />
+                <input type="text" name="salary" placeholder="연봉" required />
+                <input type="date" name="hire_date" placeholder="입사일(연도-월-일)" />
                 <input type="email" name="emp_email" placeholder="이메일" />
                 <input type="text" name="postcode" placeholder="우편번호" />
                 <input type="text" name="address1" placeholder="주소를 입력해주세요" />
@@ -92,24 +95,24 @@
             </div>
                 <div>
                 	<p>부서</p>
-	                <select name="emp_dept_name">
-					  <option value="dev">개발팀</option>
-					  <option value="hr">인사팀</option>
-					  <option value="mg">경영팀</option>
+	                <select name="emp_dept_id">
+					  <option value="5001">개발팀</option>
+					  <option value="5002">인사팀</option>
+					  <option value="5003">경영팀</option>
 					</select>
 				</div>
 				<div>
                 	<p>직급</p>
-	                <select name="emp_job_name">
-					  <option value="emp">사원</option>
-					  <option value="assoM">대리</option>
-					  <option value="manager">과장</option>
-					  <option value="DGM">차장</option>
-					  <option value="GM">부장</option>
-					  <option value="director">이사</option>
-					  <option value="eDirec">상무</option>
-					  <option value="SEDirec">전무</option>
-					  <option value="CEO">대표이사</option>
+	                <select name="emp_job_id">
+					  <option value="1001">사원</option>
+					  <option value="1002">대리</option>
+					  <option value="1003">과장</option>
+					  <option value="1004">차장</option>
+					  <option value="1005">부장</option>
+					  <option value="1006">이사</option>
+					  <option value="1007">상무</option>
+					  <option value="1008">전무</option>
+					  <option value="1009">대표이사</option>
 					</select>
 				</div>
                 <button>등록</button>
@@ -124,7 +127,7 @@
                         <th>ID</th><th>이름</th><th>이메일</th><th>부서</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="empboardTable">
                     <c:forEach var="member" items="${memberList}">
                         <tr>
                             <td>${member.memberId}</td>
@@ -163,6 +166,16 @@
 <script>
 $(document).ready(function() {
 
+	 $.ajax({
+	    	url:"/Employee/selectAll"
+	    }).done(function(resp){
+	    	let html = "";
+	    	
+	    	resp.forEach(function(emp){
+	    		html += "<tr><td>" + emp.emp_code_id + "</td><td>" + emp.emp_name + "</td><td>" + emp.emp_email + "</td><td>" + emp.emp_dept_id + "</td></tr>";
+	    	});
+	    	$("#empboardTable").html(html);
+	    })
 	
     $('.sidebar a').click(function(e) {
         e.preventDefault();
