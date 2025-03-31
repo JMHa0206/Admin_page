@@ -158,15 +158,12 @@ th, td {
 				<form action="/Employee/update" method="post">
 					<input type="text" name="emp_code_id" placeholder="수정하고 싶은 사원 ID" />
 
-					
-					<!--	<label for="emp_dept_id">부서 ID</label> -->
 						<select id="emp_dept_id" name="emp_dept_id">
 							<option value="5001">개발팀</option>
 							<option value="5002">인사팀</option>
 							<option value="5003">경영팀</option>
 						</select> 
 						
-					<!--	<label for="emp_job_id">직급 ID</label> -->
 						<select id="emp_job_id" name="emp_job_id">
 							<option value="1001">사원</option>
 							<option value="1002">대리</option>
@@ -179,8 +176,6 @@ th, td {
 							<option value="1009">대표이사</option>
 						</select>
 						
-					<!--   <input type="text" name="emp_dept_id" placeholder="수정하고 싶은 부서 ID" required />-->
-					<!-- <input type="text" name="emp_job_id" placeholder="수정하고 싶은 직급 ID" />  -->
 						<input type="text" name="address1" placeholder="수정하고 싶은 주소" />
 
 					<button type="submit">수정</button>
