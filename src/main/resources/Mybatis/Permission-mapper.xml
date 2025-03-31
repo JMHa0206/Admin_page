@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Permission">
+
+  <!-- ✅ 권한 등록 -->
+  <insert id="insertPermission" parameterType="com.kedu.dto.PermissionDTO">
+    INSERT INTO permission (
+      per_id, per_name, per_secure, per_function
+    ) VALUES (
+      per_seq.nextval, #{per_name}, #{per_secure}, #{per_function}
+    )
+  </insert>
+
+  <!-- ✅ 전체 권한 목록 조회 -->
+  <select id="selectAllPermission" resultType="com.kedu.dto.PermissionDTO">
+    SELECT
+      per_id,
+      per_name,
+      per_secure,
+      per_function
+    FROM permission
+    ORDER BY per_id ASC
+  </select>
+
+  <!-- ✅ 특정 권한 조회 (ID 기반) -->
+  <select id="selectPermissionById" parameterType="int" resultType="com.kedu.dto.PermissionDTO">
+    SELECT
+      per_id,
+      per_name,
+      per_secure,
+      per_function
+    FROM permission
+    WHERE per_id = #{perId}
+  </select>
+
+  <!-- ✅ 권한 정보 수정 -->
+  <update id="updatePermission" parameterType="com.kedu.dto.PermissionDTO">
+    UPDATE permission
+    SET
+      per_name = #{per_name},
+      per_secure = #{per_secure},
+      per_function = #{per_function}
+    WHERE
+      per_id = #{per_id}
+  </update>
+
+  <!-- ✅ 권한 삭제 -->
+  <delete id="deletePermission" parameterType="int">
+    DELETE FROM permission
+    WHERE per_id = #{perId}
+  </delete>
+  
+  <update id="assignPermissionBatch" parameterType="map">
+  <foreach collection="empIds" item="empId" separator=";">
+    UPDATE employee
+    SET emp_per_id = #{perId}
+    WHERE emp_id = #{empId}
+  </foreach>
+</update>
+  
+
+</mapper>

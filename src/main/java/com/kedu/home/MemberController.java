@@ -12,31 +12,40 @@ import com.kedu.dto.MemberDTO;
 import com.kedu.services.MemberService;
 
 @Controller
-@RequestMapping("/Member")
+@RequestMapping("/Employee")
 public class MemberController {
 	
 	@Autowired
 	private MemberService mServ;
 	
-	@RequestMapping("/add")
+	@RequestMapping("/insertEmp")
 	public String add(MemberDTO dto) {
-		mServ.insertMember(dto);
-		return "/admin/home";
+		
+		System.out.println(dto.getEmp_name());
+		mServ.insertEmp(dto);
+		return "redirect:/admin/home?menu=emp";
 	}
+	
+	
 	@ResponseBody
 	@RequestMapping("/selectAll")
 	public List<MemberDTO> selectAll() {
 		return mServ.selectAll();
 	}
+	
+	
 	@RequestMapping("/update")
 	public String update(MemberDTO dto) {
 		mServ.update(dto);
-		return "/admin/home";
+		return "redirect:/admin/home?menu=emp";
 	}
+	
+	
 	@RequestMapping("/delete")
-	public String delete(String id) {
-		mServ.delete(id);
-		return "/admin/home";
+	public String delete(String emp_code_id) {
+		
+		mServ.delete(emp_code_id);
+		return "redirect:/admin/home?menu=emp";
 	}
 	@ResponseBody //updated
 	@RequestMapping("/selectDeptManager")

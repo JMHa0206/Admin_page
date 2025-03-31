@@ -33,7 +33,7 @@ public class DepartController {
 		return dServ.selectAllDepts();
 	}
 	
-	public DepartDTO selectDeptById(int deptId) { //1���� R
+	public DepartDTO selectDeptById(int deptId) { //1占쏙옙占쏙옙 R
 		return dServ.selectDeptById(deptId);
 	}
 	
@@ -44,12 +44,15 @@ public class DepartController {
 			@RequestParam("dept_manager") Integer dept_manager) { //U
 		if(dept_manager == null) {
 		dServ.updateDept(new DepartDTO(dept_id, dept_name));
+
 		}
 		else {
 			dServ.updateDeptManager(new DepartDTO(dept_id,dept_name,dept_manager));
 		}
 		
-		return "부서 정보가 수정되었습니다"; 
+
+		return "부서 정보가 수정되었습니다."; 
+
 	}
 	
 	
@@ -58,7 +61,7 @@ public class DepartController {
 	public String deleteDept(@RequestParam("dept_id") Integer deptid) { //D
 		dServ.deleteDept(deptid);
 		
-		return "부서 정보가 삭제되었습니다";
+		return "부서 정보가 삭제되었습니다.";
 	}
 	
 	

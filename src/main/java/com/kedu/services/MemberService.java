@@ -14,8 +14,8 @@ public class MemberService {
 	@Autowired
 	private MemberDAOImp daom;
 	
-	public void insertMember(MemberDTO dto) {
-		daom.insertMember(dto);
+	public void insertEmp(MemberDTO dto) {
+		daom.insertEmp(dto);
 	}
 
 	public List<MemberDTO> selectAll() {
@@ -28,8 +28,8 @@ public class MemberService {
 		
 	}
 
-	public void delete(String id) {
-		daom.deleteMember(id);
+	public void delete(String emp_code_id) {
+		daom.deleteMember(emp_code_id);
 	}
 	
 	public List<MemberDTO> selectDeptManager(Integer id) { //updated
