@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -32,24 +33,38 @@ public class DepartController {
 		return dServ.selectAllDepts();
 	}
 	
-	public DepartDTO selectDeptById(int deptId) { //1ï¿½ï¿½ï¿½ï¿½ R
+	public DepartDTO selectDeptById(int deptId) { //1å ì™ì˜™å ì™ì˜™ R
 		return dServ.selectDeptById(deptId);
 	}
 	
-	@PostMapping("/updateDept")
+	@ResponseBody
+	@RequestMapping(value = "/updateDept", method = RequestMethod.POST)
 	public String updateDept(@RequestParam("dept_id") Integer dept_id,
-			@RequestParam("dept_name") String dept_name) { //U
-		
+			@RequestParam("dept_name") String dept_name,
+			@RequestParam("dept_manager") Integer dept_manager) { //U
+		if(dept_manager == null) {
 		dServ.updateDept(new DepartDTO(dept_id, dept_name));
-		return "ºÎ¼­ Á¤º¸°¡ ¼öÁ¤µÇ¾ú½À´Ï´Ù."; 
+
+		}
+		else {
+			dServ.updateDeptManager(new DepartDTO(dept_id,dept_name,dept_manager));
+		}
+		
+
+		return "ë¶€ì„œ ì •ë³´ê°€ ìˆ˜ì •ë˜ì—ˆìŠµë‹ˆë‹¤."; 
+
 	}
 	
+	
+	@ResponseBody
 	@PostMapping("/deleteDept")
 	public String deleteDept(@RequestParam("dept_id") Integer deptid) { //D
 		dServ.deleteDept(deptid);
 		
-		return "ºÎ¼­ Á¤º¸°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.";
+		return "ë¶€ì„œ ì •ë³´ê°€ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.";
 	}
+	
+	
 	
 	
 }

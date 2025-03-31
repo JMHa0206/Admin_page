@@ -36,10 +36,15 @@ public class MemberDAOImp implements MemberDAO {
         int result = sqlSession.update(NAMESPACE + ".updateMember", member);
         System.out.println("Update result: " + result);
     }
-
+    
     @Override
     public void deleteMember(String emp_code_id) {
        int result =  sqlSession.delete(NAMESPACE + ".deleteMember", emp_code_id);
         System.out.println("Delete result: " + result); 
+    }
+    
+    @Override //updated
+    public List<MemberDTO> selectDeptManager(Integer id){
+    	return sqlSession.selectList(NAMESPACE + ".selectDeptManager",id);
     }
 }
