@@ -39,7 +39,7 @@ public class WorkController {
             return ResponseEntity.ok("연차가 성공적으로 생성되었습니다.");
         } catch (Exception e) {
             e.printStackTrace();  // 서버 로그에 에러 출력
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("연차 생성에 실패했습니다. " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("연차 생성에 실패했습니다. ");
         }
     }
     
