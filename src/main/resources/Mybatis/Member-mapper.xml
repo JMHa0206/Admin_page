@@ -62,15 +62,15 @@
     	select emp_code_id,emp_name from employee where emp_dept_id = #{id} 
     </select>
     
-    <select id="selectEmpForPermission" resultType="com.yourapp.dto.EmployeeDTO">
-  SELECT 
-    e.emp_id,
-    e.emp_name,
-    d.dept_name,
-    p.per_name
-  FROM employee e
-  LEFT JOIN department d ON e.dept_id = d.dept_id
-  LEFT JOIN permission p ON e.per_id = p.per_id
-</select>
+    <select id="selectEmpForPermission" resultType="com.kedu.dto.MemberDTO">
+	  SELECT 
+	    e.emp_code_id AS emp_code_id,
+	    e.emp_name AS emp_name,
+	    d.dept_name,
+	    p.per_name
+	  FROM employee e
+	  LEFT JOIN department d ON e.emp_dept_id = d.dept_id
+	  LEFT JOIN permission p ON e.emp_per_id = p.per_id
+	</select>
 
 </mapper>

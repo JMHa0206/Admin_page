@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.dto.DepartDTO;
-import com.kedu.dto.MemberDTO;
 
 @Repository
 public class DepartDAOImp implements DepartDAO {

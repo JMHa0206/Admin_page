@@ -55,6 +55,8 @@ public class MemberController {
 		
 		
 	}
+	
+	@ResponseBody
 	@GetMapping("/selectEmpForPermission")
     public List<MemberDTO> getAllEmployees() {
         return mServ.getAllEmployees();

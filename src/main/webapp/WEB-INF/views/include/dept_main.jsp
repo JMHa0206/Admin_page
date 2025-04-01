@@ -101,7 +101,7 @@
 	  const originalName = row.find('.dept-name').text().trim();
 	  row.data('originalName' , originalName);
        $.ajax({
-    	url:"/Member/selectDeptManager",
+    	url:"/Employee/selectDeptManager",
     	type:'GET',
     	data:{
     		id:row.find('.dept-id').text()
