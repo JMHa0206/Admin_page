@@ -35,6 +35,10 @@ public class MemberService {
 	public List<MemberDTO> selectDeptManager(Integer id) { //updated
 		return daom.selectDeptManager(id);
 	}
+
+	public List<MemberDTO> getAllEmployees() {
+		return daom.selectEmpForPermission();
+	}
 	
 
 

@@ -47,4 +47,8 @@ public class MemberDAOImp implements MemberDAO {
     public List<MemberDTO> selectDeptManager(Integer id){
     	return sqlSession.selectList(NAMESPACE + ".selectDeptManager",id);
     }
+
+	public List<MemberDTO> selectEmpForPermission() {
+		return sqlSession.selectList(NAMESPACE+".selectEmpForPermission");
+	}
 }
