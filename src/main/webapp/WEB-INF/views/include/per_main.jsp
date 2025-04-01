@@ -291,7 +291,7 @@ th, td {
 						
 						$('.sidebar a[data-target="assign"]').click(function () {
 							  $.ajax({
-							    url: "/Employee/selectAll", // 사원 전체 조회 URL
+							    url: "/Employee/selectEmpForPermission", // 사원 전체 조회 URL
 							    method: "GET",
 							    dataType: "json",
 							    success: function (data) {
