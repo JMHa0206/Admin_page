@@ -301,9 +301,10 @@ th, td {
 							      data.forEach(function (emp) {
 							        const row = '<tr><td><input type="checkbox" class="emp-check" value="'
 							        			+ emp.emp_code_id + '"></td><td>'
-							            		+ emp.emp_name + '</td><td>'
-							            		+ (emp.departDTO ? emp.departDTO.dept_name : "-") + '</td><td>'
-							            		+ (emp.permissionDTO ? emp.permissionDTO.per_name : "-") + '</td></tr>';
+							            		+ emp.emp_code_id  + '</td><td>'
+							            		+ emp.emp_name  + '</td><td>'
+							            		+ emp.dept_name + '</td><td>'
+							            		+ emp.per_name + '</td></tr>';
 							        tbody.append(row);
 							      });
 							    }
@@ -346,6 +347,7 @@ th, td {
 							    success: function () {
 							      alert("권한이 성공적으로 부여되었습니다.");
 							      $('#employee-list').empty();
+							      location.reload(); 
 							    },
 							    error: function () {
 							      alert("권한 부여 실패");

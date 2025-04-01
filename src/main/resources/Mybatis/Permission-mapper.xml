@@ -53,12 +53,10 @@
     WHERE per_id = #{perId}
   </delete>
   
-  <update id="assignPermissionBatch" parameterType="map">
-  <foreach collection="empIds" item="empId" separator=";">
-    UPDATE employee
-    SET emp_per_id = #{perId}
-    WHERE emp_id = #{empId}
-  </foreach>
+<update id="assignPermission" parameterType="map">
+  UPDATE employee
+  SET emp_per_id = #{per_id, jdbcType=INTEGER}
+  WHERE emp_code_id = #{emp_id, jdbcType=INTEGER}
 </update>
   
 
