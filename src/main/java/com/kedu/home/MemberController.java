@@ -18,11 +18,11 @@ public class MemberController {
 	@Autowired
 	private MemberService mServ;
 	
-	@RequestMapping("/insertEmp")
+	@RequestMapping("/insertMember")
 	public String add(MemberDTO dto) {
 		
-		System.out.println(dto.getEmp_name());
-		mServ.insertEmp(dto);
+		System.out.println(dto.getEmp_dept_id());
+		mServ.insertMember(dto);
 		return "redirect:/admin/home?menu=emp";
 	}
 	

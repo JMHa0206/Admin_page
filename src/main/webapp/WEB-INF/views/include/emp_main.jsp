@@ -78,10 +78,10 @@
 
         <div id="create" class="section active">
             <h2>사원 등록</h2>
-            <form action="/Employee/insertEmp" method="post">
+            <form action="/Employee/insertMember" method="post">
             <div>
             <p>기본 설정</p>
-            	아이디<input type="text" id="code_id" name="emp_loginId" readonly/><br></br>
+            	아이디<input type="text" id="id" name="emp_loginId" readonly/><br></br>
                 비밀번호<input type="text" id="pw" name="emp_pw" readonly/><br></br>
                 <input type="date" name="hire_date" placeholder="입사일(연도-월-일)" /><br></br>
                 <input type="text" id="salary" name="salary" placeholder="연봉" required />
@@ -97,23 +97,11 @@
             </div>
                 <div>
                 	<p>부서 및 직급</p>
-	                <select name="emp_dept_id">
+	                <select id="select_dept" name="emp_dept_id">
 	                  <option value="">부서 선택</option>
-					  <option value="5001">개발팀</option>
-					  <option value="5002">인사팀</option>
-					  <option value="5003">경영팀</option>
 					</select>
-	                <select name="emp_job_id">
-	                  <option value="">직급 선택</option>
-					  <option value="1001">사원</option>
-					  <option value="1002">대리</option>
-					  <option value="1003">과장</option>
-					  <option value="1004">차장</option>
-					  <option value="1005">부장</option>
-					  <option value="1006">이사</option>
-					  <option value="1007">상무</option>
-					  <option value="1008">전무</option>
-					  <option value="1009">대표이사</option>
+	                <select id="select_job" name="emp_job_id">
+	                <option value="">직급 선택</option>
 					</select>
 				</div>
                 <button id="addEmp">등록</button>
@@ -140,21 +128,11 @@
 					<input type="text" name="emp_code_id" placeholder="수정하고 싶은 사원 ID" />
 
 						<select id="emp_dept_id" name="emp_dept_id">
-							<option value="5001">개발팀</option>
-							<option value="5002">인사팀</option>
-							<option value="5003">경영팀</option>
+							<option value="">부서 선택</option>
 						</select> 
 						
 						<select id="emp_job_id" name="emp_job_id">
-							<option value="1001">사원</option>
-							<option value="1002">대리</option>
-							<option value="1003">과장</option>
-							<option value="1004">차장</option>
-							<option value="1005">부장</option>
-							<option value="1006">이사</option>
-							<option value="1007">상무</option>
-							<option value="1008">전무</option>
-							<option value="1009">대표이사</option>
+							<option value="">직급 선택</option>
 						</select>
 						
 						<input type="text" name="address1" placeholder="수정하고 싶은 주소" />
@@ -185,20 +163,47 @@ $(document).ready(function() {
 	    	let defaultId="";
 	    	
 	    	resp.forEach(function(emp){
-	    		html += "<tr><td>" 
-	    				+ emp.emp_code_id 
+	    		html += "<tr><td>" + emp.emp_code_id 
 	    				+ "</td><td>" + emp.emp_name 
-	    				+ "</td><td>" + emp.departDTO.dept_name 
+	    				+ "</td><td>" + emp.departDTO.dept_name
 	    				+ "</td><td>" + (emp.jobDTO ? emp.jobDTO.job_name : "직급 없음")
 	    				+ "</td><td>" + emp.emp_email 
 	    				+ "</td><td><button>정보수정</button><button>사원삭제</button>"
 	    				+ "</td></tr>";
 	    		defaultId = "loginID_" + (emp.emp_code_id + 1);
 	    	});
+	    	
 	    	$("#empboardTable").html(html);
-	    	$("#code_id").val(defaultId);
+	    	$("#id").val(defaultId);
 	    	$("#pw").val(defaultId);
 	    })
+	    
+	    $.ajax({
+	    	url:"/Depart/selectAllDept"
+	    }).done(function(resp){
+	    	let deftHtml = "";
+	    	resp.forEach(function(dept){
+	    		console.log(dept.deft_id);
+	    		deftHtml += '<option value="'+dept.dept_id+'">'+ dept.dept_name +'</option>';
+	    	});
+	    	$("#select_dept").append(deftHtml);
+	    	$("#emp_dept_id").append(deftHtml);
+	    })
+	    
+	    
+	    $.ajax({
+	    	url:"/Job/selectAllJob"
+	    }).done(function(resp){
+	    	let jobHtml = "";
+	    	resp.forEach(function(job){
+	    		console.log(job.job_id);
+	    		jobHtml += '<option value="'+ job.job_id +'">'+ job.job_name +'</option>';
+	    	});
+	    	$("#select_job").append(jobHtml);
+	    	$("#emp_job_id").append(jobHtml);
+	    })
+	    
+	   
 	
     $('.sidebar a').click(function(e) {
         e.preventDefault();
@@ -215,6 +220,13 @@ $(document).ready(function() {
 		        }
 		    }).open();
 		};
+		
+		$('#addEmp').click(function(e) {
+		    if (!$('#select_dept').val()) {
+		        alert("부서를 선택해주세요!");
+		        e.preventDefault();
+		    }
+		});
 	 
 
 });
