@@ -28,16 +28,16 @@
 	
     <select id="selectAllMembers" resultMap="memberDeptMap">
         SELECT 
-        	e.emp_code_id, 
-        	e.emp_name, 
-        	e.emp_email, 
+        	e.emp_code_id AS emp_code_id, 
+        	e.emp_name AS emp_name, 
+        	e.emp_email AS emp_email, 
         	d.dept_id  AS dept_id, 
         	d.dept_name AS dept_name, 
         	j.job_id AS job_id,  
         	j.job_name AS job_name   
         FROM employee e 
         	left join department d on e.emp_dept_id = d.dept_id
-        	LEFT JOIN empJob j ON e.emp_job_id = j.job_id
+        	LEFT JOIN job j ON e.emp_job_id = j.job_id
     </select>
 
     

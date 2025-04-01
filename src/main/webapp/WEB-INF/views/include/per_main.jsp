@@ -298,14 +298,12 @@ th, td {
 							      const tbody = $('#employee-list');
 							      tbody.empty();
 							      data.forEach(function (emp) {
-							        const row = `
-							          <tr>
-							            <td><input type="checkbox" class="emp-check" value="${emp.emp_id}"></td>
-							            <td>${emp.emp_id}</td>
-							            <td>${emp.emp_name}</td>
-							            <td>${emp.dept_name || '-'}</td>
-							            <td>${emp.per_name || '-'}</td>
-							          </tr>`;
+							        const row = '<tr><td><input type="checkbox" class="emp-check" value="'
+							        			+ ${emp.emp_id}+ '"></td<td>>'
+							            		+ ${emp.emp_id} + '</td><td>'
+							            		+ ${emp.emp_name} + '</td><td>'
+							            		+ ${emp.dept_name || '-'} + '</td><td>'
+							            		+ ${emp.per_name || '-'} + '</td></tr>';
 							        tbody.append(row);
 							      });
 							    }

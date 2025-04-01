@@ -101,7 +101,7 @@
 	                  <option value="">부서 선택</option>
 					</select>
 	                <select id="select_job" name="emp_job_id">
-	                <option value="">직급 선택</option>
+	                	<option value="">직급 선택</option>
 					</select>
 				</div>
                 <button id="addEmp">등록</button>
@@ -165,7 +165,7 @@ $(document).ready(function() {
 	    	resp.forEach(function(emp){
 	    		html += "<tr><td>" + emp.emp_code_id 
 	    				+ "</td><td>" + emp.emp_name 
-	    				+ "</td><td>" + emp.departDTO.dept_name
+	    				+ "</td><td>" + (emp.departDTO ? emp.departDTO.dept_name : "직급 없음")
 	    				+ "</td><td>" + (emp.jobDTO ? emp.jobDTO.job_name : "직급 없음")
 	    				+ "</td><td>" + emp.emp_email 
 	    				+ "</td><td><button>정보수정</button><button>사원삭제</button>"
@@ -183,7 +183,6 @@ $(document).ready(function() {
 	    }).done(function(resp){
 	    	let deftHtml = "";
 	    	resp.forEach(function(dept){
-	    		console.log(dept.deft_id);
 	    		deftHtml += '<option value="'+dept.dept_id+'">'+ dept.dept_name +'</option>';
 	    	});
 	    	$("#select_dept").append(deftHtml);
@@ -195,9 +194,8 @@ $(document).ready(function() {
 	    	url:"/Job/selectAllJob"
 	    }).done(function(resp){
 	    	let jobHtml = "";
-	    	resp.forEach(function(job){
-	    		console.log(job.job_id);
-	    		jobHtml += '<option value="'+ job.job_id +'">'+ job.job_name +'</option>';
+	    	resp.forEach(function(e){
+	    		jobHtml += '<option value="'+ e.job_id +'">'+ e.job_name +'</option>';
 	    	});
 	    	$("#select_job").append(jobHtml);
 	    	$("#emp_job_id").append(jobHtml);
