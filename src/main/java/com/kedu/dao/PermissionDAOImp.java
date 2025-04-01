@@ -44,11 +44,17 @@ public class PermissionDAOImp implements PermissionDAO{
 		sqlSession.delete(namespace + ".deletePermission", perId);
 	}
 	
-	public void assignPermissionBatch(int perId, List<Integer> empIds) {
-	    Map<String, Object> paramMap = new HashMap<>();
-	    paramMap.put("perId", perId);
-	    paramMap.put("empIds", empIds);
-	    sqlSession.update(namespace + ".assignPermissionBatch", paramMap);
+	    public void assignPermission(int empId, int perId) {
+	        Map<String, Object> params = new HashMap<>();
+	        params.put("emp_id", empId);
+	        params.put("per_id", perId);
+	        sqlSession.update(namespace + ".assignPermission", params);
+	    }
+	    // 👉 루프 방식
+	    public void assignPermissionBatch(List<Integer> empIds, int perId) {
+	        for (int empId : empIds) {
+	            assignPermission(empId, perId);
+	        }
+	    }
 	}
 	
-}

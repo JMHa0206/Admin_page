@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,12 +47,10 @@ public class PermissionController {
 	public PermissionDTO getPermissionById(@RequestParam("id") int id) {
 	    return pServ.selectById(id);
 	}
-	@RequestMapping("/assignToEmployees")
+	@PostMapping("/assignToEmployees")
 	@ResponseBody
-	public String assignPermissionToEmployees(
-	    @RequestParam("per_id") int perId,
-	    @RequestParam("emp_ids") List<Integer> empIds) {
-
+	public String assignPermissionToEmployees(@RequestParam("per_id") int perId,
+	                                          @RequestParam("emp_ids") List<Integer> empIds) {
 	    pServ.assignPermissionToEmployees(perId, empIds);
 	    return "success";
 	}

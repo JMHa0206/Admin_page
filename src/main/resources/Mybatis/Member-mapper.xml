@@ -62,7 +62,7 @@
     	select emp_code_id,emp_name from employee where emp_dept_id = #{id} 
     </select>
     
-    <select id="selectEmpForPermission" resultType="com.kedu.dto.MemberDTO">
+    <select id="selectEmpForPermission" resultType="com.kedu.dto.TempMemPerDTO">
 	  SELECT 
 	    e.emp_code_id AS emp_code_id,
 	    e.emp_name AS emp_name,
