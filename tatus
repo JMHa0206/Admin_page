@@ -1,0 +1,468 @@
+[33mcommit 24b26519770b64a2e665faf0144b6aab188cf613[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Xavier Choi <chaeins25@naver.com>
+Date:   Tue Apr 1 16:45:27 2025 +0900
+
+    permission assign complete
+
+[33mcommit d2f7fdfeac2e7555288ab10ebdd69e8e9e6b3892[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Tue Apr 1 15:47:18 2025 +0900
+
+    admin page permission modifying
+
+[33mcommit 03308db3d01df85d93eae83c5163065a12047f4a[m
+Merge: 2ba462e 2851cd1
+Author: HJM <jungmzzang@naver.com>
+Date:   Tue Apr 1 12:29:47 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit 2851cd105854ec03b4b21b20e27b54951ff4debf[m
+Merge: 825ce6a 975d229
+Author: HJM <jungmzzang@gmail.com>
+Date:   Tue Apr 1 12:29:00 2025 +0900
+
+    Merge pull request #14 from XavierSmith25/master
+    
+    XavierSmith25 / selectEmpforPermission add / MemberController, Service,DAO,MemberMapper.
+
+[33mcommit 2ba462e733b20c3972e363a170e98332e3e05996[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Tue Apr 1 12:28:01 2025 +0900
+
+    board_mapper modified
+
+[33mcommit 975d229bb0e6a8537e42cae4a3ae75146dc3571f[m
+Author: Xavier Choi <chaeins25@naver.com>
+Date:   Tue Apr 1 12:25:05 2025 +0900
+
+    selectEmpforPermission add
+
+[33mcommit 825ce6ae60824df74b5f703d466c5ad5bf2760e5[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Tue Apr 1 12:09:44 2025 +0900
+
+    admin page modified
+
+[33mcommit 8fd5f75e7f434cc1701d72ea2a340734835cc7f9[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Tue Apr 1 09:25:20 2025 +0900
+
+    emp_main modified
+
+[33mcommit 41dfc6679a43fb8c059451f40a3223a44ec4acf1[m
+Merge: bb6de88 6288000
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 18:18:11 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit 62880002e07cccc9aa63249caacb697fcb045fa6[m
+Merge: b16fbb2 da7813a
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 18:17:24 2025 +0900
+
+    Merge pull request #13 from woongvly00/master
+    
+    03-31 풀리퀘스트
+
+[33mcommit da7813aafb5bb956082296a1a450b38b03d3ab26[m
+Merge: 979706d b16fbb2
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 18:16:52 2025 +0900
+
+    Merge branch 'master' into master
+
+[33mcommit bb6de888ec28af78fffddda21b55165c75d86eeb[m
+Merge: c8e7051 b16fbb2
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 18:02:55 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit b16fbb25a5512f9c8b535f890670aba5a7bdd67b[m
+Merge: 77c37ac 5bb9344
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 18:02:32 2025 +0900
+
+    Merge pull request #12 from XavierSmith25/master
+    
+    XavierSmith25 / fixed Permission adjust / Permission-mapper , PermissionController. etc/
+
+[33mcommit 979706dbe08b2ab94f2390d3871a4c98633ea27e[m
+Author: Woong <asdf@gmail.com>
+Date:   Mon Mar 31 18:01:05 2025 +0900
+
+    commit third
+
+[33mcommit c8e70516f4f8fcdec132c4e663a7c06bb0bb74ad[m
+Merge: c64753e 77c37ac
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 17:55:01 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit c64753e3b796cf0a51a3c3e732fa5a1023aec251[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 17:54:57 2025 +0900
+
+    emp_main modified
+
+[33mcommit 77c37ac200ea81f6b63d4273863346b38edd1772[m
+Merge: fe07cf0 148cc99
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 17:54:27 2025 +0900
+
+    Merge pull request #11 from jeokaet/master
+    
+    git commit -m "jeokaet/생성 동적처리 + 오류수정"
+
+[33mcommit 5bb93448c1e4d09801856944773aa55c3604884c[m
+Author: Xavier Choi <chaeins25@naver.com>
+Date:   Mon Mar 31 17:53:44 2025 +0900
+
+    fixed Permission adjust
+
+[33mcommit 148cc99daba21d0a9e129389848202ad394dc5ea[m
+Author: jeokaet <whgnldud0325@naver.com>
+Date:   Mon Mar 31 17:51:34 2025 +0900
+
+    jeokaet/생성 동적처리 + 오류수정
+
+[33mcommit a9413278c86f34d80e9876e67e5ae6100c3ea993[m
+Merge: 78ddd65 fe07cf0
+Author: jeokaet <whgnldud0325@naver.com>
+Date:   Mon Mar 31 17:50:16 2025 +0900
+
+    Merge branch 'master' of https://github.com/jeokaet/Admin_page
+
+[33mcommit 78ddd65edd882b0e4f7e0ab20fb36cf430bd9e42[m
+Author: jeokaet <whgnldud0325@naver.com>
+Date:   Mon Mar 31 17:50:00 2025 +0900
+
+    1
+
+[33mcommit 9ceb57a6c36686f5157b08afe89566a29d5eec86[m
+Merge: c03d434 fe07cf0
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 17:06:01 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit fe07cf0c32c02ceccc11cf0f5a0310d49fd6a74b[m
+Merge: 7b989d4 7d4d77a
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 17:05:25 2025 +0900
+
+    Merge pull request #10 from jeokaet/master
+    
+    jeokaet/연차발생 css 수정
+
+[33mcommit 7d4d77a5b446a577f4c6f376e315a1a61053854c[m
+Merge: dad16df 7b989d4
+Author: jeokaet <whgnldud0325@naver.com>
+Date:   Mon Mar 31 17:00:44 2025 +0900
+
+    Merge branch 'master' of https://github.com/jeokaet/Admin_page
+
+[33mcommit dad16df89adae0f80a007247ad872b37ee862494[m
+Author: jeokaet <whgnldud0325@naver.com>
+Date:   Mon Mar 31 17:00:03 2025 +0900
+
+    jeokaet/연차발생 css 수정
+
+[33mcommit c03d434bfdd97d19effadb8916ab9e4fd81d4997[m
+Merge: cdac3d5 7b989d4
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 16:27:31 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit 7b989d4d6521b7ed74aee19db1c609a3ac1580bc[m
+Merge: c65a23b 6490124
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 16:27:10 2025 +0900
+
+    Merge pull request #9 from jeokaet/master
+    
+    jeokaet/ 연차 생성 및 발생 (1차)
+
+[33mcommit cdac3d50712643cb8593102ccfbbf66c20f4d446[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 16:27:07 2025 +0900
+
+    emp ui modifying
+
+[33mcommit 64901242197089c2259fb4073fee6c56c07f2026[m
+Merge: fe7b89e c65a23b
+Author: jeokaet <whgnldud0325@naver.com>
+Date:   Mon Mar 31 16:19:56 2025 +0900
+
+    Merge branch 'master' of https://github.com/jeokaet/Admin_page
+
+[33mcommit fe7b89ef14babb9df8530bf1a40c9d31bf0d2b4f[m
+Author: jeokaet <whgnldud0325@naver.com>
+Date:   Mon Mar 31 16:06:49 2025 +0900
+
+    jeokaet/연차생성 및 발생
+
+[33mcommit c65a23b0840ffe7e0c857a2183a27d82d3db8d6c[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 15:15:47 2025 +0900
+
+    admin employee function done
+
+[33mcommit 9fc22acbc94bed7a3a8ebbd91cecd2c64b6f3c95[m
+Merge: 8861314 9532c1f
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 15:02:07 2025 +0900
+
+    admin member conflict fixed & member List modifying
+
+[33mcommit 9532c1f37be6a57724cc2813123865d5604aeff2[m
+Merge: 93b301b 2e58ce3
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 14:55:51 2025 +0900
+
+    Merge pull request #8 from rgegrgeee/master
+    
+    관리자페이지 수정 부분 jsp 고쳐서 보냅니다
+
+[33mcommit 8861314020994a0fa5654e8139422c04eabd897f[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 14:55:20 2025 +0900
+
+    member list modifying
+
+[33mcommit 2e58ce30da40cb6fdde9f9c4575ec45b0dabdd95[m
+Merge: b1534a9 93b301b
+Author: young <cdcd718@naver.com>
+Date:   Mon Mar 31 14:48:55 2025 +0900
+
+    Merge branch 'master' of https://github.com/rgegrgeee/Admin_page
+
+[33mcommit b1534a99fd788326ca77aacbfa9f6aecaf3b9e0f[m
+Author: young <cdcd718@naver.com>
+Date:   Mon Mar 31 14:48:11 2025 +0900
+
+    employeeupdate
+
+[33mcommit 64200a4b5df8b7d4f663492317e88a744e2e1341[m
+Author: young <cdcd718@naver.com>
+Date:   Mon Mar 31 14:44:56 2025 +0900
+
+    employee_update
+
+[33mcommit a5d7268771dd7edf930d54255e772aadfdc7c477[m
+Merge: b3c625f 93b301b
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 12:26:44 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit b3c625f95e15131dbf9ad761db2a9294ff758c20[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 12:22:58 2025 +0900
+
+    modifying emp
+
+[33mcommit 93b301b100066059aa984358720694f19f56e97a[m
+Merge: 9cac14f b31d9b5
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 11:53:55 2025 +0900
+
+    Merge pull request #7 from rgegrgeee/master
+    
+    employee_update_remove 기능 추가 보냅니다
+
+[33mcommit b31d9b5d10263a5ea97606c158613a9f3eeab082[m
+Merge: 49356e4 9cac14f
+Author: CHyoung <cdcd718@naver.com>
+Date:   Mon Mar 31 11:53:23 2025 +0900
+
+    Merge branch 'JMHa0206:master' into master
+
+[33mcommit 49356e44a9ad5f3566548d95f0f6ebd2e494928a[m
+Author: young <cdcd718@naver.com>
+Date:   Mon Mar 31 11:51:00 2025 +0900
+
+    employee_update_remove
+
+[33mcommit 5be582a8ecb0f7ab212a74ced6d2f9e5a0f7c3f0[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 11:50:42 2025 +0900
+
+    emp list modifying2 : dept_name&job_name
+
+[33mcommit 9cac14fc811d57452ded4b01604e2e45725bd9d5[m
+Merge: db7914c 99e8a5b
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 10:40:46 2025 +0900
+
+    Merge pull request #6 from XavierSmith25/master
+    
+    XavierSmith25 / Permission Adjust Create / per_main.jsp
+
+[33mcommit 99e8a5bf563e6008affc2e76f804df9305210322[m
+Merge: 290d423 db7914c
+Author: XavierSmith25 <chaeins25@naver.com>
+Date:   Mon Mar 31 10:36:28 2025 +0900
+
+    Merge branch 'JMHa0206:master' into master
+
+[33mcommit 290d423c48582587bd18753a1797b8f3f9839a56[m
+Author: Xavier Choi <chaeins25@naver.com>
+Date:   Mon Mar 31 10:35:58 2025 +0900
+
+    Permission Adjust create
+
+[33mcommit db7914c5c4c1699fcad67bd27caad2870e5cbfbf[m
+Merge: a7100b9 cc9d2c4
+Author: HJM <jungmzzang@gmail.com>
+Date:   Mon Mar 31 09:34:58 2025 +0900
+
+    Merge pull request #5 from XavierSmith25/master
+    
+    XavierSmith25 / fin Permission-Mapper/  Permission-mapper.xml
+
+[33mcommit d9ea71e8fc6b40f62f363d0180e61a8b399a2371[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 09:34:42 2025 +0900
+
+    emp_selectAll detaile modifying
+
+[33mcommit cc9d2c4d4f4ec147b9c9378dd3c0b56575671151[m
+Author: Xavier Choi <chaeins25@naver.com>
+Date:   Mon Mar 31 09:31:44 2025 +0900
+
+    fin Permission-Mapper
+
+[33mcommit a7100b9e802be7b5eb6ebe15bf44609342e8302d[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Mon Mar 31 09:16:04 2025 +0900
+
+    emp add / list done
+
+[33mcommit 524f4f26119c5669a058a1234061340f9a38dc2f[m
+Merge: 802aa20 7bcc2cf
+Author: HJM <jungmzzang@naver.com>
+Date:   Fri Mar 28 17:53:36 2025 +0900
+
+    merged memberpages
+
+[33mcommit 7bcc2cfc16cb6f0299584bbfee1fe88cb4abc348[m
+Merge: 531dab2 264b0fb
+Author: HJM <jungmzzang@gmail.com>
+Date:   Fri Mar 28 17:51:00 2025 +0900
+
+    Merge pull request #4 from rgegrgeee/master
+    
+    임플로이 수정 삭제요
+
+[33mcommit 264b0fbbc7cee020889e45750349b69c7861cf60[m
+Author: young <cdcd718@naver.com>
+Date:   Fri Mar 28 17:48:37 2025 +0900
+
+    insertdeleteEmployee
+
+[33mcommit 802aa205e4de6add0ebccc2deeea29ce70fdd569[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Fri Mar 28 17:44:53 2025 +0900
+
+    emp add form v.2
+
+[33mcommit 8040065004d5386c05a5e82d7b11eee0c6c82705[m
+Merge: 7625fdf 531dab2
+Author: young <cdcd718@naver.com>
+Date:   Fri Mar 28 16:56:51 2025 +0900
+
+    Merge branch 'master' of https://github.com/rgegrgeee/Admin_page
+
+[33mcommit 7625fdfb1cdae98961abf64f3413634fc3d87a23[m
+Author: young <cdcd718@naver.com>
+Date:   Fri Mar 28 16:56:44 2025 +0900
+
+    insert
+
+[33mcommit 0a62afcabcd298c9e031923580d8fea42d1d0c51[m
+Merge: 72fbc94 531dab2
+Author: HJM <jungmzzang@naver.com>
+Date:   Fri Mar 28 16:53:15 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit 531dab242fdb05a47dc8f71c0632720212be9054[m
+Merge: ac6de9e 75dd325
+Author: HJM <jungmzzang@gmail.com>
+Date:   Fri Mar 28 16:52:05 2025 +0900
+
+    Merge pull request #3 from XavierSmith25/master
+    
+    XavierSmith25 / all stack fin / Permission _ Work _ Dept_main 관련 수정입니다
+
+[33mcommit 72fbc94a9927809680d1573067cba47202efef58[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Fri Mar 28 16:51:13 2025 +0900
+
+    create emp info input form
+
+[33mcommit 75dd325542f63e1bcc69eb38da25e756ed143d89[m
+Author: Xavier Choi <chaeins25@naver.com>
+Date:   Fri Mar 28 16:46:25 2025 +0900
+
+    all stack fin
+
+[33mcommit f6fbe5b313eb54a03681e78d86468622741870e5[m
+Merge: 40a2cb3 ac6de9e
+Author: HJM <jungmzzang@naver.com>
+Date:   Fri Mar 28 16:20:28 2025 +0900
+
+    Merge branch 'master' of https://github.com/JMHa0206/Admin_page
+
+[33mcommit 40a2cb3d38c041726aa746780c8eb0728b927d11[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Fri Mar 28 16:20:15 2025 +0900
+
+    add employee v.2
+
+[33mcommit ac6de9eabe2283a3f0211024151b70bdfa4e706c[m
+Merge: c697cca d4413a0
+Author: HJM <jungmzzang@gmail.com>
+Date:   Fri Mar 28 16:10:00 2025 +0900
+
+    Merge pull request #2 from woongvly00/master
+    
+    하정민씨의 실수로 다시 만든걸 풀퀘스트 하는 풀퀘스트
+
+[33mcommit d4413a0049fc7c6181fbc934877bb12f2c1fc58a[m
+Author: Woong <asdf@gmail.com>
+Date:   Fri Mar 28 15:58:02 2025 +0900
+
+    second commit
+
+[33mcommit 5c1eea554d107d703a54172e92a81e7f59d412df[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Fri Mar 28 15:21:34 2025 +0900
+
+    Memberdto create, member crud started
+
+[33mcommit c697cca7e61383db081330a5b8bcba3824239569[m
+Merge: 72c5412 9d21d68
+Author: HJM <jungmzzang@gmail.com>
+Date:   Fri Mar 28 15:17:10 2025 +0900
+
+    Merge pull request #1 from rgegrgeee/master
+    
+    createMemberDTO
+
+[33mcommit 9d21d688a48820ddb95a0e916b67baca4c9285cd[m
+Author: young <cdcd718@naver.com>
+Date:   Fri Mar 28 15:14:46 2025 +0900
+
+    createMemberDTO
+
+[33mcommit 72c54121679a6f866efbdb40a0bb94c00834ad92[m
+Author: HJM <jungmzzang@naver.com>
+Date:   Fri Mar 28 14:19:41 2025 +0900
+
+    first commit

@@ -1,0 +1,318 @@
+/* 공통 스타일 */
+body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      margin: 0;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      height: 100vh;
+    }
+
+    .sidebar {
+      width: 200px;
+      background-color: #222;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .sidebar a {
+      color: #ccc;
+      display: block;
+      margin: 10px 0;
+      text-decoration: none;
+    }
+
+    .sidebar a:hover {
+      color: #fff;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .section {
+      display: none;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    input, select, button {
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+
+    hr {
+      margin: 20px 0;
+    }
+    
+    
+    .annual-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .annual-header {
+    background-color: #222;
+    color: white;
+    text-align: left;
+    padding: 12px 15px;
+    font-weight: 500;
+  }
+  
+  .annual-row {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s;
+  }
+  
+  .annual-row:last-child {
+    border-bottom: none;
+  }
+  
+  .annual-row:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .annual-data {
+    padding: 10px 15px;
+    color: #333;
+  }
+  
+  .annual-years {
+    font-weight: 500;
+  }
+  
+  .annual-days {
+    
+    font-weight: bold;
+  }
+  
+  .annual-days span {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    background-color: #e8f4f8;
+    color: #0277bd;
+    min-width: 25px;
+  }
+
+body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; color: #333; }
+    .wrapper { display: flex; height: 100vh; }
+    .sidebar { width: 200px; background: #222; color: #fff; padding: 20px; box-sizing: border-box; }
+    .sidebar h2 { font-size: 20px; margin-bottom: 20px; }
+    .sidebar a { display: block; color: #ccc; text-decoration: none; margin-bottom: 10px; }
+    .sidebar a:hover { color: #fff; }
+    .content { flex: 1; padding: 30px; box-sizing: border-box; overflow-y: auto; }
+    h3 { border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #f4f4f4; }
+    input[type="text"], select { padding: 5px; width: 100%; box-sizing: border-box; margin-top: 5px; }
+    .form-group { margin-bottom: 10px; }
+    .btn { padding: 5px 10px; background: #111; color: white; border: none; cursor: pointer; }
+    .btn:hover { background: #333; }
+
+body {
+        font-family: 'Segoe UI', sans-serif;
+        background: #f4f4f4;
+        margin: 0;
+        color: #333;
+    }
+    .container {
+        display: flex;
+        height: 100vh;
+    }
+    .sidebar {
+        width: 200px;
+        background-color: #222;
+        color: #fff;
+        padding: 20px;
+    }
+    .sidebar a {
+        color: #ccc;
+        display: block;
+        margin: 10px 0;
+        text-decoration: none;
+    }
+    .sidebar a:hover {
+        color: #fff;
+    }
+    .main-content {
+        flex: 1;
+        padding: 20px;
+        background: #fff;
+    }
+    .section {
+        display: none;
+    }
+    .section.active {
+        display: block;
+    }
+    input, select, button {
+        padding: 8px;
+        border: 1px solid #ccc;
+        background: #f9f9f9;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+body { font-family: 'Arial', sans-serif; background: #fff; color: #111; margin: 0; padding: 0; }
+    .wrapper { display: flex; height: 100vh; }
+    .sidebar { width: 200px; background: #111; color: #fff; padding: 20px; box-sizing: border-box; }
+    .sidebar h2 { font-size: 20px; margin-bottom: 20px; }
+    .sidebar a { display: block; color: #ddd; text-decoration: none; margin-bottom: 10px; }
+    .sidebar a:hover { color: #fff; }
+    .content { flex: 1; padding: 30px; box-sizing: border-box; overflow-y: auto; }
+    h3 { border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #f4f4f4; }
+    input[type="text"], select { padding: 5px; width: 100%; box-sizing: border-box; margin-top: 5px; }
+    .form-group { margin-bottom: 10px; }
+    .btn { padding: 5px 10px; background: #111; color: white; border: none; cursor: pointer; }
+    .btn:hover { background: #333; }
+    .section {
+    display: none;
+}
+.section.active {
+    display: block;
+}
+
+body {
+	font-family: 'Segoe UI', sans-serif;
+	background: #f9f9f9;
+	margin: 0;
+	color: #333;
+}
+.container {
+	display: flex;
+	height: 100vh;
+}
+.sidebar {
+	width: 200px;
+	background-color: #222;
+	color: #fff;
+	padding: 20px;
+}
+.sidebar a {
+	color: #ccc;
+	display: block;
+	margin: 10px 0;
+	text-decoration: none;
+}
+.sidebar a:hover {
+	color: #fff;
+}
+.main-content {
+	flex: 1;
+	padding: 30px;
+	background: #fff;
+}
+input, select, button {
+	margin: 5px 0;
+	padding: 8px;
+	width: 100%;
+	border: 1px solid #ccc;
+	background: #fefefe;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+th, td {
+	padding: 10px;
+	border-bottom: 1px solid #ddd;
+}
+.logo-img {
+	max-width: 150px;
+}
+
+body {
+	font-family: 'Segoe UI', sans-serif;
+	background: #f4f4f4;
+	margin: 0;
+	color: #333;
+}
+
+.container {
+	display: flex;
+	height: 100vh;
+}
+
+.sidebar {
+	width: 200px;
+	background-color: #222;
+	color: #fff;
+	padding: 20px;
+}
+
+.sidebar a {
+	color: #ccc;
+	display: block;
+	margin: 10px 0;
+	text-decoration: none;
+}
+
+.sidebar a:hover {
+	color: #fff;
+}
+
+.main-content {
+	flex: 1;
+	padding: 20px;
+	background: #fff;
+}
+
+.section {
+	display: none;
+}
+
+.section.active {
+	display: block;
+}
+
+input, select, button {
+	margin: 5px 0;
+	padding: 8px;
+	width: 100%;
+	border: 1px solid #ccc;
+	background: #f9f9f9;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 20px;
+}
+
+th, td {
+	padding: 10px;
+	border-bottom: 1px solid #ccc;
+}
