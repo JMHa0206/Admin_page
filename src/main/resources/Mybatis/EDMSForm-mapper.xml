@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace ="EDMSForm">
+  
+<insert id="insertForm" parameterType="com.kedu.dto.EDMSFormDTO">
+  INSERT INTO edms_form (
+    form_id,
+    form_name,
+    form_type,
+    form_content,
+    created_at,
+    created_by
+  ) VALUES (
+    edms_form_seq.NEXTVAL,  <!-- 시퀀스 직접 호출 -->
+    #{formName},
+    #{formType},
+    #{formContent},
+    SYSDATE,
+    'admin'
+  )
+</insert>
+
+
+<select id="selectFormList" resultType="com.kedu.dto.EDMSFormDTO">
+  SELECT 
+    form_id AS formId,
+    form_name AS formName,
+    form_type AS formType,
+    form_content AS formContent,
+    created_at AS createdAt,
+    created_by AS createdBy
+  FROM edms_form
+  ORDER BY form_id DESC
+</select>
+
+<select id="selectFormById" parameterType="int" resultType="com.kedu.dto.EDMSFormDTO">
+  SELECT 
+    form_id AS formId,
+    form_name AS formName,
+    form_type AS formType,
+    form_content AS formContent,
+    created_at AS createdAt,
+    created_by AS createdBy
+  FROM edms_form
+  WHERE form_id = #{formId}
+</select>
+
+<update id="updateForm" parameterType="com.kedu.dto.EDMSFormDTO">
+  UPDATE edms_form
+  SET 
+    form_name = #{formName},
+    form_type = #{formType},
+    form_content = #{formContent}
+  WHERE form_id = #{formId}
+</update>
+  
+  <delete id="deleteForm" parameterType="int">
+  DELETE FROM edms_form
+  WHERE form_id = #{formId}
+</delete>
+  
+  </mapper>
