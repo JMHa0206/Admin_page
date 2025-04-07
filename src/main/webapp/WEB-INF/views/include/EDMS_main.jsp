@@ -31,6 +31,7 @@
     </div>
 
     <div class="main-content">
+
       <!-- 등록 탭 -->
       <div id="create" class="section active">
         <h2>전자결재 양식 등록</h2>
@@ -82,11 +83,71 @@
         </select>
         <div id="previewArea" style="margin-top: 20px;"></div>
       </div>
+
     </div>
   </div>
 
   <script>
     $(document).ready(function () {
+      // TinyMCE 초기화
+      tinymce.init({
+        selector: '#formContent',
+        height: 400,
+        plugins: 'table lists code',
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | table | code',
+        menubar: false
+      });
+
+      // 템플릿 자동 삽입
+      $('select[name="formType"]').change(function () {
+        const type = $(this).val();
+        let template = "";
+
+        if (type === "연차") {
+          template = `
+            <h3 style="text-align:center;">[연차 신청서]</h3>
+            <p><strong>신청인:</strong> ______________</p>
+            <p><strong>연차 기간:</strong> __년 __월 __일 ~ __년 __월 __일</p>
+            <p><strong>사유:</strong> ______________________________________</p>
+            <hr />
+            <p style="font-weight:bold;">결재선</p>
+            <table border="1" style="width:100%; text-align:center;">
+              <tr><th>기안자</th><th>1차 결재</th><th>2차 결재</th><th>최종 결재</th></tr>
+              <tr><td height="50px"></td><td></td><td></td><td></td></tr>
+            </table>`;
+        } else if (type === "출장") {
+          template = `
+            <h3 style="text-align:center;">[출장 신청서]</h3>
+            <p><strong>출발지/목적지:</strong> __________ / __________</p>
+            <p><strong>출장 기간:</strong> __년 __월 __일 ~ __년 __월 __일</p>
+            <p><strong>출장 목적:</strong> ______________________________________</p>
+            <hr />
+            <p style="font-weight:bold;">결재선</p>
+            <table border="1" style="width:100%; text-align:center;">
+              <tr><th>기안자</th><th>부서장</th><th>본부장</th><th>최종 결재</th></tr>
+              <tr><td height="50px"></td><td></td><td></td><td></td></tr>
+            </table>`;
+        } else if (type === "지출결의") {
+          template = `
+            <h3 style="text-align:center;">[지출 결의서]</h3>
+            <p><strong>부서:</strong> ______________</p>
+            <p><strong>지출 항목:</strong> ______________________________________</p>
+            <p><strong>금액:</strong> _______ 원</p>
+            <p><strong>세부 내역:</strong></p>
+            <ul><li>항목 1</li><li>항목 2</li></ul>
+            <hr />
+            <p style="font-weight:bold;">결재선</p>
+            <table border="1" style="width:100%; text-align:center;">
+              <tr><th>기안자</th><th>팀장</th><th>부장</th><th>대표</th></tr>
+              <tr><td height="50px"></td><td></td><td></td><td></td></tr>
+            </table>`;
+        } else {
+          template = `<h3>[기타 양식]</h3><p>내용을 입력해주세요.</p>`;
+        }
+
+        tinymce.get("formContent").setContent(template);
+      });
+
       // 탭 전환
       $('.sidebar a').click(function (e) {
         e.preventDefault();
@@ -98,24 +159,13 @@
         if (target === 'manage') loadFormSelector();
       });
 
-      // TinyMCE 초기화
-      tinymce.init({
-        selector: '#formContent',
-        height: 400,
-        plugins: 'table lists code',
-        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | table | code',
-        menubar: false
-      });
-
-      // 폼 제출 시 TinyMCE 값 반영 + 디버깅
+      // 폼 제출 시 TinyMCE 값 반영
       $('#formMain').submit(function () {
         const content = tinymce.get("formContent").getContent();
         $('#formContent').val(content);
-
-        console.log("🔍 제출 전 serialize:", $(this).serialize());
       });
 
-      // 폼 선택 시 미리보기
+      // 양식 선택 시 미리보기
       $('#formSelector').change(function () {
         const selectedId = $(this).val();
         if (!selectedId) return;
@@ -133,7 +183,6 @@
       });
     });
 
-    // 조회 테이블 로드
     function loadTable() {
       $.get("/form/api/list", function (data) {
         const tbody = $('#read tbody');
@@ -152,7 +201,6 @@
       });
     }
 
-    // 드롭다운 로드
     function loadFormSelector() {
       $.get("/form/api/list", function (data) {
         const selector = $('#formSelector');
@@ -163,7 +211,6 @@
       });
     }
 
-    // 수정 버튼 → 등록폼 이동
     function editSelectedForm(formId) {
       $.get("/form/" + formId, function (form) {
         $('[data-target="create"]').click();
@@ -174,19 +221,16 @@
         $('[name="formId"]').val(form.formId);
         $('#formMain').attr("action", "/form/update");
         $('#submitBtn').text("수정 완료");
-
-        console.log("🛠️ 수정폼 이동, formId:", form.formId);
       });
     }
 
-    // 삭제 버튼
     function deleteSelectedForm(formId) {
       if (confirm("정말 삭제하시겠습니까?")) {
         $.get("/form/delete/" + formId, function () {
           alert("삭제 완료");
           $('#formSelector').val('');
           $('#previewArea').empty();
-          loadTable(); // 조회 탭에 반영되게
+          loadTable();
         });
       }
     }
