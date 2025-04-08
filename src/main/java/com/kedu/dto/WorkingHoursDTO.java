@@ -4,7 +4,7 @@ import java.sql.Time;
 // 조휘영
 public class WorkingHoursDTO {
 		private int WorkingHoursid;  // 정시 출/퇴근 기준 ID
-	    private Integer deptId;              // 부서 ID (nullable)
+	    private Integer deptId;              // 부서 ID (nullable)w
 	    private Integer empCodeId;           // 사원 ID (nullable)
 	    private Time standardCheckIn;        // 정시 출근 시간
 	    private Time standardCheckOut;       // 정시 퇴근 시간
