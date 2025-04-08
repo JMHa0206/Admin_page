@@ -45,7 +45,7 @@
       <h3>부서 목록</h3>
       <table>
         <thead>
-        <tr><th>부서ID</th><th>부서명</th><th>부서장</th><th>관리</th></tr>
+        <tr><th>부서ID</th><th>부서명</th><th>부서장</th><th>upper_dept</th><th>관리</th></tr>
         </thead>
         <tbody id="deptTable"></tbody>
       </table>
@@ -70,7 +70,7 @@
   	
       $('#deptTable').empty();
       resp.forEach(function (dept) {
-    	 
+    
     	  let row = '<tr>' +
           '<td class="dept-id">' + dept.dept_id + '</td>' +
           '<td class="dept-name" contenteditable="false">' + dept.dept_name + '</td>' +
@@ -80,6 +80,14 @@
           '</span>' + 
           '<select class="manager-select" style="display:none;">' +
           '<option value="">부서장 선택</option>' +
+          '</select>' +
+          '</td>' +
+          '<td class="upper_dept">' +
+          '<span class="current-upper">' +
+          (dept.upper_dept ? dept.upper_dept : '<span class="no-upper">직속부서 없음</span>') +
+          '</span>' +
+          '<select class="upper-select" style="display:none;">' +
+          '<option value="">직속부서ID 선택</option>' +
           '</select>' +
           '</td>' +
           '<td>' +
@@ -117,10 +125,30 @@
     	 
     	  });   
       row.find('.manager-select').show();
-    
+    	
+       $.ajax({
+    	  url:"/Depart/selectUpperDept",
+    	  type:'GET',
+    	  data:{
+    		  id:row.find('.dept-id').text()
+    	  }
+      }).done(function(resp){
+   
+    	 
+     	 const upperSelect = row.find('.upper-select');
+    	 upperSelect.empty();
+    	 upperSelect.append('<option class="option" value="">직속부서ID 선택</option>');
+    	 
+    	  for(let i=0; i< resp.length; i++ ){
+    		 upperSelect.append('<option class="option" value="'+resp[i]+'">'+resp[i]+'</option>');
+    	 }; 
+    	 row.find('.upper-select').show(); 
+    	 
+      });//done여기까지 
+      
      });
        
-     
+      
       row.find('.edit-btn').hide();
       row.find('.delete-btn').hide();
       row.find('.confirm-edit-btn').show();
@@ -132,7 +160,8 @@
       const deptId = row.find('td:first').text();
       const updatedName = row.find('.dept-name').text();
       const managerId = row.find('.manager-select').val();
-      
+      const upperDept = row.find('.upper-select').val() || null;
+      console.log(upperDept);
 	
   	if(managerId !== "" && updatedName !== ""){
       $.ajax({
@@ -141,17 +170,20 @@
         data: {
           dept_id: deptId,
           dept_name: updatedName,
-          dept_manager: managerId
+          dept_manager: managerId,
+          upper_dept: upperDept
         }
       }).done(function () {
+    	   
         row.find('.dept-name').attr('contenteditable', 'false');
         row.find('.dept-manager .current-manager').text(row.find('.manager-select option:selected').text()); // 부서장 이름 업데이트
+       	row.find('.upper_dept .current-upper' ).text(upperDept ? row.find('.upper-select option:selected').text() : '직속부서 없음');
         row.find('.edit-btn').show();
         row.find('.delete-btn').show();
         row.find('.confirm-edit-btn').hide();
         row.find('.cancel-edit-btn').hide();
         row.find('.manager-select').hide();
-
+		row.find('.upper-select').hide();
         
       });
   	
@@ -175,6 +207,7 @@
     	 row.find('.cancel-edit-btn').hide();
     	 row.find('.edit-btn').show();
     	 row.find('.delete-btn').show();
+    	 row.find('.upper-select').hide();
     });
 
     $(document).on('click', '.delete-btn', function () {

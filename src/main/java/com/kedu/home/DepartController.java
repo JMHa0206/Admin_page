@@ -41,14 +41,10 @@ public class DepartController {
 	@RequestMapping(value = "/updateDept", method = RequestMethod.POST)
 	public String updateDept(@RequestParam("dept_id") Integer dept_id,
 			@RequestParam("dept_name") String dept_name,
-			@RequestParam("dept_manager") Integer dept_manager) { //U
-		if(dept_manager == null) {
-		dServ.updateDept(new DepartDTO(dept_id, dept_name));
-
-		}
-		else {
-			dServ.updateDeptManager(new DepartDTO(dept_id,dept_name,dept_manager));
-		}
+			@RequestParam("dept_manager") Integer dept_manager,
+			@RequestParam(value = "upper_dept", required = false) Integer upper_dept) { //U
+			
+			dServ.updateDeptManager(new DepartDTO(dept_id,dept_name,dept_manager,upper_dept));
 		
 
 		return "부서 정보가 수정되었습니다."; 
@@ -62,6 +58,16 @@ public class DepartController {
 		dServ.deleteDept(deptid);
 		
 		return "부서 정보가 삭제되었습니다.";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping("/selectUpperDept")
+	public List<Integer> selectUpperDept(@RequestParam("id") Integer id){
+	
+		List<Integer> list = dServ.selectUpperDept(id);
+
+		return list;
 	}
 	
 	
