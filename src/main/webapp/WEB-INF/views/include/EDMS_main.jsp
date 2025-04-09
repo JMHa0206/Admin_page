@@ -104,46 +104,177 @@
         let template = "";
 
         if (type === "연차") {
-          template = `
-            <h3 style="text-align:center;">[연차 신청서]</h3>
-            <p><strong>신청인:</strong> ______________</p>
-            <p><strong>연차 기간:</strong> __년 __월 __일 ~ __년 __월 __일</p>
-            <p><strong>사유:</strong> ______________________________________</p>
-            <hr />
-            <p style="font-weight:bold;">결재선</p>
-            <table border="1" style="width:100%; text-align:center;">
-              <tr><th>기안자</th><th>1차 결재</th><th>2차 결재</th><th>최종 결재</th></tr>
-              <tr><td height="50px"></td><td></td><td></td><td></td></tr>
-            </table>`;
-        } else if (type === "출장") {
-          template = `
-            <h3 style="text-align:center;">[출장 신청서]</h3>
-            <p><strong>출발지/목적지:</strong> __________ / __________</p>
-            <p><strong>출장 기간:</strong> __년 __월 __일 ~ __년 __월 __일</p>
-            <p><strong>출장 목적:</strong> ______________________________________</p>
-            <hr />
-            <p style="font-weight:bold;">결재선</p>
-            <table border="1" style="width:100%; text-align:center;">
-              <tr><th>기안자</th><th>부서장</th><th>본부장</th><th>최종 결재</th></tr>
-              <tr><td height="50px"></td><td></td><td></td><td></td></tr>
-            </table>`;
-        } else if (type === "지출결의") {
-          template = `
-            <h3 style="text-align:center;">[지출 결의서]</h3>
-            <p><strong>부서:</strong> ______________</p>
-            <p><strong>지출 항목:</strong> ______________________________________</p>
-            <p><strong>금액:</strong> _______ 원</p>
-            <p><strong>세부 내역:</strong></p>
-            <ul><li>항목 1</li><li>항목 2</li></ul>
-            <hr />
-            <p style="font-weight:bold;">결재선</p>
-            <table border="1" style="width:100%; text-align:center;">
-              <tr><th>기안자</th><th>팀장</th><th>부장</th><th>대표</th></tr>
-              <tr><td height="50px"></td><td></td><td></td><td></td></tr>
-            </table>`;
-        } else {
-          template = `<h3>[기타 양식]</h3><p>내용을 입력해주세요.</p>`;
-        }
+        	  template = `
+        	    <h3 style="text-align:center;">[연차 신청서]</h3>
+        	    <table style="width: 100%; border-collapse: collapse;" border="1">
+        	      <colgroup>
+        	        <col style="width: 20%;" />
+        	        <col style="width: 80%;" />
+        	      </colgroup>
+        	      <tbody>
+        	        <tr><td><strong>제목</strong></td><td>{{제목}}</td></tr>
+        	        <tr><td><strong>신청자</strong></td><td>{{신청자}}</td></tr>
+        	        <tr><td><strong>연차 시작일</strong></td><td>{{시작일}}</td></tr>
+        	        <tr><td><strong>연차 종료일</strong></td><td>{{종료일}}</td></tr>
+        	        <tr><td><strong>사유</strong></td><td>{{사유}}</td></tr>
+        	      </tbody>
+        	    </table>
+
+        	    <hr />
+        	    <p style="font-weight:bold;">결재선</p>
+        	    <table border="1" style="width:100%; text-align:center; border-collapse:collapse;">
+        	      <thead>
+        	        <tr>
+        	          <td>1차</td><td>결재</td>
+        	          <td>2차</td><td>결재</td>
+        	          <td>3차</td><td>결재</td>
+        	          <td>4차</td><td>결재</td>
+        	          <td>최종</td><td>결재</td>
+        	        </tr>
+        	      </thead>
+        	      <tbody>
+        	      <tr>
+        	      <td>{{level1.name}}</td><td rowspan="2"></td>
+        	      <td>{{level2.name}}</td><td rowspan="2"></td>
+        	      <td>{{level3.name}}</td><td rowspan="2"></td>
+        	      <td>{{level4.name}}</td><td rowspan="2"></td>
+        	      <td>{{finalLevel.name}}</td><td rowspan="2"></td>
+        	    </tr>
+        	    <tr>
+        	      <td>{{level1.position}}</td>
+        	      <td>{{level2.position}}</td>
+        	      <td>{{level3.position}}</td>
+        	      <td>{{level4.position}}</td>
+        	      <td>{{finalLevel.position}}</td>
+        	    </tr>
+        	      </tbody>
+        	    </table>
+        	    
+
+        	    <p style="font-weight:bold;">세부내용</p>
+        	    <table style="width: 100%; border-collapse: collapse;" border="1">
+        	      <colgroup>
+        	        <col style="width: 20%;" />
+        	        <col style="width: 80%;" />
+        	      </colgroup>
+        	      <tbody>
+        	        <tr><td><strong>세부내용</strong></td><td><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></td></tr>
+        	      </tbody>
+        	    </table>
+        	  `;
+        	} else if (type === "출장") {
+        	  template = `
+        		    <h3 style="text-align:center;">[출장 신청서]</h3>
+        		    <table style="width: 100%; border-collapse: collapse;" border="1">
+        		      <colgroup>
+        		        <col style="width: 20%;" />
+        		        <col style="width: 80%;" />
+        		      </colgroup>
+        		      <tbody>
+        		        <tr><td><strong>제목</strong></td><td>{{제목}}</td></tr>
+        		        <tr><td><strong>신청자</strong></td><td>{{신청자}}</td></tr>
+        		        <tr><td><strong>출장 시작일</strong></td><td>{{시작일}}</td></tr>
+        		        <tr><td><strong>출장 종료일</strong></td><td>{{종료일}}</td></tr>
+        		      </tbody>
+        		    </table>
+
+        		    <hr />
+        		    <p style="font-weight:bold;">결재선</p>
+        		    <table border="1" style="width:100%; text-align:center; border-collapse:collapse;">
+        		      <thead>
+        		        <tr>
+        		          <td>1차</td><td>결재</td>
+        		          <td>2차</td><td>결재</td>
+        		          <td>3차</td><td>결재</td>
+        		          <td>4차</td><td>결재</td>
+        		          <td>최종</td><td>결재</td>
+        		        </tr>
+        		      </thead>
+        		      <tbody>
+        		      <tr>
+        		      <td>{{level1.name}}</td><td rowspan="2"></td>
+        		      <td>{{level2.name}}</td><td rowspan="2"></td>
+        		      <td>{{level3.name}}</td><td rowspan="2"></td>
+        		      <td>{{level4.name}}</td><td rowspan="2"></td>
+        		      <td>{{finalLevel.name}}</td><td rowspan="2"></td>
+        		    </tr>
+        		    <tr>
+        		      <td>{{level1.position}}</td>
+        		      <td>{{level2.position}}</td>
+        		      <td>{{level3.position}}</td>
+        		      <td>{{level4.position}}</td>
+        		      <td>{{finalLevel.position}}</td>
+        		    </tr>
+        		      </tbody>
+        		    </table>
+
+        		    <p style="font-weight:bold;">세부내용</p>
+        		    <table style="width: 100%; border-collapse: collapse;" border="1">
+        		      <colgroup>
+        		        <col style="width: 20%;" />
+        		        <col style="width: 80%;" />
+        		      </colgroup>
+        		      <tbody>
+        		        <tr><td><strong>세부내용</strong></td><td><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></td></tr>
+        		      </tbody>
+        		    </table>
+        		  `;
+        		}  else {
+        			  template = `
+        				    <h3 style="text-align:center;">[기타 양식]</h3>
+        				    <table style="width: 100%; border-collapse: collapse;" border="1">
+        				      <colgroup>
+        				        <col style="width: 20%;" />
+        				        <col style="width: 80%;" />
+        				      </colgroup>
+        				      <tbody>
+        				        <tr><td><strong>제목</strong></td><td>{{제목}}</td></tr>
+        				        <tr><td><strong>작성자</strong></td><td>{{신청자}}</td></tr>
+        				      </tbody>
+        				    </table>
+
+        				    <hr />
+        				    <p style="font-weight:bold;">결재선</p>
+        				    <table border="1" style="width:100%; text-align:center; border-collapse:collapse;">
+        				      <thead>
+        				        <tr>
+        				          <td>1차</td><td>결재</td>
+        				          <td>2차</td><td>결재</td>
+        				          <td>3차</td><td>결재</td>
+        				          <td>4차</td><td>결재</td>
+        				          <td>최종</td><td>결재</td>
+        				        </tr>
+        				      </thead>
+        				      <tbody>
+        				      <tr>
+        				      <td>{{level1.name}}</td><td rowspan="2"></td>
+        				      <td>{{level2.name}}</td><td rowspan="2"></td>
+        				      <td>{{level3.name}}</td><td rowspan="2"></td>
+        				      <td>{{level4.name}}</td><td rowspan="2"></td>
+        				      <td>{{finalLevel.name}}</td><td rowspan="2"></td>
+        				    </tr>
+        				    <tr>
+        				      <td>{{level1.position}}</td>
+        				      <td>{{level2.position}}</td>
+        				      <td>{{level3.position}}</td>
+        				      <td>{{level4.position}}</td>
+        				      <td>{{finalLevel.position}}</td>
+        				    </tr>
+        				      </tbody>
+        				    </table>
+
+        				    <p style="font-weight:bold;">세부내용</p>
+        				    <table style="width: 100%; border-collapse: collapse;" border="1">
+        				      <colgroup>
+        				        <col style="width: 20%;" />
+        				        <col style="width: 80%;" />
+        				      </colgroup>
+        				      <tbody>
+        				        <tr><td><strong>세부내용</strong></td><td><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p></td></tr>
+        				      </tbody>
+        				    </table>
+        				  `;
+        				}
 
         tinymce.get("formContent").setContent(template);
       });
