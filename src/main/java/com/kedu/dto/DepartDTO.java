@@ -5,7 +5,29 @@ public class DepartDTO {
 	private String dept_name;
 	private Integer dept_manager; //updated
 	private String emp_name;
-	
+	private Integer upper_dept;
+
+
+	public Integer getUpper_dept() {
+		return upper_dept;
+	}
+
+
+	public void setUpper_dept(Integer upper_dept) {
+		this.upper_dept = upper_dept;
+	}
+
+
+
+	public DepartDTO(Integer dept_id, String dept_name, Integer dept_manager, Integer upper_dept) {
+		super();
+		this.dept_id = dept_id;
+		this.dept_name = dept_name;
+		this.dept_manager = dept_manager;
+		this.upper_dept = upper_dept;
+	}
+
+
 	public String getEmp_name() {
 		return emp_name;
 	}
@@ -14,13 +36,7 @@ public class DepartDTO {
 		this.emp_name = emp_name;
 	}
 
-	public DepartDTO(Integer dept_id, String dept_name, Integer dept_manager, String emp_name) {
-		super();
-		this.dept_id = dept_id;
-		this.dept_name = dept_name;
-		this.dept_manager = dept_manager;
-		this.emp_name = emp_name;
-	}
+	
 
 	public DepartDTO()  {
 	
@@ -48,12 +64,25 @@ public class DepartDTO {
 		super();
 		this.dept_name = dept_name;
 	}
-	public DepartDTO(Integer dept_id, String dept_name, Integer dept_manager) {
+	public DepartDTO(Integer dept_id, String dept_name, Integer upper_dept) {
+		super();
+		this.dept_id = dept_id;
+		this.dept_name = dept_name;
+		this.upper_dept = upper_dept;
+	}
+
+
+
+	public DepartDTO(Integer dept_id, String dept_name, Integer dept_manager, String emp_name, Integer upper_dept) {
 		super();
 		this.dept_id = dept_id;
 		this.dept_name = dept_name;
 		this.dept_manager = dept_manager;
+		this.emp_name = emp_name;
+		this.upper_dept = upper_dept;
 	}
+
+
 	public DepartDTO(Integer dept_id, String dept_name) {
 		super();
 		this.dept_id = dept_id;

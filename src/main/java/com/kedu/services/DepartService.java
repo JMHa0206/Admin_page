@@ -26,15 +26,16 @@ public class DepartService {
 		return dDao.selectDeptById(deptId);
 	}
 	
-	public void updateDept(DepartDTO dept) {
-		dDao.updateDept(dept);
-	}
-	
 	public void updateDeptManager(DepartDTO dept) {
 		dDao.updateDeptManager(dept);
 	}
 	
 	public void deleteDept(Integer deptid) {
 		dDao.deleteDept(deptid);
+	}
+	
+	public List<Integer> selectUpperDept(Integer id){
+
+		return dDao.selectUpperDept(id);
 	}
 }

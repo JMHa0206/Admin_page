@@ -2,17 +2,77 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  <mapper namespace="Work">
-  
-  <insert id="createAnnualLeave" parameterType = "com.kedu.dto.AnnualLeaveDTO">
-  	insert into ANNUAL_RULE(rule_id, years_of_service,leave_days)
-  	values (rule_id_seq.nextval, #{years_of_service}, #{leave_days})
-  </insert>
-  
-  <select id="selectAll" resultType = "com.kedu.dto.AnnualLeaveDTO">
-  	select * from ANNUAL_RULE
-  </select>
-  
-  
-  </mapper>
+
+<mapper namespace="Work">
+
+	<insert id="createAnnualLeave"
+		parameterType="com.kedu.dto.AnnualLeaveDTO">
+		insert into ANNUAL_RULE(rule_id, years_of_service,leave_days)
+		values (rule_id_seq.nextval, #{years_of_service}, #{leave_days})
+	</insert>
+
+	<select id="selectAll" resultType="com.kedu.dto.AnnualLeaveDTO">
+		select * from ANNUAL_RULE
+	</select>
+
+	<select id="selectAllDept" resultType = "com.kedu.dto.DepartDTO">
+		select * from department
+	</select>
+
+	<select id="selectAllEmpl" resultType = "com.kedu.dto.MemberDTO">
+		select * from employee
+	</select>
+	
+	<!-- 있냐없냐 비교 -->
+	<select id="checkIfExists" 
+	parameterType="com.kedu.dto.WorkingHoursDTO"
+	resultType="int">
+		select count(*) from WorkingHours
+		where 
+		<choose>
+			<when test="empCodeId != null">
+				emp_code_id = #{empCodeId}
+			</when>
+			<otherwise>
+				dept_id = #{deptId}
+			</otherwise>
+		</choose>
+	</select>
+	
+	<!-- 없으면 추가 -->
+	<insert id="insertWorkHours" parameterType="com.kedu.dto.WorkingHoursDTO">
+		insert into WorkingHours (
+			workingHours_id, dept_id, emp_code_id,
+        	standard_check_in, standard_check_out,
+        	grace_period_in, grace_period_out, is_active
+		) values (
+				WorkingHours_id_seq.nextval,
+				#{deptId, jdbcType=INTEGER},
+				#{empCodeId, jdbcType=INTEGER},
+				#{standardCheckIn, jdbcType=TIME},
+				#{standardCheckOut, jdbcType=TIME},
+				#{gracePeriodIn, jdbcType=INTEGER},
+				#{gracePeriodOut, jdbcType=INTEGER},
+				#{isActive, jdbcType=CHAR}
+		)
+	</insert>
+	
+	<!-- 있으면 업데이트 -->
+	<update id="updateWorkHours">
+		update WorkingHours set
+			standard_check_in = #{standardCheckIn},
+			standard_check_out = #{standardCheckOut},
+			grace_period_in = #{gracePeriodIn},
+			grace_period_out = #{gracePeriodOut},
+			is_active = #{isActive}
+		where
+			<choose>
+				<when test="empCodeId != null">
+					emp_code_id = #{empCodeId}
+				</when>
+				<otherwise>
+					dept_id = #{deptId}
+				</otherwise>
+			</choose>
+	</update>
+</mapper>

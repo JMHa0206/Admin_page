@@ -1,7 +1,8 @@
 package com.kedu.dto;
 
 public class EDMSFormDTO {
-	private Integer formId;;
+
+    private Integer formId;
     private String formName;
     private String formContent;
     private String formType;
