@@ -134,11 +134,11 @@
         	      </thead>
         	      <tbody>
         	      <tr>
-        	      <td>{{level1.name}}</td><td rowspan="2"></td>
-        	      <td>{{level2.name}}</td><td rowspan="2"></td>
-        	      <td>{{level3.name}}</td><td rowspan="2"></td>
-        	      <td>{{level4.name}}</td><td rowspan="2"></td>
-        	      <td>{{finalLevel.name}}</td><td rowspan="2"></td>
+			      <td>{{level1.name}}</td><td rowspan="2">{{level1.status}}</td>
+			      <td>{{level2.name}}</td><td rowspan="2">{{level2.status}}</td>
+			      <td>{{level3.name}}</td><td rowspan="2">{{level3.status}}</td>
+			      <td>{{level4.name}}</td><td rowspan="2">{{level4.status}}</td>
+			      <td>{{finalLevel.name}}</td><td rowspan="2">{{finalLevel.status}}</td>
         	    </tr>
         	    <tr>
         	      <td>{{level1.position}}</td>
@@ -192,11 +192,11 @@
         		      </thead>
         		      <tbody>
         		      <tr>
-        		      <td>{{level1.name}}</td><td rowspan="2"></td>
-        		      <td>{{level2.name}}</td><td rowspan="2"></td>
-        		      <td>{{level3.name}}</td><td rowspan="2"></td>
-        		      <td>{{level4.name}}</td><td rowspan="2"></td>
-        		      <td>{{finalLevel.name}}</td><td rowspan="2"></td>
+				      <td>{{level1.name}}</td><td rowspan="2">{{level1.status}}</td>
+				      <td>{{level2.name}}</td><td rowspan="2">{{level2.status}}</td>
+				      <td>{{level3.name}}</td><td rowspan="2">{{level3.status}}</td>
+				      <td>{{level4.name}}</td><td rowspan="2">{{level4.status}}</td>
+				      <td>{{finalLevel.name}}</td><td rowspan="2">{{finalLevel.status}}</td>
         		    </tr>
         		    <tr>
         		      <td>{{level1.position}}</td>
@@ -247,11 +247,11 @@
         				      </thead>
         				      <tbody>
         				      <tr>
-        				      <td>{{level1.name}}</td><td rowspan="2"></td>
-        				      <td>{{level2.name}}</td><td rowspan="2"></td>
-        				      <td>{{level3.name}}</td><td rowspan="2"></td>
-        				      <td>{{level4.name}}</td><td rowspan="2"></td>
-        				      <td>{{finalLevel.name}}</td><td rowspan="2"></td>
+        				      <td>{{level1.name}}</td><td rowspan="2">{{level1.status}}</td>
+        				      <td>{{level2.name}}</td><td rowspan="2">{{level2.status}}</td>
+        				      <td>{{level3.name}}</td><td rowspan="2">{{level3.status}}</td>
+        				      <td>{{level4.name}}</td><td rowspan="2">{{level4.status}}</td>
+        				      <td>{{finalLevel.name}}</td><td rowspan="2">{{finalLevel.status}}</td>
         				    </tr>
         				    <tr>
         				      <td>{{level1.position}}</td>
