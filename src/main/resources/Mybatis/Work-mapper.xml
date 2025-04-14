@@ -75,4 +75,24 @@
 				</otherwise>
 			</choose>
 	</update>
+	
+	
+	<select id="getWorkHoursByDept" parameterType="int" resultType="com.kedu.dto.WorkDisplayDTO">
+        SELECT 
+            e.emp_code_id AS empCodeId,
+            e.emp_name AS employeeName,
+            TO_CHAR(w.standard_check_in, 'HH24:MI') AS standardCheckIn,
+            TO_CHAR(w.standard_check_out, 'HH24:MI') AS standardCheckOut,
+            w.grace_period_in AS gracePeriodIn,
+            w.grace_period_out AS gracePeriodOut,
+            w.is_active AS isActive
+        FROM employee e
+        LEFT JOIN WorkingHours w ON e.emp_code_id = w.emp_code_id
+        WHERE e.dept_id = #{deptId}
+    </select>
+    <!-- 부서 이름만 출력 -->
+    <select id="selectAllDeptForDropdown" resultType="com.kedu.dto.DepartDTO">
+    SELECT dept_id, dept_name FROM department
+	</select>
+    
 </mapper>
