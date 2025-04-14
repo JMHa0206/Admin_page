@@ -28,22 +28,22 @@
 	
     <select id="selectAllMembers" resultMap="memberDeptMap">
         SELECT 
-        	e.emp_code_id, 
-        	e.emp_name, 
-        	e.emp_email, 
-        	d.dept_id, 
+        	e.emp_code_id AS emp_code_id, 
+        	e.emp_name AS emp_name, 
+        	e.emp_email AS emp_email, 
+        	d.dept_id  AS dept_id, 
         	d.dept_name AS dept_name, 
-        	j.job_id,  
+        	j.job_id AS job_id,  
         	j.job_name AS job_name   
         FROM employee e 
         	left join department d on e.emp_dept_id = d.dept_id
-        	LEFT JOIN empJob j ON e.emp_job_id = j.job_id
+        	LEFT JOIN job j ON e.emp_job_id = j.job_id
     </select>
 
     
 
 
-    <insert id="insertEmp" parameterType="com.kedu.dto.MemberDTO">
+    <insert id="insertMember" parameterType="com.kedu.dto.MemberDTO">
         INSERT INTO employee(emp_code_id, emp_per_id, emp_dept_id, emp_job_id, emp_loginId, emp_pw, emp_name, emp_rrn, emp_phone,emp_email,postcode, address1, address2, hire_date, salary, isDeft)
         VALUES(emp_seq.nextval, 501 , #{emp_dept_id}, #{emp_job_id}, #{emp_loginId}, #{emp_pw}, #{emp_name}, #{emp_rrn}, #{emp_phone}, #{emp_email}, #{postcode}, #{address1}, #{address2}, #{hire_date}, #{salary}, 'N')
     </insert>
@@ -61,5 +61,16 @@
     <select id="selectDeptManager" parameterType="Integer" resultType="com.kedu.dto.MemberDTO">
     	select emp_code_id,emp_name from employee where emp_dept_id = #{id} 
     </select>
+    
+    <select id="selectEmpForPermission" resultType="com.kedu.dto.TempMemPerDTO">
+	  SELECT 
+	    e.emp_code_id AS emp_code_id,
+	    e.emp_name AS emp_name,
+	    d.dept_name,
+	    p.per_name
+	  FROM employee e
+	  LEFT JOIN department d ON e.emp_dept_id = d.dept_id
+	  LEFT JOIN permission p ON e.emp_per_id = p.per_id
+	</select>
 
 </mapper>

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.dto.DepartDTO;
-import com.kedu.dto.MemberDTO;
 
 @Repository
 public class DepartDAOImp implements DepartDAO {
@@ -31,11 +30,6 @@ public class DepartDAOImp implements DepartDAO {
     public DepartDTO selectDeptById(int deptId) {
         return sqlSession.selectOne(NAMESPACE + ".selectDeptById", deptId); //Ȯ��
     }
-
-    @Override
-    public void updateDept(DepartDTO dept) {
-        sqlSession.update(NAMESPACE + ".updateDept", dept); //Ȯ��
-    }
     
     @Override
     public void updateDeptManager(DepartDTO dept) {
@@ -45,5 +39,11 @@ public class DepartDAOImp implements DepartDAO {
     @Override
     public void deleteDept(Integer deptid) {
         sqlSession.delete(NAMESPACE + ".deleteDept", deptid); //Ȯ��
+    }
+    
+    @Override
+    public List<Integer> selectUpperDept(Integer id){
+    
+    	return sqlSession.selectList(NAMESPACE + ".selectUpperDept",id);
     }
 }

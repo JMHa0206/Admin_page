@@ -4,10 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="Depart">
-<select id="selectAllDepts" resultType="com.kedu.dto.DepartDTO"> select d.dept_id,d.dept_name,d.dept_manager,e.emp_name from department d left join employee e on d.dept_manager = e.emp_code_id </select>
+<select id="selectAllDepts" resultType="com.kedu.dto.DepartDTO">
+	select d.dept_id,d.dept_name,d.dept_manager,e.emp_name,d.upper_dept from department d left join employee e on d.dept_manager = e.emp_code_id
+</select>
 <select id="selectDeptById" resultType="com.kedu.dto.DepartDTO" parameterType="int"> SELECT * FROM department WHERE dept_id = #{deptId} </select>
 <insert id="insertDept" parameterType="com.kedu.dto.DepartDTO"> INSERT INTO department(dept_id, dept_name) VALUES(dept_seq.nextval, #{dept_name}) </insert>
-<update id="updateDept" parameterType="com.kedu.dto.DepartDTO"> UPDATE department SET dept_name = #{dept_name} WHERE dept_id = #{dept_id} </update>
-<update id="updateDeptManager" parameterType="com.kedu.dto.DepartDTO"> UPDATE department SET dept_manager = ${dept_manager} WHERE dept_id = ${dept_id} </update>
+<update id="updateDeptManager" parameterType="com.kedu.dto.DepartDTO"> UPDATE department SET dept_name = #{dept_name},dept_manager = #{dept_manager}, upper_dept = #{upper_dept, jdbcType=INTEGER} WHERE dept_id = #{dept_id} </update>
 <delete id="deleteDept" parameterType="java.lang.Integer"> DELETE FROM department WHERE dept_id = ${deptid} </delete>
+<select id="selectUpperDept" resultType="int" parameterType="int">
+	select dept_id from department where dept_id != #{id}
+</select>
+
 </mapper>

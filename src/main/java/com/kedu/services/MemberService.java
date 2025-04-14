@@ -14,8 +14,8 @@ public class MemberService {
 	@Autowired
 	private MemberDAOImp daom;
 	
-	public void insertEmp(MemberDTO dto) {
-		daom.insertEmp(dto);
+	public void insertMember(MemberDTO dto) {
+		daom.insertMember(dto);
 	}
 
 	public List<MemberDTO> selectAll() {
@@ -34,6 +34,10 @@ public class MemberService {
 	
 	public List<MemberDTO> selectDeptManager(Integer id) { //updated
 		return daom.selectDeptManager(id);
+	}
+
+	public List<MemberDTO> getAllEmployees() {
+		return daom.selectEmpForPermission();
 	}
 	
 

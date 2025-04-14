@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,11 +19,11 @@ public class MemberController {
 	@Autowired
 	private MemberService mServ;
 	
-	@RequestMapping("/insertEmp")
+	@RequestMapping("/insertMember")
 	public String add(MemberDTO dto) {
 		
-		System.out.println(dto.getEmp_name());
-		mServ.insertEmp(dto);
+		System.out.println(dto.getEmp_dept_id());
+		mServ.insertMember(dto);
 		return "redirect:/admin/home?menu=emp";
 	}
 	
@@ -54,5 +55,11 @@ public class MemberController {
 		
 		
 	}
+	
+	@ResponseBody
+	@GetMapping("/selectEmpForPermission")
+    public List<MemberDTO> getAllEmployees() {
+        return mServ.getAllEmployees();
+}
 	
 }

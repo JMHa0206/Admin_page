@@ -291,21 +291,20 @@ th, td {
 						
 						$('.sidebar a[data-target="assign"]').click(function () {
 							  $.ajax({
-							    url: "/Employee/selectAll", // 사원 전체 조회 URL
+							    url: "/Employee/selectEmpForPermission", // 사원 전체 조회 URL
 							    method: "GET",
 							    dataType: "json",
 							    success: function (data) {
 							      const tbody = $('#employee-list');
 							      tbody.empty();
+							      console.log(data);
 							      data.forEach(function (emp) {
-							        const row = `
-							          <tr>
-							            <td><input type="checkbox" class="emp-check" value="${emp.emp_id}"></td>
-							            <td>${emp.emp_id}</td>
-							            <td>${emp.emp_name}</td>
-							            <td>${emp.dept_name || '-'}</td>
-							            <td>${emp.per_name || '-'}</td>
-							          </tr>`;
+							        const row = '<tr><td><input type="checkbox" class="emp-check" value="'
+							        			+ emp.emp_code_id + '"></td><td>'
+							            		+ emp.emp_code_id  + '</td><td>'
+							            		+ emp.emp_name  + '</td><td>'
+							            		+ emp.dept_name + '</td><td>'
+							            		+ emp.per_name + '</td></tr>';
 							        tbody.append(row);
 							      });
 							    }
@@ -348,6 +347,7 @@ th, td {
 							    success: function () {
 							      alert("권한이 성공적으로 부여되었습니다.");
 							      $('#employee-list').empty();
+							      location.reload(); 
 							    },
 							    error: function () {
 							      alert("권한 부여 실패");

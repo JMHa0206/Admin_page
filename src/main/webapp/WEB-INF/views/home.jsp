@@ -10,6 +10,9 @@
 
 <div class="content" style="padding: 30px;">
     <c:choose>
+        <c:when test="${menu eq 'basement'}">
+            <jsp:include page="include/base_main.jsp" />
+        </c:when>
         <c:when test="${menu eq 'permission'}">
             <jsp:include page="include/per_main.jsp" />
         </c:when>
@@ -24,6 +27,9 @@
         </c:when>
         <c:when test="${menu eq 'work'}">
             <jsp:include page="include/work_main.jsp" />
+        </c:when>
+        <c:when test="${menu eq 'EDMS'}">
+            <jsp:include page="include/EDMS_main.jsp" />
         </c:when>
     </c:choose>
 </div>

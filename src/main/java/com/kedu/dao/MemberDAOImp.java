@@ -16,8 +16,9 @@ public class MemberDAOImp implements MemberDAO {
     private static final String NAMESPACE = "Employee";
 
     @Override
-    public void insertEmp(MemberDTO dto) {
-       sqlSession.insert(NAMESPACE + ".insertEmp", dto);
+    public void insertMember(MemberDTO dto) {
+        sqlSession.insert(NAMESPACE + ".insertMember", dto);
+
     }
 
     @Override
@@ -48,9 +49,9 @@ public class MemberDAOImp implements MemberDAO {
     	return sqlSession.selectList(NAMESPACE + ".selectDeptManager",id);
     }
 
-	@Override
-	public void insertMember(MemberDTO member) {
-		// TODO Auto-generated method stub
-		
+
+	public List<MemberDTO> selectEmpForPermission() {
+		return sqlSession.selectList(NAMESPACE+".selectEmpForPermission");
+
 	}
 }
