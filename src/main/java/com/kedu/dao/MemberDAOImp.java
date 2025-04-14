@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kedu.dto.MemberDTO;
+import com.kedu.dto.SearchConditionDTO;
+import com.kedu.dto.SearchResultDTO;
 
 @Repository
 public class MemberDAOImp implements MemberDAO {
@@ -52,6 +54,10 @@ public class MemberDAOImp implements MemberDAO {
 
 	public List<MemberDTO> selectEmpForPermission() {
 		return sqlSession.selectList(NAMESPACE+".selectEmpForPermission");
-
 	}
+	
+	public List<SearchResultDTO> searchByTarget(SearchConditionDTO condition){
+		return sqlSession.selectList(NAMESPACE+".searchByTarget", condition);
+	}
+	
 }

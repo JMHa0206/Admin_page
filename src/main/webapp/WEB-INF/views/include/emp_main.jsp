@@ -160,6 +160,9 @@ width:200px;
   from { transform: scale(0.95); opacity: 0; }
   to   { transform: scale(1); opacity: 1; }
 }
+#selectTarget{
+width:80px;
+}
 
 
 </style>
@@ -170,8 +173,6 @@ width:200px;
     <h3>사원 관리</h3>
     <a href="#" data-target="read">사원 조회 및 관리</a>
     <a href="#" data-target="create">사원 등록</a>
-    <!-- <a href="#" data-target="update">사원 수정</a>
-    <a href="#" data-target="delete">사원 삭제</a>  -->
   </div>
 
   <div class="main-content">
@@ -215,9 +216,16 @@ width:200px;
 
     <div id="read" class="section active">
       <h2>사원 목록</h2>
+      <form id="searchForm">
       <div id="empListHeader">
-      	<input id="searchEmp" type="text" placeholder="사원 검색하기"/><button>검색</button>
+      <select id="selectTarget" name="target">
+      <option value="name" selected>이름</option>
+      <option value="dept">부서</option>
+      <option value="job">직급</option>
+      </select>
+      	<input name="keyword" id="searchEmp" type="text" placeholder="사원 검색하기"/><button>검색</button>
       </div>
+      </form>
       <table>
         <thead>
           <tr>
@@ -259,9 +267,12 @@ width:200px;
 
 
 <script>
-$(document).ready(function() {
 
-	 $.ajax({
+let isSearching = false;
+
+$(document).ready(function() {
+	if(!isSearching){
+		$.ajax({
 	    	url:"/Employee/selectAll"
 	    }).done(function(resp){
 	    	let html = "";
@@ -274,20 +285,25 @@ $(document).ready(function() {
 	    				+ "</td><td>" + (emp.jobDTO ? emp.jobDTO.job_name : "직급 없음")
 	    				+ "</td><td>" + emp.emp_email 
 	    				+ "</td><td><button class='edit-btn' style='margin-right: 8px;'"
-	    				+ "data-name" + emp.emp_name + "' "
+	    				+ "data-name='" + emp.emp_name + "' "
 	    			    + "data-id='" + emp.emp_code_id + "' "
 	    			    + "data-dept='" + emp.emp_dept_id + "' "
 	    			    + "data-job='" + emp.emp_job_id + "' "
 	    			    + "data-addr='" + emp.address1 + "' "
-	    				+ ">정보수정</button><button type='button' id='deleteBtn'>사원삭제</button>"
+	    				+ ">정보수정</button><button type='button' class='deleteBtn' data-id='" + emp.emp_code_id + "'>사원삭제</button>"
 	    				+ "</td></tr>";
 	    		defaultId = "loginID_" + (emp.emp_code_id + 1);
 	    	});
-	    	
+	    	 
 	    	$("#empboardTable").html(html);
 	    	$("#id").val(defaultId);
 	    	$("#pw").val(defaultId);
-	    })
+		
+	   })
+	    
+	}
+	 
+	    
 	    
 	    $.ajax({
 	    	url:"/Depart/selectAllDept"
@@ -322,6 +338,42 @@ $(document).ready(function() {
         $('.section').removeClass('active');
         $('#' + target).addClass('active');
     });
+	
+	 $("#searchForm").on("submit", function(e) {
+		  e.preventDefault();
+		  isSearching = true;
+
+		  const target = $("select[name='target']").val();
+		  const keyword = $("input[name='keyword']").val();
+
+		  $.ajax({
+		    url: "/Employee/searchByTarget",
+		    type: "get",
+		    data: { target, keyword },
+		    success: function(resultList) {
+		      let html = "";
+		      resultList.forEach(emp => {
+		        html += "<tr><td>" + emp.emp_code_id
+						+ "</td><td>" + emp.emp_name 
+						+ "</td><td>" + (emp.dept_name ? emp.dept_name : "직급 없음")
+						+ "</td><td>" + (emp.job_name ? emp.job_name : "직급 없음")
+						+ "</td><td>" + emp.emp_email 
+						+ "</td><td><button class='edit-btn' style='margin-right: 8px;'"
+						+ "data-name='" + emp.emp_name + "' "
+					    + "data-id='" + emp.emp_code_id + "' "
+					    + "data-dept='" + emp.emp_dept_id + "' "
+					    + "data-job='" + emp.emp_job_id + "' "
+					    + "data-addr='" + emp.address1 + "' "
+						+ ">정보수정</button><button type='button' class='deleteBtn' data-id='" + emp.emp_code_id + "'>사원삭제</button>"
+						+ "</td></tr>";
+		        	
+		      });
+		      $("#empboardTable").html(html);
+		      $("#searchEmp").val("");
+		    }
+		  });
+		});
+	 
 	 
 	 document.getElementById("btn").onclick = function () {
 		    new daum.Postcode({
@@ -342,13 +394,9 @@ $(document).ready(function() {
 
 });
 
-$("#deleteBtn").on("click", function(){
-	const empId = $("#empIdInput").val().trim();
+$(document).on("click", ".deleteBtn", function(){
+	const empId = $(this).data("id");
 
-	  if (!empId) {
-	    alert("삭제할 사원 ID를 입력해주세요.");
-	    return;
-	  }
 
 	  if (confirm("정말 삭제하시겠습니까?")) {
 	    $.ajax({

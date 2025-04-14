@@ -72,5 +72,32 @@
 	  LEFT JOIN department d ON e.emp_dept_id = d.dept_id
 	  LEFT JOIN permission p ON e.emp_per_id = p.per_id
 	</select>
+	
+	<select id="searchByTarget" resultType="com.kedu.dto.SearchResultDTO">
+		SELECT e.emp_code_id
+			 , e.emp_name
+			 , d.dept_name
+			 , j.job_name
+			 , e.emp_email
+		  FROM employee e
+	 LEFT JOIN department d ON e.emp_dept_id = d.dept_id
+  	 LEFT JOIN job j ON e.emp_job_id = j.job_id
+		 <where>
+		    <choose>
+		      <when test="target == 'name'">
+		        e.emp_name LIKE '%' || #{keyword} || '%'
+		      </when>
+		      <when test="target == 'dept'">
+		        d.dept_name LIKE '%' || #{keyword} || '%'
+		      </when>
+		      <when test="target == 'job'">
+		        j.job_name LIKE '%' || #{keyword} || '%'
+		      </when>
+		      <otherwise>
+		        1 = 0  
+		      </otherwise>
+		    </choose>
+		  </where>
+	</select>
 
 </mapper>
