@@ -9,8 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.kedu.dto.AnnualLeaveDTO;
 import com.kedu.dto.DepartDTO;
 import com.kedu.dto.MemberDTO;
-import com.kedu.dto.WorkDTO;
+import com.kedu.dto.WorkDisplayDTO;
 import com.kedu.dto.WorkingHoursDTO;
+
 
 @Repository
 public class WorkDAO {
@@ -20,9 +21,6 @@ public class WorkDAO {
 
     private static final String NAMESPACE = "Work";
 
-    public void updateWorkStandard(WorkDTO dto) {
-        sqlSession.update(NAMESPACE + ".update", dto);
-    }
 
     public void createAnnualLeave(AnnualLeaveDTO dto) {
         sqlSession.insert(NAMESPACE + ".createAnnualLeave", dto);
@@ -38,6 +36,7 @@ public class WorkDAO {
     public List<MemberDTO> selectAllEmpl(){
     	return sqlSession.selectList(NAMESPACE+".selectAllEmpl");
     }
+
     public int setWorkHours(WorkingHoursDTO whdto) {
     	int count = sqlSession.selectOne(NAMESPACE+".checkIfExists", whdto);
 
@@ -47,4 +46,11 @@ public class WorkDAO {
     	    return sqlSession.insert(NAMESPACE+".insertWorkHours", whdto); // insert
     	}
     }
+    public List<WorkDisplayDTO> getWorkHoursByDept(int deptId){
+    	return sqlSession.selectList(NAMESPACE+".getWorkHoursByDept", deptId);
+    }
+    public List<DepartDTO> selectAllDeptForDropdown() {
+        return sqlSession.selectList(NAMESPACE + ".selectAllDeptForDropdown");
+    }
+
 }

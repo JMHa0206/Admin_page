@@ -5,6 +5,9 @@
 <jsp:include page="../commons/header.jsp" />
 <jsp:include page="../commons/navi.jsp" />
 
+
+
+
 <div class="content" style="padding: 30px;">
     <c:choose>
         <c:when test="${menu eq 'basement'}">
@@ -29,4 +32,7 @@
             <jsp:include page="../include/EDMS_main.jsp" />
         </c:when>
     </c:choose>
+
 </div>
+
+
