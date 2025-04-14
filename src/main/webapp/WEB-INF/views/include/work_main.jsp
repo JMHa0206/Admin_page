@@ -261,7 +261,7 @@ select option {
 	<div class="container">
 		<div class="sidebar">
 			<h3>인사 관리</h3>
-			<a href="#" data-target="checktime">정시 출퇴근 등록</a> <a href="#"
+			<a href="#" data-target="checktime">정시 출퇴근 출력</a> <a href="#"
 				data-target="annual">연차 생성</a> <a href="#" data-target="select">연차
 				발생</a> <a href="#" data-target="WorkingHours">정시 출/퇴근</a>
 		</div>
@@ -271,19 +271,8 @@ select option {
 			<!-- 출퇴근 등록 -->
 			<div id="checktime" class="section active">
 				<h2>정시 출퇴근 시간 등록</h2>
-				<form action="/work/update" method="post">
-					<input type="hidden" name="id" value="1" /> <input type="hidden"
-						name="updated_by" value="1001" /> <input type="hidden"
-						name="updated_at"
-						value="<%=new java.sql.Timestamp(System.currentTimeMillis())%>" />
-
-					<label for="standard_check_in">출근 시간</label> <input type="time"
-						name="standard_check_in" required /> <label
-						for="standard_check_out">퇴근 시간</label> <input type="time"
-						name="standard_check_out" required />
-
-					<hr />
-					<button type="submit">출퇴근 시간 등록</button>
+				<form action="/work/select" method="post">
+					돌겠네 작성하다가 다꼬였다
 				</form>
 			</div>
 

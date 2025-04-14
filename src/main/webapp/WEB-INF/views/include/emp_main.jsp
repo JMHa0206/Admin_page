@@ -343,14 +343,27 @@ $(document).ready(function() {
 });
 
 $("#deleteBtn").on("click", function(){
-	alert
-	
-	$.ajax({
-    	url:"/Employee/delete"
-    	data:
-    }).done(function(resp){
-    	
-    })
+	const empId = $("#empIdInput").val().trim();
+
+	  if (!empId) {
+	    alert("삭제할 사원 ID를 입력해주세요.");
+	    return;
+	  }
+
+	  if (confirm("정말 삭제하시겠습니까?")) {
+	    $.ajax({
+	      url: "/Employee/delete",
+	      type: "POST",
+	      data: { emp_code_id: empId },
+	      success: function () {
+	        alert("삭제되었습니다.");
+	        location.reload();
+	      },
+	      error: function () {
+	        alert("삭제 중 오류가 발생했습니다.");
+	      }
+	    });
+	  }
 });
 
 $(document).on("click", ".edit-btn", function () {

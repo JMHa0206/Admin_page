@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -21,7 +22,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kedu.dto.AnnualLeaveDTO;
 import com.kedu.dto.DepartDTO;
 import com.kedu.dto.MemberDTO;
-import com.kedu.dto.WorkDTO;
+import com.kedu.dto.WorkDisplayDTO;
+import com.kedu.dto.WorkingHoursDTO;
 import com.kedu.services.WorkService;
 // 조휘영
 @Controller
@@ -31,11 +33,7 @@ public class WorkController {
     @Autowired
     private WorkService workService;
 
-    @PostMapping("/update")
-    public String updateStandardTime(@ModelAttribute WorkDTO dto) {
-        workService.updateWorkTime(dto);
-        return "redirect:/work/page"; // 리디렉션
-    }
+
 
     @PostMapping(value = "/generateAnnual", produces = "application/json; charset=UTF-8")
     public ResponseEntity<String> generateAnnual(@RequestBody AnnualLeaveDTO dto) {
@@ -72,22 +70,36 @@ public class WorkController {
     }
     
 
-//    @PostMapping("/setWorkHours")
-//    public String setWorkHours(@RequestParam(required = false) String standardCheckIn,
-//            @RequestParam(required = false) String standardCheckOut,
-//            @ModelAttribute WorkingHoursDTO whdto) {
-//    	
-//    	if (standardCheckIn != null) {
-//            whdto.setStandardCheckIn(Time.valueOf(standardCheckIn + ":00"));
-//        }
-//
-//        if (standardCheckOut != null) {
-//            whdto.setStandardCheckOut(Time.valueOf(standardCheckOut + ":00"));
-//        }
-//
-//        workService.setWorkHours(whdto);
-//        return "redirect:/admin/home?menu=work";
-//    }
+    @PostMapping("/setWorkHours")
+    public String setWorkHours(@RequestParam(required = false) String standardCheckIn,
+            @RequestParam(required = false) String standardCheckOut,
+            @ModelAttribute WorkingHoursDTO whdto) {
+    	
+    	if (standardCheckIn != null) {
+            whdto.setStandardCheckIn(Time.valueOf(standardCheckIn + ":00"));
+        }
+
+        if (standardCheckOut != null) {
+            whdto.setStandardCheckOut(Time.valueOf(standardCheckOut + ":00"));
+        }
+
+        workService.setWorkHours(whdto);
+        return "redirect:/admin/home?menu=work";
+    }
+    
+    // 정시 출퇴근 출력
+    @ResponseBody
+    @GetMapping("/workHoursByDept")
+    public List<WorkDisplayDTO> getWorkHoursByDept(@RequestParam("deptId") Integer deptId) {
+        return workService.getWorkHoursByDept(deptId);
+    }
+    
+    @GetMapping("/page")
+    public String workPage(Model model) {
+        List<DepartDTO> departments = workService.getDeptListForDropdown();
+        model.addAttribute("departments", departments);
+        return "/admin/home?menu=work";
+    }
     
     // 시간값 변환시켜줌
     @InitBinder
@@ -103,8 +115,8 @@ public class WorkController {
     }
 
 
-    @GetMapping("/page")
-    public String workPage() {
-        return "work.jsp";
-    }
+//    @GetMapping("/page")
+//    public String workPage() {
+//        return "work.jsp";
+//    }
 }
