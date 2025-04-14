@@ -22,7 +22,6 @@ import com.kedu.dto.AnnualLeaveDTO;
 import com.kedu.dto.DepartDTO;
 import com.kedu.dto.MemberDTO;
 import com.kedu.dto.WorkDTO;
-import com.kedu.dto.WorkingHoursDTO;
 import com.kedu.services.WorkService;
 // 조휘영
 @Controller
@@ -73,22 +72,22 @@ public class WorkController {
     }
     
 
-    @PostMapping("/setWorkHours")
-    public String setWorkHours(@RequestParam(required = false) String standardCheckIn,
-            @RequestParam(required = false) String standardCheckOut,
-            @ModelAttribute WorkingHoursDTO whdto) {
-    	
-    	if (standardCheckIn != null) {
-            whdto.setStandardCheckIn(Time.valueOf(standardCheckIn + ":00"));
-        }
-
-        if (standardCheckOut != null) {
-            whdto.setStandardCheckOut(Time.valueOf(standardCheckOut + ":00"));
-        }
-
-        workService.setWorkHours(whdto);
-        return "redirect:/admin/home?menu=work";
-    }
+//    @PostMapping("/setWorkHours")
+//    public String setWorkHours(@RequestParam(required = false) String standardCheckIn,
+//            @RequestParam(required = false) String standardCheckOut,
+//            @ModelAttribute WorkingHoursDTO whdto) {
+//    	
+//    	if (standardCheckIn != null) {
+//            whdto.setStandardCheckIn(Time.valueOf(standardCheckIn + ":00"));
+//        }
+//
+//        if (standardCheckOut != null) {
+//            whdto.setStandardCheckOut(Time.valueOf(standardCheckOut + ":00"));
+//        }
+//
+//        workService.setWorkHours(whdto);
+//        return "redirect:/admin/home?menu=work";
+//    }
     
     // 시간값 변환시켜줌
     @InitBinder

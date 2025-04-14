@@ -10,7 +10,6 @@ import com.kedu.dto.AnnualLeaveDTO;
 import com.kedu.dto.DepartDTO;
 import com.kedu.dto.MemberDTO;
 import com.kedu.dto.WorkDTO;
-import com.kedu.dto.WorkingHoursDTO;
 
 @Service
 public class WorkService {
@@ -37,8 +36,8 @@ public class WorkService {
     	return workDAO.selectAllEmpl();
     }
     
-    public int setWorkHours(WorkingHoursDTO whdto) {
-    	return workDAO.setWorkHours(whdto);
-    }
+//    public int setWorkHours(WorkingHoursDTO whdto) {
+//    	return workDAO.setWorkHours(whdto);
+//    }
 
 }
