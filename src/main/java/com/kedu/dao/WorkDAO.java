@@ -10,7 +10,6 @@ import com.kedu.dto.AnnualLeaveDTO;
 import com.kedu.dto.DepartDTO;
 import com.kedu.dto.MemberDTO;
 import com.kedu.dto.WorkDTO;
-import com.kedu.dto.WorkingHoursDTO;
 
 @Repository
 public class WorkDAO {
@@ -38,13 +37,13 @@ public class WorkDAO {
     public List<MemberDTO> selectAllEmpl(){
     	return sqlSession.selectList(NAMESPACE+".selectAllEmpl");
     }
-    public int setWorkHours(WorkingHoursDTO whdto) {
-    	int count = sqlSession.selectOne(NAMESPACE+".checkIfExists", whdto);
-
-    	if (count > 0) {
-    	    return sqlSession.update(NAMESPACE+".updateWorkHours", whdto); // update
-    	} else {
-    	    return sqlSession.insert(NAMESPACE+".insertWorkHours", whdto); // insert
-    	}
-    }
+//    public int setWorkHours(WorkingHoursDTO whdto) {
+//    	int count = sqlSession.selectOne(NAMESPACE+".checkIfExists", whdto);
+//
+//    	if (count > 0) {
+//    	    return sqlSession.update(NAMESPACE+".updateWorkHours", whdto); // update
+//    	} else {
+//    	    return sqlSession.insert(NAMESPACE+".insertWorkHours", whdto); // insert
+//    	}
+//    }
 }
