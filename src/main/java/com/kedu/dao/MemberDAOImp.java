@@ -18,6 +18,7 @@ public class MemberDAOImp implements MemberDAO {
     @Override
     public void insertMember(MemberDTO dto) {
         sqlSession.insert(NAMESPACE + ".insertMember", dto);
+
     }
 
     @Override
@@ -48,7 +49,9 @@ public class MemberDAOImp implements MemberDAO {
     	return sqlSession.selectList(NAMESPACE + ".selectDeptManager",id);
     }
 
+
 	public List<MemberDTO> selectEmpForPermission() {
 		return sqlSession.selectList(NAMESPACE+".selectEmpForPermission");
+
 	}
 }
