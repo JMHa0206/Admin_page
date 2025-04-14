@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CompanyMapper">
+
+<resultMap id="companyMap" type="com.kedu.dto.CompanyDTO">
+    <result property="comId" column="COM_ID"/>
+    <result property="comName" column="COM_NAME"/>
+    <result property="logoPath" column="LOGO_PATH"/>
+</resultMap>
+
+    <select id="getCompany" resultMap="companyMap">
+            SELECT * FROM company WHERE com_id = 1
+    </select>
+
+<update id="updateCompany" parameterType="com.kedu.dto.CompanyDTO">
+    UPDATE Company
+    SET
+        com_name = #{comName, jdbcType=VARCHAR},
+        logo_path = #{logoPath, jdbcType=VARCHAR}
+    WHERE com_id = #{comId, jdbcType=INTEGER}
+</update>
+
+
+</mapper>
