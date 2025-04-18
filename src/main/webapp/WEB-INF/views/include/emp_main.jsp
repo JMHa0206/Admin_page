@@ -171,7 +171,7 @@ width:80px;
 	<div class="container">
   <div class="sidebar">
     <h3>사원 관리</h3>
-    <a href="#" data-target="read">사원 조회 및 관리</a>
+    <a href="#" data-target="read" id="readEmpList">사원 조회 및 관리</a>
     <a href="#" data-target="create">사원 등록</a>
   </div>
 
@@ -270,7 +270,9 @@ width:80px;
 
 let isSearching = false;
 
+
 $(document).ready(function() {
+	$("#searchEmp").val("");
 	if(!isSearching){
 		$.ajax({
 	    	url:"/Employee/selectAll"
@@ -369,7 +371,7 @@ $(document).ready(function() {
 		        	
 		      });
 		      $("#empboardTable").html(html);
-		      $("#searchEmp").val("");
+		      
 		    }
 		  });
 		});
