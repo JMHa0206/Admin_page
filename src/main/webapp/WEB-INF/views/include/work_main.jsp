@@ -11,277 +11,299 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
 body {
-	font-family: 'Segoe UI', sans-serif;
-	background: #f4f4f4;
-	margin: 0;
-	color: #333;
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f9fbfd;
+  margin: 0;
+  color: #333;
 }
 
 .container {
-	display: flex;
-	height: 100vh;
+  display: flex;
+  min-height: 100vh;
 }
 
 .sidebar {
-	width: 200px;
-	background-color: #222;
-	color: #fff;
-	padding: 20px;
+  width: 220px;
+  background-color: #1a3c6c;
+  color: #fff;
+  padding: 20px;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
 }
 
 .sidebar a {
-	color: #ccc;
-	display: block;
-	margin: 10px 0;
-	text-decoration: none;
+  display: block;
+  color: #edf6ff;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s;
 }
 
 .sidebar a:hover {
-	color: #fff;
+  background-color: #274b84;
 }
 
 .main-content {
-	flex: 1;
-	padding: 20px;
-	background: #fff;
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f9fbfd;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .section {
-	display: none;
+  display: none;
 }
 
 .section.active {
-	display: block;
+  display: block;
 }
 
-input, select, button {
-	margin: 5px 0;
-	padding: 8px;
-	width: 100%;
-	border: 1px solid #ccc;
-	background: #f9f9f9;
+h2, h3 {
+  color: #1a3c6c;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  padding-bottom: 10px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+input[type="text"], input[type="number"], input[type="time"],
+select, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+button, input[type="submit"] {
+  background-color: #1a3c6c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: auto;
+}
+
+button:hover, input[type="submit"]:hover {
+  background-color: #274b84;
 }
 
 label {
-	font-weight: bold;
-	display: block;
-	margin-top: 10px;
+  font-weight: bold;
+  margin-top: 12px;
+  display: block;
 }
 
-hr {
-	margin: 20px 0;
-}
-
-.annual-table {
+table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 0; /* 기존 15px에서 0으로 변경 */
-  box-shadow: none; /* 박스 그림자 제거하여 이중 테두리 효과 방지 */
+  background: white;
+  margin-top: 15px;
+  border: 1px solid #dce9f5;
 }
 
-.annual-header {
-  background-color: #4a76a8; /* 그룹웨어에 어울리는 색상으로 변경 *
-  color: white;
-  text-align: left;
-  padding: 12px 15px;
-  font-weight: 500;
-  position: sticky; /* 스크롤시 헤더 고정 */
-  top: 0;
-  z-index: 10;
-}
-.annual-row {
-	border-bottom: 1px solid #e0e0e0;
-	transition: background-color 0.2s;
-}
-
-.annual-row:last-child {
-	border-bottom: none;
-}
-
-.annual-row:hover {
-	background-color: #e8f4f8;
-}
-
-/* 행 스타일 개선 */
-.annual-row:nth-child(even) {
-  background-color: #f9f9f9; /* 짝수 행 배경색 */
-}
-
-.annual-data {
-	padding: 10px 15px;
-	color: #333;
-}
-
-.annual-years {
-	font-weight: 500;
-}
-
-.annual-days {
-	font-weight: bold;
-}
-
-.annual-days span {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 3px;
-  background-color: #e8f4f8;
-  color: #0277bd;
-  min-width: 25px;
+th, td {
+  padding: 12px;
+  border: 1px solid #dce9f5;
   text-align: center;
 }
 
-/* 섹션 타이틀 스타일 개선 */
-#select h2 {
-  color: #333;
-  border-bottom: 2px solid #4a76a8;
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-  font-size: 1.5rem;
+thead {
+  background-color: #f0f4fa;
 }
 
-/* 정시 출 퇴근 */
-#WorkingHours {
-	max-width: 800px;
-	margin: 0 auto;
-	background-color: #f9f9f9;
-	border-radius: 8px;
-	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-	padding: 25px;
-}
-
-#WorkingHours h2 {
-	color: #333;
-	border-bottom: 2px solid #4a76a8;
-	padding-bottom: 10px;
-	margin-bottom: 20px;
-	font-size: 1.5rem;
-}
-
-#WorkingHours h3 {
-	color: #4a76a8;
-	font-size: 1.1rem;
-	margin: 15px 0 5px 0;
-}
-
-#WorkingHours hr {
-	border: 0;
-	height: 1px;
-	background-color: #e0e0e0;
-	margin: 15px 0;
-}
-
-#WorkingHours table {
-	width: 100%;
-	border-collapse: collapse;
-}
-
-#WorkingHours td {
-	padding: 8px 0;
-}
-
-#WorkingHours form {
-	display: flex;
-	flex-direction: column;
-}
-
-/* 라디오 버튼 컨테이너 스타일링 */
-.radio-container {
-	display: flex;
-	gap: 20px;
-	margin-bottom: 15px;
-	align-items: center;
-}
-
-/* 라디오 버튼 스타일링 */
-#WorkingHours input[type="radio"] {
-	width: auto;
-	margin-right: 5px;
-	cursor: pointer;
-}
-
-#WorkingHours input[type="radio"]+label {
-	display: inline;
-	margin: 0;
-	font-weight: normal;
-	cursor: pointer;
-}
-
-/* 폼 필드 컨테이너 스타일링 */
-.form-group {
-	margin-bottom: 15px;
-	background: white;
-	padding: 15px;
-	border-radius: 5px;
-	border: 1px solid #e0e0e0;
-}
-
-/* 선택 필드 스타일링 */
-#WorkingHours select, #WorkingHours input[type="time"], #WorkingHours input[type="number"]
-	{
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	background-color: white;
-	width: 100%;
-	max-width: 300px;
-	font-size: 14px;
-}
-
-/* 제출 버튼 스타일링 */
-#WorkingHours input[type="submit"] {
-	background-color: #4a76a8;
-	color: white;
-	border: none;
-	padding: 12px 20px;
-	border-radius: 4px;
-	cursor: pointer;
-	font-weight: bold;
-	width: auto;
-	align-self: flex-end;
-	margin-top: 20px;
-	transition: background-color 0.3s;
-}
-
-#WorkingHours input[type="submit"]:hover {
-	background-color: #3a5f86;
-}
-
-/* 라벨 스타일링 */
-#WorkingHours label {
-	display: block;
-	margin-bottom: 5px;
-	color: #555;
-	font-weight: 500;
-}
-
-/* 부서별/사원별 폼 스타일링 */
-#deptForm, #empForm {
-	padding: 12px;
-	background-color: #f0f4f8;
-	border-radius: 5px;
-	margin-bottom: 15px;
-	border-left: 3px solid #4a76a8;
-}
-
-select option {
-	color: #000 !important;
-	background-color: #fff !important;
-	font-size: 14px !important;
-}
-/* 스크롤 */
 .annual-scroll-wrapper {
-  max-height: 400px;
+  max-height: 800px;
   overflow-y: auto;
   border: 1px solid #e0e0e0;
   border-radius: 4px;
   margin-top: 15px;
 }
+
+.annual-table .annual-header {
+  background-color: #4a76a8;
+  color: white;
+  font-weight: 500;
+  padding: 12px;
+}
+
+.annual-row:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.annual-row:hover {
+  background-color: #e8f4f8;
+}
+
+.annual-data {
+  padding: 10px;
+}
+
+.annual-days span {
+  display: inline-block;
+  background-color: #e8f4f8;
+  color: #0277bd;
+  padding: 4px 8px;
+  border-radius: 3px;
+}
+
+
+/* ============================= */
+/* ✅ 정시 출퇴근 스타일 유지됨  */
+/* ============================= */
+
+#WorkingHours {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+#WorkingHours h2 {
+  color: #333;
+  border-bottom: 2px solid #4a76a8;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+#WorkingHours h3 {
+  color: #4a76a8;
+  font-size: 1.1rem;
+  margin: 15px 0 5px 0;
+}
+
+#WorkingHours hr {
+  border: 0;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 15px 0;
+}
+
+#WorkingHours table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#WorkingHours td {
+  padding: 8px 0;
+}
+
+#WorkingHours form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 라디오 버튼 컨테이너 스타일링 */
+.radio-container {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+/* 라디오 버튼 스타일링 */
+#WorkingHours input[type="radio"] {
+  width: auto;
+  margin-right: 5px;
+  cursor: pointer;
+}
+
+#WorkingHours input[type="radio"] + label {
+  display: inline;
+  margin: 0;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  background: white;
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+#WorkingHours select,
+#WorkingHours input[type="time"],
+#WorkingHours input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  width: 100%;
+  max-width: 300px;
+  font-size: 14px;
+}
+
+#WorkingHours input[type="submit"] {
+  background-color: #4a76a8;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  width: auto;
+  align-self: flex-end;
+  margin-top: 20px;
+  transition: background-color 0.3s;
+}
+
+#WorkingHours input[type="submit"]:hover {
+  background-color: #3a5f86;
+}
+
+#WorkingHours label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: 500;
+}
+
+#deptForm, #empForm {
+  padding: 12px;
+  background-color: #f0f4f8;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  border-left: 3px solid #4a76a8;
+}
+
+select option {
+  color: #000 !important;
+  background-color: #fff !important;
+  font-size: 14px !important;
+}
+
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="sidebar">
-			<h3>인사 관리</h3>
+			<h3 style="color:#fff">인사 관리</h3>
 			<a href="#" data-target="annual">연차 생성</a> 
 			<a href="#" data-target="select">연차 발생</a> 
 			<a href="#" data-target="WorkingHours">정시 출/퇴근</a>
@@ -290,7 +312,7 @@ select option {
 		<div class="main-content">
 			<!-- 연차 생성 -->
 			<div id="annual" class="section active">
-				<h2>연차 생성</h2>
+				<h2 style="border-bottom: 3px solid #dce9f5">연차 생성</h2>
 				<input type="text" id="years_of_service" name="years_of_service"
 					placeholder="연차를 적어주세요.">년차 <input type="text"
 					id="leave_days" name="leave_days" placeholder="연차 일수를 적어주세요." />
@@ -298,7 +320,7 @@ select option {
 			</div>
 
 			<div id="select" class="section">
-				<h2>연차 발생</h2>
+				<h2 style="border-bottom: 3px solid #dce9f5">연차 발생</h2>
 				<div class="annual-scroll-wrapper">
 					<!-- 👈 추가된 부분 -->
 					<table class="annual-table">
@@ -316,7 +338,7 @@ select option {
 			</div>
 
 			<div id="WorkingHours" class="section">
-				<h2>정시 출/퇴근</h2>
+				<h2 style="border-bottom: 3px solid #dce9f5">정시 출/퇴근</h2>
 
 				<form action="<c:url value='/work/setWorkHours' />" method="post">
 					<!-- 한번 저렇게해보자 -->

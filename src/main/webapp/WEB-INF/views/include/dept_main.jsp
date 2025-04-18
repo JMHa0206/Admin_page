@@ -8,21 +8,134 @@
   <title>부서 관리</title>
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; color: #333; }
-    .wrapper { display: flex; height: 100vh; }
-    .sidebar { width: 200px; background: #222; color: #fff; padding: 20px; box-sizing: border-box; }
-    .sidebar h2 { font-size: 20px; margin-bottom: 20px; }
-    .sidebar a { display: block; color: #ccc; text-decoration: none; margin-bottom: 10px; }
-    .sidebar a:hover { color: #fff; }
-    .content { flex: 1; padding: 30px; box-sizing: border-box; overflow-y: auto; }
-    h3 { border-bottom: 1px solid #ccc; padding-bottom: 5px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
-    th { background: #f4f4f4; }
-    input[type="text"], select { padding: 5px; width: 100%; box-sizing: border-box; margin-top: 5px; }
-    .form-group { margin-bottom: 10px; }
-    .btn { padding: 5px 10px; background: #111; color: white; border: none; cursor: pointer; }
-    .btn:hover { background: #333; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f9fbfd;
+  margin: 0;
+  color: #333;
+}
+
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #1a3c6c;
+  color: #fff;
+  padding: 20px;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h2 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.sidebar a {
+  display: block;
+  color: #edf6ff;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #274b84;
+}
+
+.content {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f9fbfd;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+h3 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  font-size: 20px;
+  color: #1a3c6c;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background: white;
+  border: 1px solid #dce9f5;
+}
+
+th, td {
+  border: 1px solid #dce9f5;
+  padding: 12px;
+  text-align: center;
+}
+
+thead {
+  background-color: #f0f4fa;
+}
+
+input[type="text"], select {
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 6px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  background-color: #fff;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.btn {
+  padding: 10px 16px;
+  background-color: #1a3c6c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn:hover {
+  background-color: #274b84;
+}
+
+button.edit-btn,
+button.confirm-edit-btn,
+button.cancel-edit-btn,
+button.delete-btn {
+  padding: 6px 10px;
+  margin: 2px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background-color: #1a3c6c;
+  color: white;
+  font-size: 13px;
+}
+
+button.confirm-edit-btn {
+  background-color: #28a745;
+}
+
+button.cancel-edit-btn {
+  background-color: #6c757d;
+}
+
+button.delete-btn {
+  background-color: #dc3545;
+}
+
   </style>
 </head>
 <body>
@@ -33,7 +146,7 @@
   </div>
   <div class="content">
     <div class="section active" id="dept-section">
-      <h3>부서 등록</h3>
+      <h2  style="color:black">부서 등록</h2>
       <form action="/Depart/insertDept" id="deptForm" method="post">
         <div class="form-group">
           <label>부서 이름</label>
@@ -42,7 +155,7 @@
         <button type="submit" class="btn">등록</button>
       </form>
 
-      <h3>부서 목록</h3>
+      <h2 style="color:black">부서 목록</h2>
       <table>
         <thead>
         <tr><th>부서ID</th><th>부서명</th><th>부서장</th><th>upper_dept</th><th>관리</th></tr>

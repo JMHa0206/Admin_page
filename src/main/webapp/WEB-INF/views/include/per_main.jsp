@@ -9,67 +9,117 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <style>
 body {
-	font-family: 'Segoe UI', sans-serif;
-	background: #f4f4f4;
-	margin: 0;
-	color: #333;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f9fbfd;
+    margin: 0;
+    color: #333;
 }
 
 .container {
-	display: flex;
-	height: 100vh;
+    display: flex;
+    min-height: 100vh;
 }
 
 .sidebar {
-	width: 200px;
-	background-color: #222;
-	color: #fff;
-	padding: 20px;
+    width: 220px;
+    background-color: #1a3c6c;
+    color: #fff;
+    padding: 20px;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
 }
 
 .sidebar a {
-	color: #ccc;
-	display: block;
-	margin: 10px 0;
-	text-decoration: none;
+    display: block;
+    color: #edf6ff;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.2s;
 }
 
 .sidebar a:hover {
-	color: #fff;
+    background-color: #274b84;
 }
 
 .main-content {
-	flex: 1;
-	padding: 20px;
-	background: #fff;
+    flex-grow: 1;
+    padding: 30px;
+    background: #f9fbfd;
+    box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .section {
-	display: none;
+    display: none;
 }
 
 .section.active {
-	display: block;
+    display: block;
 }
 
-input, select, button {
-	margin: 5px 0;
-	padding: 8px;
-	width: 100%;
-	border: 1px solid #ccc;
-	background: #f9f9f9;
+h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #1a3c6c;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 12px;
+}
+
+input, select {
+    margin-top: 6px;
+    margin-bottom: 16px;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    background: #fff;
+    font-size: 14px;
+}
+
+button {
+    padding: 10px;
+    background-color: #1a3c6c;
+    border: none;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: #274b84;
 }
 
 table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+    border: 1px solid #dce9f5;
 }
 
 th, td {
-	padding: 10px;
-	border-bottom: 1px solid #ccc;
+    padding: 12px;
+    border: 1px solid #dce9f5;
+    text-align: center;
 }
+
+thead {
+    background-color: #f0f4fa;
+}
+
 </style>
 </head>
 <body>

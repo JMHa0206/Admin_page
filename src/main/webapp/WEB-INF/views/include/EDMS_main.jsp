@@ -8,17 +8,149 @@
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://cdn.tiny.cloud/1/hxn7uw6e8li0hmpqrhwhgm2sr6jrapxrnjhu8g4bvl8cm8fg/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f4f4f4; margin: 0; color: #333; }
-    .container { display: flex; height: 100vh; }
-    .sidebar { width: 200px; background-color: #222; color: #fff; padding: 20px; }
-    .sidebar a { color: #ccc; display: block; margin: 10px 0; text-decoration: none; }
-    .sidebar a:hover { color: #fff; }
-    .main-content { flex: 1; padding: 20px; background: #fff; overflow-y: auto; }
-    .section { display: none; }
-    .section.active { display: block; }
-    input, select, button { padding: 8px; border: 1px solid #ccc; background: #f9f9f9; margin-bottom: 10px; }
-    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-    th, td { padding: 10px; border-bottom: 1px solid #ccc; text-align: left; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: #f9fbfd;
+  margin: 0;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.sidebar {
+  flex-shrink: 0;
+  width: 220px;
+  background-color: #1a3c6c;
+  color: #fff;
+  padding: 20px;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.sidebar h2, .sidebar h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.sidebar a {
+  display: block;
+  color: #edf6ff;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.sidebar a:hover {
+  background-color: #274b84;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+  background-color: #f9fbfd;
+  box-sizing: border-box;
+  overflow-x: hidden; 
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: block;
+}
+
+h2 {
+  font-size: 24px;
+  color: #1a3c6c;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+}
+
+label {
+  font-weight: 600;
+  margin-top: 16px;
+  display: block;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+button {
+  background-color: #1a3c6c;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+button:hover {
+  background-color: #274b84;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;     /* 열 너비 고정 */
+  word-break: break-word; 
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #dce9f5;
+  text-align: center;
+  font-size: 14px;
+}
+
+thead {
+  background-color: #f0f4fa;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #eef6ff;
+}
+
+#previewArea {
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  width:100%;
+}
+
+#previewArea h3 {
+  color: #1a3c6c;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+#submitBtn{
+margin-top:10px;
+}
+
   </style>
 </head>
 <body>
@@ -34,7 +166,7 @@
 
       <!-- 등록 탭 -->
       <div id="create" class="section active">
-        <h2>전자결재 양식 등록</h2>
+        <h2 style="border-bottom: 3px solid #dce9f5">전자결재 양식 등록</h2>
         <form id="formMain" action="/form/insert" method="post">
           <input type="hidden" name="formId" value="" />
           <label>양식명:</label>
@@ -57,7 +189,7 @@
 
       <!-- 조회 탭 -->
       <div id="read" class="section">
-        <h2>전자결재 양식 조회</h2>
+        <h2 style="border-bottom: 3px solid #dce9f5">전자결재 양식 조회</h2>
         <table>
           <thead>
             <tr>
@@ -76,7 +208,7 @@
 
       <!-- 수정/삭제 탭 -->
       <div id="manage" class="section">
-        <h2>전자결재 양식 수정 / 삭제</h2>
+        <h2 style="border-bottom: 3px solid #dce9f5">전자결재 양식 수정 / 삭제</h2>
         <label>양식 선택:</label>
         <select id="formSelector">
           <option value="">양식을 선택하세요</option>

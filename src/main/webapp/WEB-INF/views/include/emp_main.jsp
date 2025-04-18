@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,14 +84,18 @@ input[type="text"], input[type="email"], input[type="date"], select {
 
 button {
   background-color: #1a3c6c;
+  text-align: center;
   color: white;
   border: none;
-  padding: 10px 20px;
+  padding: 0 20px; /* 상하 패딩은 제거하거나 최소화 */
   font-size: 14px;
   border-radius: 6px;
   cursor: pointer;
   transition: background-color 0.2s;
+  height: 37px;
+  line-height: 37px; /* 텍스트를 수직 가운데로 */
 }
+
 
 button:hover {
   background-color: #274b84;
@@ -100,7 +105,6 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: white;
-  margin-top: 20px;
 }
 
 th, td {
@@ -122,6 +126,7 @@ width:200px;
 	justify-content: flex-end;
 	align-items: center; /* 세로 중앙 정렬 */
 	gap: 12px; 
+	height:50px;
 }
 
 .modal {
@@ -162,6 +167,7 @@ width:200px;
 }
 #selectTarget{
 width:80px;
+height:37px;
 }
 
 
@@ -246,11 +252,11 @@ width:80px;
       <input type="text" name="emp_code_id" placeholder="사원 ID" required readonly />
       
       <select name="emp_dept_id" id="emp_dept_id_modal" required>
-        <option value="">부서 선택</option>
+        <option value="" selected>부서 선택</option>
       </select>
       
       <select name="emp_job_id" id="emp_job_id_modal" required>
-        <option value="">직급 선택</option>
+        <option value="" selected>직급 선택</option>
       </select>
       
       <input type="text" name="address1" placeholder="새 주소" />
@@ -314,9 +320,9 @@ $(document).ready(function() {
 	    	resp.forEach(function(dept){
 	    		deftHtml += '<option value="'+dept.dept_id+'">'+ dept.dept_name +'</option>';
 	    	});
-	    	$("#select_dept").append(deftHtml);
+	    	$("#select_dept").html(deftHtml);
 	    	$("#emp_dept_id_modal").append(deftHtml);
-	    	$("#emp_dept_id").append(deftHtml);
+	    	$("#emp_dept_id").html(deftHtml);
 	    })
 	    
 	    
@@ -327,9 +333,9 @@ $(document).ready(function() {
 	    	resp.forEach(function(e){
 	    		jobHtml += '<option value="'+ e.job_id +'">'+ e.job_name +'</option>';
 	    	});
-	    	$("#select_job").append(jobHtml);
+	    	$("#select_job").html(jobHtml);
 	    	$("#emp_job_id_modal").append(jobHtml);
-	    	$("#emp_job_id").append(jobHtml);
+	    	$("#emp_job_id").html(jobHtml);
 	    })
 	    
 	   
