@@ -80,7 +80,7 @@ hr {
 }
 
 .annual-header {
-  background-color: #4a76a8; /* 그룹웨어에 어울리는 색상으로 변경ㄴ */
+  background-color: #4a76a8; /* 그룹웨어에 어울리는 색상으로 변경 *
   color: white;
   text-align: left;
   padding: 12px 15px;

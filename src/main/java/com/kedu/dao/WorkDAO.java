@@ -21,10 +21,15 @@ public class WorkDAO {
 
     private static final String NAMESPACE = "Work";
 
-
-    public void createAnnualLeave(AnnualLeaveDTO dto) {
-        sqlSession.insert(NAMESPACE + ".createAnnualLeave", dto);
+    public int upsertAnnualLeave(AnnualLeaveDTO dto) {
+        int count = sqlSession.selectOne(NAMESPACE + ".checkIfExistsAnnual", dto.getYears_of_service());
+        if (count > 0) {
+            return sqlSession.update(NAMESPACE + ".updateAnnualLeave", dto);
+        } else {
+            return sqlSession.insert(NAMESPACE + ".createAnnualLeave", dto);
+        }
     }
+
     
     public List<AnnualLeaveDTO> selectAll() {
     	return sqlSession.selectList(NAMESPACE + ".selectAll");
