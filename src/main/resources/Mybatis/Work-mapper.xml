@@ -5,26 +5,74 @@
 
 <mapper namespace="Work">
 
-	<insert id="createAnnualLeave"
-		parameterType="com.kedu.dto.AnnualLeaveDTO">
-		insert into ANNUAL_RULE(rule_id, years_of_service,leave_days)
+	<!-- 연차 생성 -->
+	<insert id="createAnnualLeave" parameterType="com.kedu.dto.AnnualLeaveDTO">
+		insert into ANNUAL_RULE(rule_id, years_of_service, leave_days)
 		values (rule_id_seq.nextval, #{years_of_service}, #{leave_days})
 	</insert>
+	
+	<!-- 연차 존재 여부 확인 -->
+	<select id="checkIfExistsAnnual" parameterType="int" resultType="int">
+		select count(*) from ANNUAL_RULE where years_of_service = #{years_of_service}
+	</select>
 
+	<!-- 연차 수정 -->
+	<update id="updateAnnualLeave" parameterType="com.kedu.dto.AnnualLeaveDTO">
+		update ANNUAL_RULE
+		set leave_days = #{leave_days}
+		where years_of_service = #{years_of_service}
+	</update>
+	
+
+	<!-- 연차 전체 조회 -->
 	<select id="selectAll" resultType="com.kedu.dto.AnnualLeaveDTO">
 		select * from ANNUAL_RULE
 	</select>
 
-	<select id="selectAllDept" resultType = "com.kedu.dto.DepartDTO">
+	<!-- 부서 전체 조회 -->
+	<select id="selectAllDept" resultType="com.kedu.dto.DepartDTO">
 		select * from department
 	</select>
 
-	<select id="selectAllEmpl" resultType = "com.kedu.dto.MemberDTO">
+	<!-- 사원 전체 조회 -->
+	<select id="selectAllEmpl" resultType="com.kedu.dto.MemberDTO">
 		select * from employee
 	</select>
-	
-	<!-- 있으면 업데이트 -->
-	<update id="updateWorkHours">
+
+	<!-- 출퇴근 설정 - 존재 확인 -->
+	<select id="checkIfExists" parameterType="com.kedu.dto.WorkingHoursDTO" resultType="int">
+		select count(*) from WorkingHours
+		where 
+		<choose>
+			<when test="empCodeId != null">
+				emp_code_id = #{empCodeId}
+			</when>
+			<otherwise>
+				dept_id = #{deptId}
+			</otherwise>
+		</choose>
+	</select>
+
+	<!-- 출퇴근 설정 - 신규 등록 -->
+	<insert id="insertWorkHours" parameterType="com.kedu.dto.WorkingHoursDTO">
+		insert into WorkingHours (
+			workingHours_id, dept_id, emp_code_id,
+			standard_check_in, standard_check_out,
+			grace_period_in, grace_period_out, is_active
+		) values (
+			WorkingHours_id_seq.nextval,
+			#{deptId, jdbcType=INTEGER},
+			#{empCodeId, jdbcType=INTEGER},
+			#{standardCheckIn, jdbcType=TIME},
+			#{standardCheckOut, jdbcType=TIME},
+			#{gracePeriodIn, jdbcType=INTEGER},
+			#{gracePeriodOut, jdbcType=INTEGER},
+			#{isActive, jdbcType=CHAR}
+		)
+	</insert>
+
+	<!-- 출퇴근 설정 - 업데이트 -->
+	<update id="updateWorkHours" parameterType="com.kedu.dto.WorkingHoursDTO">
 		update WorkingHours set
 			standard_check_in = #{standardCheckIn},
 			standard_check_out = #{standardCheckOut},
@@ -41,8 +89,8 @@
 				</otherwise>
 			</choose>
 	</update>
-	
-	
+
+	<!-- 부서별 출퇴근 시간 조회 -->
 	<select id="getWorkHoursByDept" parameterType="int" resultType="com.kedu.dto.WorkDisplayDTO">
         SELECT 
             e.emp_code_id AS empCodeId,
@@ -56,9 +104,10 @@
         LEFT JOIN WorkingHours w ON e.emp_code_id = w.emp_code_id
         WHERE e.dept_id = #{deptId}
     </select>
-    <!-- 부서 이름만 출력 -->
-    <select id="selectAllDeptForDropdown" resultType="com.kedu.dto.DepartDTO">
-    SELECT dept_id, dept_name FROM department
+
+	<!-- 부서 이름만 출력 (드롭다운용) -->
+	<select id="selectAllDeptForDropdown" resultType="com.kedu.dto.DepartDTO">
+		SELECT dept_id, dept_name FROM department
 	</select>
-    
+
 </mapper>
