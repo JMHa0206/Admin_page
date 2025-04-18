@@ -20,7 +20,7 @@ public class WorkService {
 
 
     public void createAnnualLeaveRule(AnnualLeaveDTO dto) {
-        workDAO.createAnnualLeave(dto);
+    	workDAO.upsertAnnualLeave(dto);
     }
     
     public List<AnnualLeaveDTO> selectAll(){
