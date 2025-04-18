@@ -261,23 +261,14 @@ select option {
 	<div class="container">
 		<div class="sidebar">
 			<h3>인사 관리</h3>
-			<a href="#" data-target="checktime">정시 출퇴근 출력</a> <a href="#"
-				data-target="annual">연차 생성</a> <a href="#" data-target="select">연차
-				발생</a> <a href="#" data-target="WorkingHours">정시 출/퇴근</a>
+			<a href="#"data-target="annual">연차 생성</a> 
+			<a href="#" data-target="select">연차 발생</a> 
+			<a href="#" data-target="WorkingHours">정시 출/퇴근</a>
 		</div>
 
 		<div class="main-content">
-
-			<!-- 출퇴근 등록 -->
-			<div id="checktime" class="section active">
-				<h2>정시 출퇴근 시간 등록</h2>
-				<form action="/work/select" method="post">
-					돌겠네 작성하다가 다꼬였다
-				</form>
-			</div>
-
 			<!-- 연차 생성 -->
-			<div id="annual" class="section">
+			<div id="annual" class="section active">
 				<h2>연차 생성</h2>
 				<input type="text" id="years_of_service" name="years_of_service"
 					placeholder="연차를 적어주세요.">년차 <input type="text"
