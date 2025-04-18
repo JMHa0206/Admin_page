@@ -5,7 +5,7 @@
 
 <mapper namespace="Work">
 
-	<!-- 연차 생성 -->
+	<!-- 연차 생e성 -->
 	<insert id="createAnnualLeave" parameterType="com.kedu.dto.AnnualLeaveDTO">
 		insert into ANNUAL_RULE(rule_id, years_of_service, leave_days)
 		values (rule_id_seq.nextval, #{years_of_service}, #{leave_days})
