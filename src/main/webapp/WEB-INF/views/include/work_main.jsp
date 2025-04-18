@@ -73,22 +73,22 @@ hr {
 }
 
 .annual-table {
-	width: 100%;
-	border-collapse: collapse;
-	margin-top: 15px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	border-radius: 4px;
-	overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0; /* 기존 15px에서 0으로 변경 */
+  box-shadow: none; /* 박스 그림자 제거하여 이중 테두리 효과 방지 */
 }
 
 .annual-header {
-	background-color: #222;
-	color: white;
-	text-align: left;
-	padding: 12px 15px;
-	font-weight: 500;
+  background-color: #4a76a8; /* 그룹웨어에 어울리는 색상으로 변경ㄴ */
+  color: white;
+  text-align: left;
+  padding: 12px 15px;
+  font-weight: 500;
+  position: sticky; /* 스크롤시 헤더 고정 */
+  top: 0;
+  z-index: 10;
 }
-
 .annual-row {
 	border-bottom: 1px solid #e0e0e0;
 	transition: background-color 0.2s;
@@ -99,7 +99,12 @@ hr {
 }
 
 .annual-row:hover {
-	background-color: #f9f9f9;
+	background-color: #e8f4f8;
+}
+
+/* 행 스타일 개선 */
+.annual-row:nth-child(even) {
+  background-color: #f9f9f9; /* 짝수 행 배경색 */
 }
 
 .annual-data {
@@ -116,12 +121,22 @@ hr {
 }
 
 .annual-days span {
-	display: inline-block;
-	padding: 4px 8px;
-	border-radius: 3px;
-	background-color: #e8f4f8;
-	color: #0277bd;
-	min-width: 25px;
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 3px;
+  background-color: #e8f4f8;
+  color: #0277bd;
+  min-width: 25px;
+  text-align: center;
+}
+
+/* 섹션 타이틀 스타일 개선 */
+#select h2 {
+  color: #333;
+  border-bottom: 2px solid #4a76a8;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
 }
 
 /* 정시 출 퇴근 */
@@ -253,15 +268,21 @@ select option {
 	background-color: #fff !important;
 	font-size: 14px !important;
 }
-
-
+/* 스크롤 */
+.annual-scroll-wrapper {
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-top: 15px;
+}
 </style>
 </head>
 <body>
 	<div class="container">
 		<div class="sidebar">
 			<h3>인사 관리</h3>
-			<a href="#"data-target="annual">연차 생성</a> 
+			<a href="#" data-target="annual">연차 생성</a> 
 			<a href="#" data-target="select">연차 발생</a> 
 			<a href="#" data-target="WorkingHours">정시 출/퇴근</a>
 		</div>
@@ -275,59 +296,64 @@ select option {
 					id="leave_days" name="leave_days" placeholder="연차 일수를 적어주세요." />
 				<button type="button" onclick="generateAnnual()">연차 생성</button>
 			</div>
-			
+
 			<div id="select" class="section">
 				<h2>연차 발생</h2>
-				<table class="annual-table">
-					<thead>
-						<tr>
-							<th class="annual-header">년차</th>
-							<th class="annual-header">일수</th>
-						</tr>
-					</thead>
-					<tbody id="empleave_days">
-
-					</tbody>
-				</table>
+				<div class="annual-scroll-wrapper">
+					<!-- 👈 추가된 부분 -->
+					<table class="annual-table">
+						<thead>
+							<tr>
+								<th class="annual-header">년차</th>
+								<th class="annual-header">일수</th>
+							</tr>
+						</thead>
+						<tbody id="empleave_days">
+						</tbody>
+					</table>
+				</div>
+				<!-- 👈 닫는 div -->
 			</div>
+
 			<div id="WorkingHours" class="section">
 				<h2>정시 출/퇴근</h2>
 
-				<form action="<c:url value='/work/setWorkHours' />" method="post">	<!-- 한번 저렇게해보자 -->
+				<form action="<c:url value='/work/setWorkHours' />" method="post">
+					<!-- 한번 저렇게해보자 -->
 					<div class="form-section">
 						<div class="setting-type">
 							<h3>출근 기준 설정</h3>
-								<input type="radio" id="byDept" name="settingType" value="dept">
-								<label for="byDept">부서별</label>
-
-								<input type="radio" id="byEmp" name="settingType" value="emp">
-								<label for="byEmp">사원별</label>
+							<input type="radio" id="byDept" name="settingType" value="dept">
+							<label for="byDept">부서별</label> <input type="radio" id="byEmp"
+								name="settingType" value="emp"> <label for="byEmp">사원별</label>
 						</div>
 						<!-- 부서 -->
 						<div id="deptForm" style="display: none;">
-							<label for="department">부서 선택:</label> 
-							<select id="department" name="deptId">
+							<label for="department">부서 선택:</label> <select id="department"
+								name="deptId">
 								<!-- 여기서 생성 -->
-								
+
 							</select>
 						</div>
 						<!-- 사원 -->
 						<div id="empForm" style="display: none;">
-							<label for="employee">사원 선택:</label> 
-							<select id="employee" name="empCodeId">
+							<label for="employee">사원 선택:</label> <select id="employee"
+								name="empCodeId">
 								<!-- 여기서 생성 -->
-							<!--  	 <option value="101">사원 101</option>  이런식으로감-->
+								<!--  	 <option value="101">사원 101</option>  이런식으로감-->
 							</select>
 						</div>
 					</div>
 					<div class="time-row">
 						<div class="time-group">
 							<h3>출근 시간</h3>
-							<input type="time" step="60" id="standardCheckIn" name="standardCheckIn">
+							<input type="time" step="60" id="standardCheckIn"
+								name="standardCheckIn">
 						</div>
 						<div class="time-group">
 							<h3>퇴근 시간</h3>
-							<input type="time" step="60" id="standardCheckOut" name="standardCheckOut">
+							<input type="time" step="60" id="standardCheckOut"
+								name="standardCheckOut">
 						</div>
 					</div>
 					<div class="grace-row">
@@ -342,12 +368,11 @@ select option {
 								value="0" min="0">
 						</div>
 					</div>
-					<label for="isActive">활성 여부</label>
-						<select id="isActive" name="isActive">
-  							<option value="Y" selected>활성화</option>
-  							<option value="N">비활성화</option>
-						</select>
-					<input type="submit" value="설정 저장">
+					<label for="isActive">활성 여부</label> <select id="isActive"
+						name="isActive">
+						<option value="Y" selected>활성화</option>
+						<option value="N">비활성화</option>
+					</select> <input type="submit" value="설정 저장">
 				</form>
 			</div>
 		</div>
