@@ -23,7 +23,7 @@
 		select * from employee
 	</select>
 	
-	<!-- 있냐없냐 비교 -->
+	<!-- 있냐없냐 비교 
 	<select id="checkIfExists" 
 	parameterType="com.kedu.dto.WorkingHoursDTO"
 	resultType="int">
@@ -37,9 +37,9 @@
 				dept_id = #{deptId}
 			</otherwise>
 		</choose>
-	</select>
+	</select>-->
 	
-	<!-- 없으면 추가 -->
+	<!-- 없으면 추가 
 	<insert id="insertWorkHours" parameterType="com.kedu.dto.WorkingHoursDTO">
 		insert into WorkingHours (
 			workingHours_id, dept_id, emp_code_id,
@@ -55,7 +55,7 @@
 				#{gracePeriodOut, jdbcType=INTEGER},
 				#{isActive, jdbcType=CHAR}
 		)
-	</insert>
+	</insert>-->
 	
 	<!-- 있으면 업데이트 -->
 	<update id="updateWorkHours">

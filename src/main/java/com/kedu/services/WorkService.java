@@ -34,6 +34,7 @@ public class WorkService {
     	return workDAO.selectAllEmpl();
     }
     
+
     public int setWorkHours(WorkingHoursDTO whdto) {
     	return workDAO.setWorkHours(whdto);
     }
@@ -45,5 +46,6 @@ public class WorkService {
     public List<DepartDTO> getDeptListForDropdown() {
         return workDAO.selectAllDeptForDropdown();
     }
+
 
 }

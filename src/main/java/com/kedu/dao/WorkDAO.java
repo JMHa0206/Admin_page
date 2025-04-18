@@ -12,6 +12,7 @@ import com.kedu.dto.MemberDTO;
 import com.kedu.dto.WorkDisplayDTO;
 import com.kedu.dto.WorkingHoursDTO;
 
+
 @Repository
 public class WorkDAO {
 
@@ -35,6 +36,7 @@ public class WorkDAO {
     public List<MemberDTO> selectAllEmpl(){
     	return sqlSession.selectList(NAMESPACE+".selectAllEmpl");
     }
+
     public int setWorkHours(WorkingHoursDTO whdto) {
     	int count = sqlSession.selectOne(NAMESPACE+".checkIfExists", whdto);
 
@@ -50,4 +52,5 @@ public class WorkDAO {
     public List<DepartDTO> selectAllDeptForDropdown() {
         return sqlSession.selectList(NAMESPACE + ".selectAllDeptForDropdown");
     }
+
 }

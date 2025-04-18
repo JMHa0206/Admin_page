@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.kedu.dao.MemberDAOImp;
 import com.kedu.dto.MemberDTO;
+import com.kedu.dto.SearchConditionDTO;
+import com.kedu.dto.SearchResultDTO;
 
 @Service
 public class MemberService {
@@ -40,6 +42,9 @@ public class MemberService {
 		return daom.selectEmpForPermission();
 	}
 	
+	public List<SearchResultDTO> searchByTarget(SearchConditionDTO condition){
+		return daom.searchByTarget(condition);
+	}
 
 
 }
