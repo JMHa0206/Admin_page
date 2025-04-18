@@ -23,40 +23,6 @@
 		select * from employee
 	</select>
 	
-	<!-- 있냐없냐 비교 
-	<select id="checkIfExists" 
-	parameterType="com.kedu.dto.WorkingHoursDTO"
-	resultType="int">
-		select count(*) from WorkingHours
-		where 
-		<choose>
-			<when test="empCodeId != null">
-				emp_code_id = #{empCodeId}
-			</when>
-			<otherwise>
-				dept_id = #{deptId}
-			</otherwise>
-		</choose>
-	</select>-->
-	
-	<!-- 없으면 추가 
-	<insert id="insertWorkHours" parameterType="com.kedu.dto.WorkingHoursDTO">
-		insert into WorkingHours (
-			workingHours_id, dept_id, emp_code_id,
-        	standard_check_in, standard_check_out,
-        	grace_period_in, grace_period_out, is_active
-		) values (
-				WorkingHours_id_seq.nextval,
-				#{deptId, jdbcType=INTEGER},
-				#{empCodeId, jdbcType=INTEGER},
-				#{standardCheckIn, jdbcType=TIME},
-				#{standardCheckOut, jdbcType=TIME},
-				#{gracePeriodIn, jdbcType=INTEGER},
-				#{gracePeriodOut, jdbcType=INTEGER},
-				#{isActive, jdbcType=CHAR}
-		)
-	</insert>-->
-	
 	<!-- 있으면 업데이트 -->
 	<update id="updateWorkHours">
 		update WorkingHours set
