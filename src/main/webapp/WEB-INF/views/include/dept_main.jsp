@@ -326,14 +326,20 @@ button.delete-btn {
     $(document).on('click', '.delete-btn', function () {
       const row = $(this).closest('tr');
       const deptid = row.find('td:first').text();
+      if (confirm("부서를 삭제하시겠습니까?")) {
+    	  $.ajax({
+    	        url: '/Depart/deleteDept',
+    	        type: 'POST',
+    	        data: { dept_id: deptid }
+    	      }).done(function () {
+    	        row.remove();
+    	      });
+    	  console.log("부서가 삭제되었습니다.");
+    	} else {
+    	  return;
+    	  console.log("삭제가 취소되었습니다.");
+    	}
 
-      $.ajax({
-        url: '/Depart/deleteDept',
-        type: 'POST',
-        data: { dept_id: deptid }
-      }).done(function () {
-        row.remove();
-      });
     });
     
     

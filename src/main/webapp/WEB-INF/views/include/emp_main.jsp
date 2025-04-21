@@ -49,6 +49,7 @@
   flex-grow: 1;
   padding: 30px;
   background-color: #f9fbfd;
+  margin-left:50px;
 }
 
 .section {
@@ -72,15 +73,21 @@ legend {
   color: #1a3c6c;
 }
 
+form {
+  max-width: 600px; /* 폼 전체 최대 너비 제한 */
+}
+
 input[type="text"], input[type="email"], input[type="date"], select {
   display: block;
-  width: 100%;
+  width: 600px; /* 고정 너비로 변경 */
   padding: 10px;
   margin-top: 8px;
   margin-bottom: 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
 }
+
+
 
 button {
   background-color: #1a3c6c;
@@ -127,6 +134,14 @@ width:200px;
 	align-items: center; /* 세로 중앙 정렬 */
 	gap: 12px; 
 	height:50px;
+	width:870px;
+}
+
+#updateModal input[type="text"],
+#updateModal select {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .modal {
@@ -188,8 +203,8 @@ height:37px;
       <form action="/Employee/insertMember" method="post">
         <fieldset>
           <legend>기본 설정</legend>
-          <input type="text" name="emp_loginId" placeholder="아이디" readonly />
-          <input type="text" name="emp_pw" placeholder="비밀번호" readonly />
+          <input type="text" id="id" name="emp_loginId" placeholder="아이디" readonly />
+          <input type="text" id="pw" name="emp_pw" placeholder="비밀번호" readonly />
           <input type="date" name="hire_date" placeholder="입사일" />
           <input type="text" name="salary" placeholder="연봉" required />
         </fieldset>

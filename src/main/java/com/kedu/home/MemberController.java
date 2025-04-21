@@ -47,10 +47,12 @@ public class MemberController {
 	
 	@RequestMapping("/delete")
 	public String delete(String emp_code_id) {
-		
+		System.out.println("사원코드 : " + emp_code_id);
 		mServ.delete(emp_code_id);
 		return "redirect:/admin/home?menu=emp";
 	}
+	
+	
 	@ResponseBody //updated
 	@RequestMapping("/selectDeptManager")
 	public List<MemberDTO> selectDeptManager(@RequestParam("id") Integer id ) {

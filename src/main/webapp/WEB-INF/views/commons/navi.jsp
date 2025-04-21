@@ -42,5 +42,5 @@
     <a href="/admin/home?menu=board" style="color: white; margin: 0 15px;">게시판 관리</a>
     <a href="/admin/home?menu=work" style="color: white; margin: 0 15px;">인사정보 관리</a>
     <a href="/admin/home?menu=EDMS" style="color: white; margin: 0 15px;">전자결재 관리</a>
-    <a href="/admin/home?menu=analysis" style="color: white; margin: 0 15px;">활동 분석(클릭금지)</a>
+    <!-- <a href="/admin/home?menu=analysis" style="color: white; margin: 0 15px;">활동 분석(클릭금지)</a> -->
 </div>
