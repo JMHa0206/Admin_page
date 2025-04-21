@@ -130,11 +130,11 @@ width:200px;
 
 #empListHeader {
 	display: flex;
-	justify-content: flex-end;
+	justify-content: start;
 	align-items: center; /* 세로 중앙 정렬 */
 	gap: 12px; 
 	height:50px;
-	width:870px;
+	width:100%;
 }
 
 #updateModal input[type="text"],
@@ -185,6 +185,9 @@ width:80px;
 height:37px;
 }
 
+#searchForm{
+width:100%;
+}
 
 </style>
 </head>
